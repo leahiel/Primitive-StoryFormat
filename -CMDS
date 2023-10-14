@@ -1,6 +1,0 @@
-# Build Format
-cd primitive
-node build.js
-
-# Build with Tweego
-tweego -o o.html src
