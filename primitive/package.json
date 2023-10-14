@@ -1,0 +1,15 @@
+{
+    "name": "Primitive",
+    "version": "0.0.1",
+    "license": "BSD-2-Clause",
+    "devDependencies": {
+      "clean-css": "^5.2.2",
+      "node-getopt": "^0.3.2",
+      "semver": "^7.3.5",
+      "terser": "^5.10.0"
+    },
+    "engine": {
+      "node": ">=17.3.0"
+    },
+    "private": true
+  }
