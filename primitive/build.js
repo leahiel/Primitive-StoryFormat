@@ -15,7 +15,7 @@
 const CONFIG = {
     js: {
         files: [
-
+            
         ],
         wrap: {
             intro: 'src/templates/intro.js',
@@ -25,10 +25,18 @@ const CONFIG = {
     css: {
         files: [
             'src/vendor/normalize.css',
+            'src/vendor/init-screen.css'
         ]
     },
     libs: [
+        // The ordering is important.
 
+        // For Generating EPUBs
+        'src/vendor/ejs.min.js',
+        'src/vendor/jszip.min.js',
+        'src/vendor/jepub.min.js',
+
+        
     ],
     twine2: {
         build: {

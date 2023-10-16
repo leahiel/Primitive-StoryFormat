@@ -11,16 +11,18 @@
             JSON) {
             document.documentElement.setAttribute("data-init", "loading");
             '{{BUILD_LIB_SOURCE}}'
+            console.log("Libraries built successfully.");
         } else {
             document.documentElement.setAttribute("data-init", "lacking");
         }
     </script>
     '{{BUILD_CSS_SOURCE}}'
+    <script type="text/javascript">console.log("CSS built successfully.");</script>
 </head>
 
 <body>
     <div id="init-screen">
-        <div id="init-no-js"><noscript>JavaScript must be enabled to play.</noscript></div>
+        <div id="init-no-js"><noscript>JavaScript must be enabled to use the Primitive StoryFormat.</noscript></div>
         <div id="init-lacking">
             <p>Browser lacks capabilities required to play.</p>
             <p>Upgrade or switch to another browser.</p>
@@ -34,8 +36,20 @@
         /*! SugarCube JS */
         if (document.documentElement.getAttribute("data-init") === "loading") {
             '{{BUILD_APP_SOURCE}}'
+            console.log("JavaScript App built successfully.");
+            document.documentElement.removeAttribute("data-init");
         }
     </script>
+
+    Hello!
+
+    <!-- TODO Place Generative Buttons Here -->
+
+    This is where I will place the buttons to generate HTML, EPUB, or to test the HTML.
+
+    <br>
+    Built with Primitive v"{{BUILD_VERSION_VERSION}}"."{{BUILD_VERSION_BUILD}}"
+
 </body>
 
 </html>

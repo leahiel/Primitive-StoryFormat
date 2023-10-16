@@ -168,6 +168,9 @@ NOTE: Not every standard HTML element is available with EPUB 3 standards, so ver
 5) EPUB files should be able to be read in-browser.
 TECHNICAL: There are a few JavaScript libraries available for this. One such one is https://github.com/futurepress/epub.js/
 
+6) [HTML] Images should be loaded as they are scrolled into view, in order to prevent large loading times for the story.
+NOTE: All known EPUB readers handle this automatically.
+
 
 
 ### 0.3 Technical Notes:
@@ -358,6 +361,10 @@ https://github.com/iftechfoundation/twine-specs/blob/master/twee-3-specification
 
 WritingFantasy Guide:
 https://sophiehoulden.com/twine/writingfantasy_guide.html
+NOTE: Without a license or copyright information, the code of Writing Fantasy is verboten to copy/gain inspiration from.
+
+Paperthin Proofing StoryFormat:
+https://github.com/klembot/paperthin 
 
 The EPUB3 specification:
 https://www.w3.org/TR/epub/
