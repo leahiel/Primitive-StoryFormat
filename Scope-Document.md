@@ -125,7 +125,7 @@ As required of a StoryFormat for EPUB, passages should be output in a randomized
 
 **NOTE:** The various forms of comments are for compatibility with different software that authors commonly use.
 
-10) [WF Legacy] Passages tagged as `hidden` or `skip` should be not considered by the parser.
+10) [WF Legacy] Passages tagged as `hidden` or `note` or `notes` should be not considered by the parser.
 * 10a) Passages tagged with `no-toc` should not be added to the Table of Contents
 
 11) Separate CSS files should be accepted for each exported version that Primitive Offers.

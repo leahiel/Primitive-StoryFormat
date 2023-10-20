@@ -9,3 +9,10 @@ StoryFormat Learning
     "format-version": "0.0.1",
     "ifid": "ED46AFFE-96C0-4E1D-AE5D-B5B3244C93BB"
 }
+
+
+
+:: StoryConfig
+{
+    "title": "Your Title Here",
+}

@@ -17,7 +17,9 @@
         }
     </script>
     '{{BUILD_CSS_SOURCE}}'
-    <script type="text/javascript">console.log("CSS built successfully.");</script>
+    <script type="text/javascript">
+        console.log("CSS built successfully.");
+    </script>
 </head>
 
 <body>
@@ -32,8 +34,8 @@
         </div>
     </div>
     {{STORY_DATA}}
-    <script id="script-sugarcube" type="text/javascript">
-        /*! SugarCube JS */
+    <script id="script-primitive" type="text/javascript">
+        /*! Primitive JS */
         if (document.documentElement.getAttribute("data-init") === "loading") {
             '{{BUILD_APP_SOURCE}}'
             console.log("JavaScript App built successfully.");
@@ -41,14 +43,18 @@
         }
     </script>
 
-    Hello!
+    <div id=#primitive-export-screen>
+        Hello!
 
-    <!-- TODO Place Generative Buttons Here -->
+        <!-- TODO Place Generative Buttons Here -->
 
-    This is where I will place the buttons to generate HTML, EPUB, or to test the HTML.
+        This is where I will place the buttons to generate HTML, EPUB, or to test the HTML.
 
-    <br>
-    Built with Primitive v"{{BUILD_VERSION_VERSION}}"."{{BUILD_VERSION_BUILD}}"
+        <br>
+    </div>
+    <div id=#primitive-version-number>
+        Built with Primitive v"{{BUILD_VERSION_VERSION}}"."{{BUILD_VERSION_BUILD}}"
+    </div>
 
 </body>
 
