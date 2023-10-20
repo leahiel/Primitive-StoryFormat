@@ -1,6 +1,6 @@
 /***********************************************************************************************************************
 
-	This file was pared-down from Thomas Michael Edwards' build-utils.js file, available under the BSD 2-clause 
+	This file was minimally pared-down from Thomas Michael Edwards' build-utils.js file, available under the BSD 2-clause 
 	"Simplified" License, Copyright © 2020–2021. You may find the original file used for this pared-down verison at:
 	https://github.com/tmedwards/sugarcube-2/blob/27903a854b7bedbb9fa60efa33e47c99bab7a359/scripts/build-utils.js
 
