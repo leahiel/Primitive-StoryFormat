@@ -8,35 +8,40 @@
 A Twine-to-EPUB IF StoryFormat.
 
 <details>
-    <summary>Table of Contents</summary>
+  <summary>Table of Contents</summary>
 
-    * [Version Plans](#version-plans)
-        * [Version 0.1](#version-01)
-            * [0.1 Features](#01-features)
-            * [0.1 Technical Notes](#01-technical-notes)
-            * [0.1 Author Experience](#01-author-experience)
-        * [Version 0.2](#version-02)
-            * [0.2 Features](#02-features)
-            * [0.2 Technical Notes](#02-technical-notes)
-            * [0.2 Author Experience](#02-author-experience)
-        * [Version 0.3](#version-03)
-            * [0.3 Features](#03-features)
-            * [0.3 Technical Notes](#03-technical-notes)
-            * [0.3 Author Experience](#03-author-experience)
-        * [Feature Creep](#feature-creep)
-            * [Creep Features](#creep-features)
-    * [Glossary](#glossary)
-    * [Notes from Gamebook Playthroughs](#notes-from-gamebook-playthroughs)
-    * [Helpful Links](#helpful-links)
+  * [Version Plans](#version-plans)
+    * [Version 0.1](#version-01)
+      * [0.1 Features](#01-features)
+      * [0.1 Technical Notes](#01-technical-notes)
+      * [0.1 Author Experience](#01-author-experience)
+    * [Version 0.2](#version-02)
+      * [0.2 Features](#02-features)
+      * [0.2 Technical Notes](#02-technical-notes)
+      * [0.2 Author Experience](#02-author-experience)
+    * [Version 0.3](#version-03)
+      * [0.3 Features](#03-features)
+      * [0.3 Technical Notes](#03-technical-notes)
+      * [0.3 Author Experience](#03-author-experience)
+    * [Feature Creep](#feature-creep)
+      * [Creep Features](#creep-features)
+  * [Glossary](#glossary)
+  * [Notes from Gamebook Playthroughs](#notes-from-gamebook-playthroughs)
+  * [Helpful Links](#helpful-links)
 </details>
 
 # Version Plans:
 ## Version 0.1 
-Version 0.1 is a very base version of Primitive. It should merely take commonly accepted Twee and Twee-adjacent notation of a Twine 2 HTML document, and act as a functional Twine-to-EPUB-and-HTML StoryFormat. The StoryFormat should take the Twine 2 HTML document, and spit out a generated HTML document that shows two buttons: "Export to EPUB" and "Export to HTML".
+Version 0.1 is a very base version of Primitive. It should merely take commonly accepted Twee and Twee-adjacent notation of a Twine 2 HTML document, and act as a functional Twine-to-EPUB-and-HTML StoryFormat. The StoryFormat should take the Twine 2 HTML document, and spit out a generated HTML document that shows the following buttons:
 * Export to EPUB: Should export a file downloadable by the browser of the story in EPUB3 format.
 * Export to HTML: Should export a file downloadable by the browser of the story in HTML format, just like most StoryFormats.
+* Test EPUB in HTML: Should load the HTML portion of the EUPB inside the browser for testing.
+* Test HTML in HTML: Should load the HTML portion inside the browser for testing.
+
 Because StoryFormats only act on the Twine 2 HTML document when loaded in the browser, it is required to load the story with the StoryFormat in the browser before we can act on the Twine 2 HTML document. Thus, in order to use a StoryFormat to output to EPUB, we must first load the story in the StoryFormat, before we can use the StoryFormat to generate an EPUB. It is impossible with current compilers to use a StoryFormat directly to compile an EPUB document. There is no plan to add or create compiler functionality to make this happen.
+
 Because Primitive's primary export focus is EPUB, only features that work in EPUB3 format should be able to be utilized. For example, this would exclude the use of JavaScript, including the `<script>` HTML element, as EPUB3 does not support that functionality.
+
 As required of a StoryFormat for EPUB, passages should be output in a randomized order, and links to passages should be hyperlinked to the correct passage, optionally with a "turn to passage N" message.
 
 **NOTE**: Version 0.1 will be incredibly similar to WritingFantasy, a StoryFormat made by Souphie Houlden. <https://sophiehoulden.com/twine/writingfantasy_guide.html> Primitive aims to surpass WritingFantasy in functionality starting in version 0.2.
@@ -55,28 +60,22 @@ As required of a StoryFormat for EPUB, passages should be output in a randomized
 
 **TECHNICAL:** There are several extensions and JavaScript libraries that convert webpages to EPUB. Considering that we can detail the exact HTML of the generated document that the EPUB will be generated from, making an EPUB from it should be an easy, though non-trivial task. 
 
-**NOTE:** The EPUB3 specification can be found at https://www.w3.org/TR/epub/
-
-**NOTE:** The EPUB3-RS specification can be found at https://www.w3.org/TR/epub-rs/
-
-**TECHNICAL:** Because exporting to EPUB is the most critical feature of Primitive, all considerations should be made in regards to this. For instance, when parsing the Twine HTML story data, line breaks should be removed and each paragraph should be placed within a `<p>` HTML element.
-
 2) All "standard" link syntaxes should be supported. Additionally, Passage Links should have some text following them in the styles provided by WritingFantasy.
 
 **NOTE:** Due to the popularity of the Twine 2.x application, the baseline standard for all links should be syntax that the application accepts while parsing: https://github.com/klembot/twinejs/blob/develop/src/util/parse-links.ts
 
-* 2a) "Standard"     [[Passage Links]]                 => Passage Links (turn to 6)
-* 2b) "Standard"     [[display text->Passage Link]]    => display text (turn to 6) 
-* 2c) "Standard"     [[Passage Link<-display text]]    => display text (turn to 6) 
-* 2d) Twine1-Legacy  [[display text|Passage Link]]     => (turn to 6)
-* 2e) WF-Legacy      [[->Passage Link]]                => (turn to 6)
-* 2e) WF-Legacy      [[Passage Link<-]]                => (turn to 6)
-* 2g) WF-Legacy      [[#->Passage Link]]               => 6
-* 2h) WF-Legacy      [[Passage Link<-#]]               => 6
+* 2a) "Standard"     `[[Passage Links]]                 => Passage Links (turn to 6)`
+* 2b) "Standard"     `[[display text->Passage Link]]    => display text (turn to 6)`
+* 2c) "Standard"     `[[Passage Link<-display text]]    => display text (turn to 6)`
+* 2d) Twine1-Legacy  `[[display text|Passage Link]]     => (turn to 6)`
+* 2e) WF-Legacy      `[[->Passage Link]]                => (turn to 6)`
+* 2e) WF-Legacy      `[[Passage Link<-]]                => (turn to 6)`
+* 2g) WF-Legacy      `[[#->Passage Link]]               => 6`
+* 2h) WF-Legacy      `[[Passage Link<-#]]               => 6`
 
 **NOTE:** The `[[turnto->Passage Links]]` Passage Link syntax provided by WritingFantasy will not be supported, as the custom text will be editable in the configuration file.
 
-* 2i) Passages should be able to be Hypertexted linked to. i.e. http://localhost:8080/#31
+* 2i) Passages should be able to be linked to. i.e. http://localhost:8080/#31
 
 **RESEARCH:** In fact, this may be a reasonable EPUB requirement for the Table of Contents. If it is not, then 2i will be moved to Version 0.3.
 
@@ -109,14 +108,16 @@ As required of a StoryFormat for EPUB, passages should be output in a randomized
 * 7a) The order of both matter passages should be able to be specified with a suffix of `_number` after their tag name. i.e. A passage tagged with `[frontmatter_3]` will be the third frontmatter passage in the novel.
 
 8) [WF Legacy] Other text markup syntax available to authors for use.
-8a) ~~strikethrough~~
-8b) ^^superscript^^
-8c) *emphasis*
-8d) **strong emphasis**
-8e) __underline__
-8f) Markup syntax should be able to be escaped with a `\`.
+* 8a) ~~strikethrough~~
+* 8b) ^^superscript^^
+* 8c) *emphasis*
+* 8d) **strong emphasis**
+* 8e) __underline__
+* 8f) Markup syntax should be able to be escaped with a `\`.
+
 **NOTE:** Not all of WF's text markup are included.
-**RESEARCH:** Do I want to include BBCode as well?
+
+**RESEARCH:** Do we include BBCode as well?
 
 9) Story Comments should be available that the StoryFormat does not parse.
 * 9a) HTML, JavaScript, and curly bracket `{ }` style block comments should exist.
@@ -144,6 +145,8 @@ styles = {
 
 ### 0.1 Technical Notes:
 Primitive can be broken down, very roughly, into a few parts in this version: The parser, the export options page, the HTML export, and the EPUB export. 
+
+Because exporting to EPUB is the most critical feature of Primitive, all considerations should be made in regards to this. For instance, when parsing the Twine HTML story data, line breaks should be removed and each paragraph should be placed within a `<p>` HTML element.
 
 
 
@@ -175,7 +178,7 @@ Version 0.2 plans to add extensive additions to Primitive in order to truly make
 * 1c) While the Generated Passage Name of a passage may change, the "turn to" text that the reader sees should still read as something like, `(turn to 82)`, NOT something like `(turn to 82-NN10)`.
 
 **TECHNICAL:** There are currently two ideas on how to implement `<<set>>`ing State Variables
-* * One: State Variables can be used with a <<set>> and <<unset>> macro, ensuring that whenever a reader visits that passage, that State Variable will be updated.
+* * One: State Variables can be used with a `<<set>>` and `<<unset>>` macro, ensuring that whenever a reader visits that passage, that State Variable will be updated.
 * * Two: State Variables can be updated on Passage Transition via a customized Passage Link Setter. This may be more logical, but the chance for authors to make an error is higher. For instance, if Passage A, B, and D converge on Passage E, then the author has to remember to set the State Variable in all three passages. If they forget one, they could have an unexpected error on Passage E.
 
 * 1d) An error should be flagged if a State Variable does not exist when being used in a `<<set>>`, `<<unset>>`, or `if statement`.
@@ -306,19 +309,19 @@ As there are no plans to allow `<<set>>` and `<<unset>>` statements to be made w
 
 6) Integer State Variables. [GAMEBOOK]
 
-**TECHNICAL:** Adding and subtracting Integer State Variables, and using them in If Statements wouldn't be hard. The only notable thing is that I would have to have the Author give us the possible maximum and minimum values for each Integer State Variable. However, I'm not sure how the technical portion of adding Integer State Variables would work. i.e. How would I keep track of them in the Generated Passage Names? Perhaps I could do something like `::P-ISV1-ISV2-ISV3-NBSVs`.
+**TECHNICAL:** Adding and subtracting Integer State Variables, and using them in If Statements wouldn't be hard. The only notable thing is that Primitive would have to have the Author give us the possible maximum and minimum values for each Integer State Variable. However, I'm not sure how the technical portion of adding Integer State Variables would work. i.e. How would Primitive keep track of them in the Generated Passage Names? Perhaps Primitive could do something like `::P-ISV1-ISV2-ISV3-NBSVs`.
 
 7) Hotkeys used as passage progression for HTML versions of the game.
 
 **NOTE:** This would allow for automated testing using non-standard means (e.g. AutoHotkey) much easier.
 
-**TECHNICAL:** I'm just not sure how I would do this. Should there be JavaScript that changes the current set of Hotkeys based on which passage you're on? But I'm not planning on tracking current HTML passage thingy. Perhaps I could add this along with a second optional variation of HTML that shows passages one at a time?
+**TECHNICAL:** I'm just not sure how Primitive would do this. Should there be JavaScript that changes the current set of Hotkeys based on which passage you're on? But I'm not planning on tracking current HTML passage thingy. Perhaps Primitive could add this along with a second optional variation of HTML that shows passages one at a time?
 
 8) Horizontal Rules.
 
 9) A Return Macro. [GAMEBOOK]
 
-**NOTE:** Imagine a scenario wherein the Author places a link to the inventory at the top of every passage. Rather than having to write a massive If Statement for every passage that links to the inventory, they could just write a <<return>> macro instead, which would tell the reader to return to the passage that they just came from (of course, giving them that number too).
+**NOTE:** Imagine a scenario wherein the Author places a link to the inventory at the top of every passage. Rather than having to write a massive If Statement for every passage that links to the inventory, they could just write a `<<return>>` macro instead, which would tell the reader to return to the passage that they just came from (of course, giving them that number too).
 
 **TECHNICAL:** EPUB and EPUB-RS specifications have no "back" button, as you may find on a browser. Such an idea must be programmed by myself.
 
@@ -346,7 +349,7 @@ You leave the spade and you decide to head [[north]]
 ```
 
 **NOTE:**
-Multiple <<take>> in the Source Passage [n] would result in Generating Passage Links on a 2^n basis. Adding in the potential for multiple Passage Links in the Source Passage [m] would result in the total Generated Passage Links being m*(2^n).
+Multiple `<<take>>` in the Source Passage [n] would result in Generating Passage Links on a 2^n basis. Adding in the potential for multiple Passage Links in the Source Passage [m] would result in the total Generated Passage Links being m*(2^n).
 
 **TECHNICAL:** 
 1) Since SPADE would be the technical term, how would Primitive know which form to use in the Generated Passage Link? The Author may desire `SPADE` as the technical term, but `shovel` as the term used in their passages at some points, and `blunt metal object on stick` at others. This could be resolved, at least partially, with a Template system, but that feature also has its issues.
@@ -409,72 +412,78 @@ Booleans are variables that can either be True or False. Nullable Booleans can a
 
 # Notes from GameBook Playthroughs
 GameBooks Played: 
-    "Escape from the Tower of Stars" by David Donachie
-    "And Watch the Skies be Torn Asunder" by Steffan Hagen    
+* "Escape from the Tower of Stars" by David Donachie
+* "And Watch the Skies be Torn Asunder" by Steffan Hagen    
+
 Find them on <https://www.lloydofgamebooks.com/p/voting-is-now-open-for-20222023.html>
 
-    > There are three main state variables used in these GameBooks: Keywords (literally Booleans), items (Booleans or Integers), and rolling dice (verboten, literally cannot be supported in an EPUB setting).
+> There are three main state variables used in these GameBooks: Keywords (literally Booleans), items (Booleans or Integers), and rolling dice (verboten, literally cannot be supported in an EPUB setting).
 
-    > Values of items (such as 10gp, 3 rations, 2 medkits, etc) wouldn't be easily checked. This would require Integer State Variables, which are currently a Creep Feature, and thus are not currently planned to be added.
+> Values of items (such as 10gp, 3 rations, 2 medkits, etc) wouldn't be easily checked. This would require Integer State Variables, which are currently a Creep Feature, and thus are not currently planned to be added.
 
-    > However, with some alterations, there doesn't seem to be anything beside the rolling of the dice that would prevent a porting of "Escape from the Tower of Stars" from being ported to the planned 0.2 version of Primitive.
+> However, with some alterations, there doesn't seem to be anything beside the rolling of the dice that would prevent a porting of "Escape from the Tower of Stars" from being ported to the planned 0.2 version of Primitive.
 
-    > A way to track your skills, inventory, and stats would be required. Perhaps David would have to have a "check your skill and inventory" line that leads to a "Stats and Inventory" passage with a lot of If Statements that would report those stats. While non-trivial, this wouldn't exactly be difficult.
+> A way to track your skills, inventory, and stats would be required. Perhaps David would have to have a "check your skill and inventory" line that leads to a "Stats and Inventory" passage with a lot of If Statements that would report those stats. While non-trivial, this wouldn't exactly be difficult.
 
-    > The issue here would be the "return" link. Because readers are not expected to keep track of their current passage number, that link would be unique to each passage that could lead to it. That means that each passage of inventory checking isn't only duplicated based on the actual stats of the reader, but also based on where the reader got to the passage from. Based on my reading, I've added a <<return>> macro as a creep feature, for future consideration.
+> The issue here would be the "return" link. Because readers are not expected to keep track of their current passage number, that link would be unique to each passage that could lead to it. That means that each passage of inventory checking isn't only duplicated based on the actual stats of the reader, but also based on where the reader got to the passage from. 
 
-    > So if David has 300 permutations of stats and items in his story (keywords would be natively tracked by the boolean system, but if he wanted to show those too, then that could add more permutations), and 60 passages that allow the reader to see their stats and items, then that is 300 * 60 = 18000 generated unique passages to be added. Feasibility studies on this massive passage count would need to be considered. Additionally, if I wanted this sort of thing to be possible, I would need to look into a <<return>> sort of macro. At the moment David would have to link to a different stats and items passage for every passage, which is ridiculous.
+> So if David has 300 permutations of stats and items in his story (keywords would be natively tracked by the boolean system, but if he wanted to show those too, then that could add more permutations), and 60 passages that allow the reader to see their stats and items, then that is 300 * 60 = 18000 generated unique passages to be added. Feasibility studies on this massive passage count would need to be considered. Additionally, if I wanted this sort of thing to be possible, I would need to look into a `<<return>>` sort of macro. At the moment David would have to link to a different stats and items passage for every passage, which is ridiculous.
 
-    > "And Watch the Skies be Torn Asunder" managed health by having the player track the number of times they have been WOUNDED. This would be able to be done in Version 0.2, wherein the NBSVs WOUNDED_1, WOUNDED_2 could be used. The author would still need to say something like 
-    <<if WOUNDED_2>>
-        [[death]]
-    <<else if WOUNDED_1>>
-        <<set WOUNDED_2 to true>>
-        Rest of Passage Text. 
-    <<else>>
-        <<set WOUNDED_1 to true>>
-        Rest of Passage Text. 
-    <</if>>
+> "And Watch the Skies be Torn Asunder" managed health by having the player track the number of times they have been WOUNDED. This would be able to be done in Version 0.2, wherein the NBSVs WOUNDED_1, WOUNDED_2 could be used. The author would still need to say something like:
+> ```
+> <<if WOUNDED_2>>
+>     [[death]]
+> <<else if WOUNDED_1>>
+>     <<set WOUNDED_2 to true>>
+>     Rest of Passage Text. 
+> <<else>>
+>     <<set WOUNDED_1 to true>>
+>     Rest of Passage Text. 
+> <</if>>
+> ```
 
-    > Unfortunately, this would require duplicating "Rest of Passage Text". This is undesirable, so some thought needs to be taken. Perhaps an <<include>> macro may wise?
+> Unfortunately, this would require duplicating "Rest of Passage Text". This is undesirable, so some thought needs to be taken. Perhaps an `<<include>>` macro may wise?
 
-    > One solution from Hituro would be to advise the author to write it like this:
-    :: Injury
-    <<if WOUNDED_2>>
-        [[die]]
-    <<elseif WOUNDED_1>>
-        <<set WOUNDED_2>>
-        [[hurt]]
-    <<else>>
-        <<set WOUNDED_1>>
-        [[hurt]]
-    <</if>>
-    > And then have something like "Automatic Passage Forwarding" or "Redirects" to take the reader to the correct place. I think this invites complexity on both the technical part of the Engine (as such a thing would need to be programmed) and on the part of the Author, as they now have a new tool/technique that they need to learn and contend with.
+> One solution from Hituro would be to advise the author to write it like this:
+> ```
+> :: Injury
+> <<if WOUNDED_2>>
+>     [[die]]
+> <<elseif WOUNDED_1>>
+>     <<set WOUNDED_2>>
+>     [[hurt]]
+> <<else>>
+>     <<set WOUNDED_1>>
+>     [[hurt]]
+> <</if>>
+> ```
+> And then have something like "Automatic Passage Forwarding" or "Redirects" to take the reader to the correct place. I think this invites complexity on both the technical part of the Engine (as such a thing would need to be programmed) and on the part of the Author, as they now have a new tool/technique that they need to learn and contend with.
 
 
 
 # Helpful Links:
-Twee 3 Specification:
+#### Twee 3 Specification:
 https://github.com/iftechfoundation/twine-specs/blob/master/twee-3-specification.md
 
-WritingFantasy Guide:
+#### WritingFantasy Guide:
 https://sophiehoulden.com/twine/writingfantasy_guide.html
+
 **NOTE:** Without a license or copyright information, the code of Writing Fantasy is verboten to copy/gain inspiration from.
 
-Paperthin Proofing StoryFormat:
+#### Paperthin Proofing StoryFormat:
 https://github.com/klembot/paperthin 
 
-The EPUB3 specification:
+#### The EPUB3 specification:
 https://www.w3.org/TR/epub/
 
-The EPUB3-RS specification: 
+#### The EPUB3-RS specification: 
 https://www.w3.org/TR/epub-rs/
 
-Amazon Kindle Create:
+#### Amazon Kindle Create:
 https://www.amazon.com/Kindle-Create/b?ie=UTF8
 
-Amazon Kindle Previewer: 
+#### Amazon Kindle Previewer: 
 https://kdp.amazon.com/en_US/help/topic/G202131170
 
-Link to the Twine 2.x Application on Parsing Links:
+#### Link to the Twine 2.x Application on Parsing Links:
 https://github.com/klembot/twinejs/blob/develop/src/util/parse-links.ts
