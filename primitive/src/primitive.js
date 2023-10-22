@@ -29,10 +29,9 @@ var version = Object.freeze({
 });
 
 var config = {};
-
 window.Primitive = {};
 
-// Main Function, entry point for the story.
+// Main Function, entry point for the story. 
 (() => {
 	'use strict';
 
@@ -40,64 +39,64 @@ window.Primitive = {};
 
 
 	// So I want to get all passages, take out the front and back matter passages, 
-	// take out the first passage (I want that as 1), and then put them in order.
-	// Also, exclude hidden passages.
+	// take out the first passage (I want that as 1), and then put them in order. 
+	// Also, exclude hidden passages. 
 
 
-	/**
-	 * Shuffled Story Passages
+	/** 
+	 * Shuffled Story Passages 
 	 * 
-	 * @type {pid[]}
+	 * @type {pid[]} 
 	 */
-	var shuffledIndices = []; 
+	var shuffledIndices = [];
 
-	/**
-	 * Ordered Passages of Back Matter
+	/** 
+	 * Ordered Passages of Back Matter 
 	 * 
-	 * @type {pid[]}
+	 * @type {pid[]} 
 	 */
-	var frontIndices = []; 
+	var frontIndices = [];
 
-	/**
-	 * An object containing every Front Matter Passage and its supposed place.
+	/** 
+	 * An object containing every Front Matter Passage and its supposed place. 
 	 * 
-	 * {
-	 * 	Position-in-Front-Matter : PID
-	 * }
+	 * { 
+	 * 	Position-in-Front-Matter : PID 
+	 * } 
 	 * 
-	 * @type {Object.pid}
+	 * @type {Object.pid} 
 	 */
 	var frontMatterPassages = {};
 
-	/**
-	 * Ordered Passages of Front Matter
+	/** 
+	 * Ordered Passages of Front Matter 
 	 * 
-	 * @type {pid[]}
+	 * @type {pid[]} 
 	 */
-	var backIndices = []; 
+	var backIndices = [];
 
-	/**
-	 * An object containing every Front Matter Passage and its supposed place.
+	/** 
+	 * An object containing every Front Matter Passage and its supposed place. 
 	 * 
-	 * {
-	 * 	Position-in-Back-Matter : PID
-	 * }
+	 * { 
+	 * 	Position-in-Back-Matter : PID 
+	 * } 
 	 * 
-	 * @type {Object.pid}
+	 * @type {Object.pid} 
 	 */
 	var backMatterPassages = {};
 
 	/** 
 	 * An object containing every passage. 
 	 * 
-	 * @type {Object.<Element>}
+	 * @type {Object.<Element>} 
 	 */
 	var passages = document.getElementsByTagName("tw-passagedata");
 
 	/** 
 	 * Default Special Passage Tags that indication that the Passage should not be shown.
 	 * 
-	 * @type {string[]}
+	 * @type {string[]} 
 	 */
 	var hiddenTagNames = [
 		'hidden',
@@ -105,44 +104,44 @@ window.Primitive = {};
 		'notes',
 	];
 
-	/**
-	 * Every warning we generated while manipulating passages.
+	/** 
+	 * Every warning we generated while manipulating passages. 
 	 * 
-	 * @type {string[]}
+	 * @type {string[]} 
 	 */
 	var warningsList = [];
 
-	/**
-	 * Every error we generated while manipulating passages.
+	/** 
+	 * Every error we generated while manipulating passages. 
 	 * 
-	 * @type {string[]}
+	 * @type {string[]} 
 	 */
 	var errorsList = [];
 
 
-	// DEV
+	// DEV 
 	console.log(passages);
 
 	for (let i = 0; i < passages.length; i++) {
-		/**
-		 * Should we display the passage?
+		/** 
+		 * Should we display the passage? 
 		 * 
-		 * @type {boolean}
+		 * @type {boolean} 
 		 */
 		let displayPassage = true;
 
-		/**
-		 * Should we shuffle the passage?
+		/** 
+		 * Should we shuffle the passage? 
 		 * 
-		 * @type {boolean}
+		 * @type {boolean} 
 		 */
 		let shufflePassage = true;
 
 
-		/**
-		 * Every tag in the passage we're working on.
+		/** 
+		 * Every tag in the passage we're working on. 
 		 * 
-		 * @type {string[]}
+		 * @type {string[]} 
 		 */
 		let tags = passages[i].getAttribute("tags").split(" ");
 
@@ -150,34 +149,34 @@ window.Primitive = {};
 
 		/* Handle Special Passages */
 
-		// Start
+		// Start 
 		if (passages[i].getAttribute("name").toLowerCase() === "start") {
 			// NOTE: Primitive doesn't actually care about the Start passage, however it is required by Twine Compilers.
-			// Passage order is dictated by the FrontMatter and BackMatter tags.
+			// Passage order is dictated by the FrontMatter and BackMatter tags. 
 			displayPassage = false;
 			shufflePassage = false;
 		}
 
-		// StoryTitle
+		// StoryTitle 
 		if (passages[i].getAttribute("name").toLowerCase() === "storytitle") {
 			// NOTE: Primitive doesn't actually care about the StoryTitle passage, however it is required by Twine Compilers.
 			displayPassage = false;
 			shufflePassage = false;
 		}
 
-		// StoryData
+		// StoryData 
 		if (passages[i].getAttribute("name").toLowerCase() === "storydata") {
 			displayPassage = false;
 			shufflePassage = false;
 		}
 
-		// StoryConfig
+		// StoryConfig 
 		if (passages[i].getAttribute("name").toLowerCase() === "storyconfig") {
 			displayPassage = false;
 			shufflePassage = false;
-			// TODO: Apply storyconfig settings.
+			// TODO: Apply storyconfig settings. 
 
-			// hiddenTagNames needs their additional notes tags.
+			// hiddenTagNames needs their additional notes tags. 
 		}
 
 
@@ -188,8 +187,8 @@ window.Primitive = {};
 
 				let passageTitle = passages[i].getAttribute('name');
 
-				// Front Matter
-				// TODO tags[t].toLowerCase()
+				// Front Matter 
+				// TODO tags[t].toLowerCase() 
 				if (tags[t].includes("frontmatter")) {
 					let order = parseInt(tags[t].split("_")[1]);
 
@@ -205,8 +204,8 @@ window.Primitive = {};
 					}
 				}
 
-				// Back Matter
-				// TODO tags[t].toLowerCase()
+				// Back Matter 
+				// TODO tags[t].toLowerCase() 
 				if (tags[t].includes("backmatter")) {
 					let order = parseInt(tags[t].split("_")[1]);
 
@@ -222,8 +221,8 @@ window.Primitive = {};
 					}
 				}
 
-				// Hidden Passage
-				if (hiddenTagNames.some(tag=> tags[t].includes(tag))) {
+				// Hidden Passage 
+				if (hiddenTagNames.some(tag => tags[t].includes(tag))) {
 					displayPassage = false;
 					shufflePassage = false;
 				}
@@ -244,30 +243,31 @@ window.Primitive = {};
 
 
 
-
-	/**
-	 * Shuffles the array.
+	/** 
+	 * Shuffles the array. 
 	 * 
 	 * @param {any} array 
 	 * 
-	 * Taken from https://stackoverflow.com/a/2450976
-	 * CC BY-SA 4.0, no changes.
+	 * Taken from https://stackoverflow.com/a/2450976 
+	 * CC BY-SA 4.0, no changes. 
 	 */
 	function shuffle(array) {
-		let currentIndex = array.length,  randomIndex;
-	  
-		// While there remain elements to shuffle.
+		let currentIndex = array.length,
+			randomIndex;
+
+		// While there remain elements to shuffle. 
 		while (currentIndex > 0) {
-	  
-		  // Pick a remaining element.
-		  randomIndex = Math.floor(Math.random() * currentIndex);
-		  currentIndex--;
-	  
-		  // And swap it with the current element.
-		  [array[currentIndex], array[randomIndex]] = [
-			array[randomIndex], array[currentIndex]];
+
+			// Pick a remaining element. 
+			randomIndex = Math.floor(Math.random() * currentIndex);
+			currentIndex--;
+
+			// And swap it with the current element. 
+			[array[currentIndex], array[randomIndex]] = [
+				array[randomIndex], array[currentIndex]
+			];
 		}
-	  
+
 		return array;
-	  }
+	}
 })();
