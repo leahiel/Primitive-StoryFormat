@@ -37,12 +37,6 @@ window.Primitive = {};
 
 	console.log('Primitive Document loaded; beginning startup.');
 
-
-	// So I want to get all passages, take out the front and back matter passages, 
-	// take out the first passage (I want that as 1), and then put them in order. 
-	// Also, exclude hidden passages. 
-
-
 	/** 
 	 * Shuffled Story Passages 
 	 * 
@@ -137,7 +131,6 @@ window.Primitive = {};
 		 */
 		let shufflePassage = true;
 
-
 		/** 
 		 * Every tag in the passage we're working on. 
 		 * 
@@ -145,12 +138,21 @@ window.Primitive = {};
 		 */
 		let tags = passages[i].getAttribute("tags").split(" ");
 
+		/**
+		 * The name of the passage, i.e. `PassageName`" in:
+		 * 
+		 * `:: PassageName`
+		 * 
+		 * @type {string}
+		 */
+		let passageTitle = passages[i].getAttribute('name');
+
 
 
 		/* Handle Special Passages */
 
 		// Start 
-		if (passages[i].getAttribute("name").toLowerCase() === "start") {
+		if (passageTitle.toLowerCase() === "start") {
 			// NOTE: Primitive doesn't actually care about the Start passage, however it is required by Twine Compilers.
 			// Passage order is dictated by the FrontMatter and BackMatter tags. 
 			displayPassage = false;
@@ -158,20 +160,20 @@ window.Primitive = {};
 		}
 
 		// StoryTitle 
-		if (passages[i].getAttribute("name").toLowerCase() === "storytitle") {
+		if (passageTitle.toLowerCase() === "storytitle") {
 			// NOTE: Primitive doesn't actually care about the StoryTitle passage, however it is required by Twine Compilers.
 			displayPassage = false;
 			shufflePassage = false;
 		}
 
 		// StoryData 
-		if (passages[i].getAttribute("name").toLowerCase() === "storydata") {
+		if (passageTitle.toLowerCase() === "storydata") {
 			displayPassage = false;
 			shufflePassage = false;
 		}
 
 		// StoryConfig 
-		if (passages[i].getAttribute("name").toLowerCase() === "storyconfig") {
+		if (passageTitle.toLowerCase() === "storyconfig") {
 			displayPassage = false;
 			shufflePassage = false;
 			// TODO: Apply storyconfig settings. 
@@ -184,17 +186,15 @@ window.Primitive = {};
 
 		if (displayPassage) {
 			for (let t = 0; t < tags.length; t++) {
-
-				let passageTitle = passages[i].getAttribute('name');
-
 				// Front Matter 
 				// TODO tags[t].toLowerCase() 
 				if (tags[t].includes("frontmatter")) {
 					let order = parseInt(tags[t].split("_")[1]);
 
+					// TODO Test for negative numbers.
 					if (!isNaN(order)) {
 						if (!frontMatterPassages.hasOwnProperty(order)) {
-							frontMatterPassages[order] = i;
+							frontMatterPassages[order] = passages[i];
 							shufflePassage = false;
 						} else {
 							warningsList.push(`The Special Tag 'frontmatter_${order}' is used multiple times. Some passages with this numbered Special Tag will be shuffled with the rest of the passages.`);
@@ -209,9 +209,10 @@ window.Primitive = {};
 				if (tags[t].includes("backmatter")) {
 					let order = parseInt(tags[t].split("_")[1]);
 
+					// TODO Test for negative numbers.
 					if (!isNaN(order)) {
 						if (!backMatterPassages.hasOwnProperty(order)) {
-							backMatterPassages[order] = i;
+							backMatterPassages[order] = passages[i];
 							shufflePassage = false;
 						} else {
 							warningsList.push(`The Special Tag 'backmatter_${order}' is used multiple times. Some passages with this numbered Special Tag will be shuffled with the rest of the passages.`);
@@ -229,24 +230,110 @@ window.Primitive = {};
 			}
 		}
 
-		/* Add to be Shuffled . */
-
 		if (displayPassage && shufflePassage) {
-			shuffledIndices.push(i)
+			shuffledIndices.push(passages[i])
+		}
+	}
+
+
+
+	/* Set the order of all passages. */
+
+	// Front Matter
+	let frontkeys = Object.keys(frontMatterPassages).sort()
+	for (let key in frontkeys) {
+		console.log(key)
+		frontIndices.push(frontMatterPassages[frontkeys[key]]);
+	}
+
+	// Shuffled Passages
+	shuffle(shuffledIndices);
+
+	// Back Matter
+	let backkeys = Object.keys(backMatterPassages).sort()
+	for (let key in backkeys) {
+		console.log(key)
+		backIndices.push(backMatterPassages[backkeys[key]]);
+	}
+
+
+
+	/* Apply order of all passages */
+
+	waitForElm('#dev-passages').then((elm) => {
+		// Front Matter
+		if (frontIndices.length > 0) {
+			for (let i in frontIndices) {
+
+				let child = document.createElement('div');
+				child.setAttribute('id', `${frontIndices[i].getAttribute('name')}`);
+				child.setAttribute('original-passage-name', `:: ${frontIndices[i].getAttribute('name')}`);
+				child.appendChild(frontIndices[i]);
+
+				elm.appendChild(child);
+			}
 		}
 
+		// Shuffled Passages
+		if (shuffledIndices.length > 0) {
+			for (let i in shuffledIndices) {
+
+				let child = document.createElement('div');
+				child.setAttribute('id', `${i}`);
+				child.setAttribute('original-passage-name', `:: ${shuffledIndices[i].getAttribute('name')}`);
+				child.appendChild(shuffledIndices[i]);
+
+				elm.appendChild(child);
+			}
+		}
+
+		// Back Matter
+		if (backIndices.length > 0) {
+			for (let i in backIndices) {
+
+				let child = document.createElement('div');
+				child.setAttribute('id', `${backIndices[i].getAttribute('name')}`);
+				child.setAttribute('original-passage-name', `:: ${backIndices[i].getAttribute('name')}`);
+				child.appendChild(backIndices[i]);
+
+				elm.appendChild(child);
+			}
+		}
+	});
+
+
+	if (errorsList.length > 0) {
+		console.error(errorsList); // DEBUG
+		waitForElm('#error-notices').then((elm) => {
+			for (let error in errorsList) {
+
+				let child = document.createElement('div');
+				child.innterHTML = `${errorsList[error]}`;
+				elm.appendChild(child);
+			}
+		});
 	}
-	shuffle(shuffledIndices);
-	console.log(shuffledIndices);
-	console.error(errorsList);
-	console.warn(warningsList);
+
+	if (warningsList.length > 0) {
+		console.warn(warningsList); // DEBUG
+		waitForElm('#warning-notices').then((elm) => {
+			for (let warning in warningsList) {
+
+				let child = document.createElement('div');
+				child.innerHTML = `Warning:<br> ${warningsList[warning]}`;
+				elm.appendChild(child);
+			}
+		});
+	}
 
 
+
+	/* Helper Functions */
 
 	/** 
 	 * Shuffles the array. 
 	 * 
-	 * @param {any} array 
+	 * @param {any[]} array 
 	 * 
 	 * Taken from https://stackoverflow.com/a/2450976 
 	 * CC BY-SA 4.0, no changes. 
@@ -269,5 +356,42 @@ window.Primitive = {};
 		}
 
 		return array;
+	}
+
+	/**
+	 * Waits for an element to exist before doing thing.
+	 *
+	 * ```
+	 * const elm = await waitForElm('.some-class');
+	 * // or
+	 * waitForElm('.some-class').then((elm) => {
+	 *  console.log('Element is ready');
+	 *  console.log(elm.textContent);
+	 * });
+	 * ```
+	 * 
+	 * @param {CSS_Selector} selector 
+	 * 
+	 * Taken from https://stackoverflow.com/a/61511955
+	 * CC BY-SA 4.0, no changes
+	 */
+	function waitForElm(selector) {
+		return new Promise(resolve => {
+			if (document.querySelector(selector)) {
+				return resolve(document.querySelector(selector));
+			}
+
+			const observer = new MutationObserver(mutations => {
+				if (document.querySelector(selector)) {
+					observer.disconnect();
+					resolve(document.querySelector(selector));
+				}
+			});
+
+			observer.observe(document.body, {
+				childList: true,
+				subtree: true
+			});
+		});
 	}
 })();

@@ -26,7 +26,8 @@ const CONFIG = {
     css: {
         files: [
             'src/vendor/normalize.css',
-            'src/vendor/init-screen.css'
+            'src/vendor/init-screen.css',
+            'src/css/splash.css',
         ]
     },
     libs: [

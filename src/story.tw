@@ -1,30 +1,38 @@
 :: Start
-The starting passage! I wish this didn't exist!
+Start
 
 
 
 :: YetAnotherPassage
-Yet another passage!
+YetAnotherPassage
 
 
 
 :: Hide this passage [hidden]
-Jee, I sure hope you don't see this!
+Hide this passage 
 
 
 
-:: Introduction [frontmatter_3]
-Intro!
+:: Introduction [frontmatter_1]
+frontmatter1
+
+
+
+:: Introduction34 [frontmatter_3]
+Frontmatter2
+
 
 
 :: wow sroty!
-this sroty is just so good!
+wow sroty!
+
+but with some line breaks!
 
 
 :: ong more passages
-when will they end!?
+ong more passages
 
 
 
 :: I should convert a story to this story format
-that way I can test it easier
+I should convert a story to this story format

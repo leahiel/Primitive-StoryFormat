@@ -43,16 +43,17 @@
         }
     </script>
 
-    <div id=#primitive-export-screen>
-        Hello!
+    <div id='primitive-export-screen'>
 
         <!-- TODO Place Generative Buttons Here -->
 
-        This is where I will place the buttons to generate HTML, EPUB, or to test the HTML.
-
-        <br>
     </div>
-    <div id=#primitive-version-number>
+
+    <div id='error-notices'></div>
+    <div id='warning-notices'></div>
+
+    <div id='dev-passages'></div>
+    <div id='primitive-version-number'>
         Built with Primitive v"{{BUILD_VERSION_VERSION}}"."{{BUILD_VERSION_BUILD}}"
     </div>
 

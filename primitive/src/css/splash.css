@@ -1,0 +1,7 @@
+#warning-notices {
+    background-color: yellow;
+}
+
+#error-notices {
+    background-color: lightcoral;
+}

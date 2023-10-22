@@ -4,4 +4,5 @@ primitive/package-lock.json
 primitive/.build
 
 # Miscellaneous
+build.bat
 -*
