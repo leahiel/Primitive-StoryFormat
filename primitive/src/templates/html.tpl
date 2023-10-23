@@ -43,18 +43,23 @@
         }
     </script>
 
-    <div id='primitive-export-screen'>
+    <div id='wrapper'>
+        <div id='primitive-header'>
+            <div id='primitive-title'>Primitive</div>
+            <button id='primitive-test-html' class='primitive-button'>
+                Test HTML
+            </button>
+        </div>
 
-        <!-- TODO Place Generative Buttons Here -->
+        <div id='error-notices'></div>
+        <div id='warning-notices'></div>
 
-    </div>
-
-    <div id='error-notices'></div>
-    <div id='warning-notices'></div>
-
-    <div id='output'></div>
-    <div id='primitive-version-number'>
-        Built with Primitive v"{{BUILD_VERSION_VERSION}}"."{{BUILD_VERSION_BUILD}}"
+        <div id='output'></div>
+        <div id='primitive-footer'>
+            <div id='primitive-version-number'>
+                Built with Primitive v"{{BUILD_VERSION_VERSION}}"."{{BUILD_VERSION_BUILD}}"
+            </div>
+        </div>
     </div>
 
     

@@ -1,5 +1,32 @@
+* {
+    --headerfooterpadding: 0.3rem;
+    font-size: 2.2vh;
+    color: #111111;
+}
+
 html {
-    background-color: gray;
+    background-color:  #F5F3E9;
+}
+
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+}
+
+#output {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+
+    margin: 1rem;
+}
+
+#warning-notices,
+#error-notices {
+    display: flex;
+    flex: 0;
 }
 
 #warning-notices {
@@ -8,4 +35,28 @@ html {
 
 #error-notices {
     background-color: lightcoral;
+}
+
+#warning-notices:empty,
+#error-notices:empty {
+    display: none;
+}
+
+#primitive-header,
+#primitive-footer {
+    display: flex;
+    flex: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #3f2a14;
+    padding: 0.3rem 1rem;
+}
+
+#primitive-title {
+    color: #eeeeee;
+    font-size: 1.5rem;
+}
+
+#primitive-version-number {
+    color: #eeeeee;
 }

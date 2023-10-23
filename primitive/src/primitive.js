@@ -41,4 +41,5 @@ window.Primitive = {};
 
 	Outputter.put_errors();
 	Outputter.put_warnings();
+	Outputter.put_test_html();
 })();
