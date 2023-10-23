@@ -28,6 +28,7 @@ A Twine-to-EPUB IF StoryFormat.
   * [Glossary](#glossary)
   * [Notes from Gamebook Playthroughs](#notes-from-gamebook-playthroughs)
   * [Helpful Links](#helpful-links)
+  * [Issues](#issues)
 </details>
 
 # Version Plans:
@@ -104,7 +105,7 @@ As required of a StoryFormat for EPUB, passages should be output in a randomized
 * 6a) This includes a `First` passage tag.
 * 6b) This includes a `Last` passage tag.
 
-7) [WF Legacy] Passages tagged with "Frontmatter" and "Backmatter" should be placed before and after the Story Passages.
+7 - DONE) [WF Legacy] Passages tagged with "Frontmatter" and "Backmatter" should be placed before and after the Story Passages.
 * 7a) The order of both matter passages should be able to be specified with a suffix of `_number` after their tag name. i.e. A passage tagged with `[frontmatter_3]` will be the third frontmatter passage in the novel.
 
 8) [WF Legacy] Other text markup syntax available to authors for use.
@@ -125,7 +126,7 @@ As required of a StoryFormat for EPUB, passages should be output in a randomized
 
 **NOTE:** The various forms of comments are for compatibility with different software that authors commonly use.
 
-10) [WF Legacy] Passages tagged as `hidden` or `note` or `notes` should be not considered by the parser.
+10 - DONE) [WF Legacy] Passages tagged as `hidden` or `note` or `notes` should be not considered by the parser.
 * 10a) Passages tagged with `no-toc` should not be added to the Table of Contents
 
 11) Separate CSS files should be accepted for each exported version that Primitive Offers.
@@ -487,3 +488,7 @@ https://kdp.amazon.com/en_US/help/topic/G202131170
 
 #### Link to the Twine 2.x Application on Parsing Links:
 https://github.com/klembot/twinejs/blob/develop/src/util/parse-links.ts
+
+
+# Issues:
+1) Twine Compilers require a Start passage, but it makes no sense for Primitive. How should we handle the Start passage?

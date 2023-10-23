@@ -1,5 +1,20 @@
+/***
+ * The Parser goes through all the Passages provided by `<tw-passagedata>` and 
+ * 
+ * First, organizes them by front matter, shuffled matter, and back matter.
+ * TODO: Second, performs elementary Passage editing that is common to all output HTML processes.
+ * TODO: Then, on demand, it goes through those Passages, and transpiles them into their requested output form.
+ */
+
 var Parser = (() => {
     'use strict';
+
+	/** 
+	 * An object containing every passage. 
+	 * 
+	 * @type {Object.<Element>} 
+	 */
+	var _passages = document.getElementsByTagName("tw-passagedata");
 
 	/** 
 	 * Shuffled Story Passages 
@@ -43,13 +58,6 @@ var Parser = (() => {
 	 * @type {Object.pid} 
 	 */
 	var _backMatterPassages = {};
-
-	/** 
-	 * An object containing every passage. 
-	 * 
-	 * @type {Object.<Element>} 
-	 */
-	var _passages = document.getElementsByTagName("tw-passagedata");
 
 	/** 
 	 * Default Special Passage Tags that indication that the Passage should not be shown.
@@ -110,18 +118,17 @@ var Parser = (() => {
 		 */
 		let _passageTitle = _passages[i].getAttribute('name');
 
+		/**
+		 * Is there an error with this passage that prevents us from handling it?
+		 * 
+		 * @type {boolean}
+		 */
+		let _errored = false;
 
 
 		/* Handle Special Passages */
-
-		// Start 
-		if (_passageTitle.toLowerCase() === "start") {
-			// NOTE: Primitive doesn't actually care about the Start passage, however it is required by Twine Compilers.
-			// Passage order is dictated by the FrontMatter and BackMatter tags. 
-			_displayPassage = false;
-			_shufflePassage = false;
-		}
-
+		// NOTE: The Start Special Passage is handled after tags are handled.
+		
 		// StoryTitle 
 		if (_passageTitle.toLowerCase() === "storytitle") {
 			// NOTE: Primitive doesn't actually care about the StoryTitle passage, however it is required by Twine Compilers.
@@ -145,13 +152,23 @@ var Parser = (() => {
 		}
 
 
+
 		/* Handle Special Tags */
 
 		if (_displayPassage) {
 			for (let t = 0; t < _tags.length; t++) {
+
+				// // TODO An error like this.
+				// if (_tags[t].includes("frontmatter") && _tags[t].includes("backmatter")) {
+				// 	errorsList.push(`Passage \`:: ${_passageTitle}\` is using the both the 'frontmatter' and 'backmatter' Special Tags. This is not supported. Passage \`:: ${_passageTitle}\` has been excluded for your story.`);
+				// 	_errored = true;
+				// 	continue;
+				// }
+
 				// Front Matter 
 				// TODO tags[t].toLowerCase() 
 				if (_tags[t].includes("frontmatter")) {
+
 					let order = parseInt(_tags[t].split("_")[1]);
 
 					// TODO Test for negative numbers.
@@ -191,6 +208,15 @@ var Parser = (() => {
 					_shufflePassage = false;
 				}
 			}
+		}
+
+		if (_errored) {
+			continue;
+		}
+
+		// Handle Start Special Passage
+		if (_passageTitle.toLowerCase() === "start") {
+			_shufflePassage = false;
 		}
 
 		if (_displayPassage && _shufflePassage) {
