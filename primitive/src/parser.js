@@ -246,6 +246,7 @@ var Parser = (() => {
 	let _orderedpassages = [].concat.apply([], [_frontIndices, _shuffledIndices, _backIndices])
 
 
+	
     /* Helper Functions */
 
 	/** 
