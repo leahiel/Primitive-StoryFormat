@@ -29,7 +29,47 @@ var Outputter = (() => {
             }
         });
     }
-    
+
+    function export_epub() {
+        let jepub = new jEpub();
+
+        try {
+            jepub.init({
+                i18n: 'en', // Internationalization
+                title: 'Book title',
+                author: 'Book author',
+                publisher: 'Book publisher',
+                description: '<b>Book</b> description', // optional
+                tags: [ 'epub', 'tag' ] // optional
+            });
+
+            for (let i in Parser.passages) {
+                jepub.add(i.toString(), Parser.passages[i].outerHTML);
+            }
+
+            jepub.generate().then(filecontent => {
+                console.log(filecontent);
+        
+                const url = URL.createObjectURL(filecontent), filename = 'lorem-ipsum.epub';
+        
+                let link = document.createElement('a');
+                document.body.appendChild(link);
+                link.href = url;
+                link.textContent = 'Download EPUB';
+                link.download = filename;
+                
+                saveAs(filecontent, filename);
+            }).catch(err => {
+                console.error(err);
+            });
+
+            console.log("EPUB successfully generated.")
+        } catch(err) {
+            console.error(err);
+        }
+    }
+
+        
 
     /**
      * Outputs the generated errors into the HTML document.
@@ -67,9 +107,9 @@ var Outputter = (() => {
 
 
 
-    
     /* Helper Functions */
 
+    // TODO This shouldn't be needed here, only in primitive.js, since the buttons shouldn't be clickable until the document is fully loaded.
     /**
 	 * Waits for an element to exist before doing thing.
 	 *
@@ -114,5 +154,6 @@ var Outputter = (() => {
         put_errors : { value : output_errors },
         put_warnings : { value : output_warnings},
         put_test_html : { value : output_test_html},
+        export_epub : {value : export_epub},
     }));    
 })();

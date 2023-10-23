@@ -21,52 +21,9 @@ window.Primitive = {};
 
 	_waitForElm('#primitive-export-epub').then((elm) => {
 		elm.addEventListener("click", ()=>{
-			let jepub = new jEpub();
-
-			
-
-			try {
-				jepub.init({
-					i18n: 'en', // Internationalization
-					title: 'Book title',
-					author: 'Book author',
-					publisher: 'Book publisher',
-					description: '<b>Book</b> description', // optional
-					tags: [ 'epub', 'tag' ] // optional
-				});
-	
-				for (let i in Parser.passages) {
-					jepub.add(i.toString(), Parser.passages[i].outerHTML);
-				}
-
-				console.log(jepub)
-
-				jepub.generate().then(filecontent => {
-					console.log(filecontent);
-			
-					const url = URL.createObjectURL(filecontent), filename = 'lorem-ipsum.epub';
-			
-					let link = document.createElement('a');
-					document.body.appendChild(link);
-					link.href = url;
-					link.textContent = 'Download EPUB';
-					link.download = filename;
-					
-					saveAs(filecontent, filename);
-				}).catch(err => {
-					console.error(err);
-				});
-
-				console.log("EPUB successfully generated.")
-			} catch(err) {
-				console.error(err);
-			}
-			
-			
+			Outputter.export_epub();
 		});
 	});
-
-	
 
 	/**
 	 * Waits for an element to exist before doing thing.
