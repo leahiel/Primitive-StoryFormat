@@ -46,9 +46,20 @@
     <div id='wrapper'>
         <div id='primitive-header'>
             <div id='primitive-title'>Primitive</div>
-            <button id='primitive-test-html' class='primitive-button'>
-                Test HTML
-            </button>
+            <div id='primitive-buttons'>
+                <button id='primitive-test-html' class='primitive-button'>
+                    Test HTML
+                </button>
+                <button id='primitive-test-epub' class='primitive-button'>
+                    Test EPUB [nyi]
+                </button>
+                <button id='primitive-export-html' class='primitive-button'>
+                    Export HTML [nyi]
+                </button>
+                <button id='primitive-export-epub' class='primitive-button'>
+                    Export EPUB
+                </button>
+            </div>
         </div>
 
         <div id='error-notices'></div>

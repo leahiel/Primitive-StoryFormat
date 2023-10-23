@@ -15,6 +15,7 @@
 const CONFIG = {
     js: {
         files: [
+            // 'src/version.js',
             'src/config.js',
             'src/parser.js',
             'src/outputter.js',
@@ -33,14 +34,11 @@ const CONFIG = {
         ]
     },
     libs: [
-        // The ordering is important.
-
         // For Generating EPUBs
-        'src/vendor/ejs.min.js',
         'src/vendor/jszip.min.js',
+        'src/vendor/ejs.min.js',
+        'src/vendor/filesaver.min.js',
         'src/vendor/jepub.min.js',
-
-        
     ],
     twine2: {
         build: {
