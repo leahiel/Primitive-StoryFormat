@@ -16,6 +16,7 @@ const CONFIG = {
     js: {
         files: [
             'src/config.js',
+            'src/parser.js',
             'src/primitive.js',
         ],
         wrap: {

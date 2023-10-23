@@ -1,3 +1,7 @@
+html {
+    background-color: gray;
+}
+
 #warning-notices {
     background-color: yellow;
 }

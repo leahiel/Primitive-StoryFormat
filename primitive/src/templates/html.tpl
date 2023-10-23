@@ -52,10 +52,12 @@
     <div id='error-notices'></div>
     <div id='warning-notices'></div>
 
-    <div id='dev-passages'></div>
+    <div id='output'></div>
     <div id='primitive-version-number'>
         Built with Primitive v"{{BUILD_VERSION_VERSION}}"."{{BUILD_VERSION_BUILD}}"
     </div>
+
+    
 
 </body>
 
