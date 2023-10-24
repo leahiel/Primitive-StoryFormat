@@ -243,7 +243,68 @@ var Parser = (() => {
 		_backIndices.push(_backMatterPassages[backkeys[key]]);
 	}
 
+
+
 	let _orderedpassages = [].concat.apply([], [_frontIndices, _shuffledIndices, _backIndices])
+
+	function _convertLink(link) {
+		function _createLink(text, href) {
+			let a_elm = document.createElement('a');
+			a_elm.setAttribute('href', `#${href}`);
+			a_elm.innerText = text;
+
+			return a_elm
+		}
+
+		if (link.split("-&gt;")[1]) {
+			// Found [[display text->link]] format.
+			return _createLink(link.split("-&gt;")[0].split("[[")[1], link.split("-&gt;")[1].split("]]")[0]);
+
+		} else if (link.split("&lt;-")[1]) {
+			// Found [[link<-display text]] format.
+			return _createLink(link.split("&lt;-")[1].split("]]")[0], link.split("&lt;-")[0].split("[[")[1]);
+
+		} else if (link.split("|")[1]) {
+			// Found [[display text|link]] format.
+			return _createLink(link.split("|")[0].split("[[")[1], link.split("|")[1].split("]]")[0]);
+
+		} else {
+			// Found [[link]] format.
+			return _createLink(link, link);
+		}
+	}
+	
+	for (let i in _orderedpassages) {
+		// This is where we will do all of our in-passage replacing.
+		let _innerHTML = _orderedpassages[i].innerHTML;
+
+		/* Validate HTML tags */
+		// TODO: Validate HTML tags here. Only a very limited number of standard HTML tags are allowed as per the EPUB3.3 standard. Most of these are handled by Primitive, to allow the Author to not worry about these. Therefore, if the Author is trying to do something, like add a <script> tag, then we need to ensure that the Author knows that Primitive is not the place for that.
+
+		/* Add Paragraph Tags*/
+		// TODO: Add Paragraph Tags
+
+		/* Parse Links */
+		let regex = /\[\[(.*?)\]\]/g;
+		let links = {};
+		let match;
+
+		// Get and convert links.
+		do {
+			match = regex.exec(_innerHTML);
+			if (match) {
+				// console.log(match);
+				links[match[0]] = _convertLink(match[0]);
+			}
+		} while (match);
+		
+		for (let link in links) {
+			_innerHTML = _innerHTML.replace(link, links[link].outerHTML);
+		}
+
+		_orderedpassages[i].innerHTML = _innerHTML;
+	}
+	
 
 	
 	
