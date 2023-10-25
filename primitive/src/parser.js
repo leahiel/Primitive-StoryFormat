@@ -14,7 +14,7 @@ var Parser = (() => {
 	 * 
 	 * @type {Object.<Element>} 
 	 */
-	var _passages = document.getElementsByTagName("tw-passagedata");
+	var _passages = document.getElementsByTagName('tw-passagedata');
 
 	/** 
 	 * Shuffled Story Passages 
@@ -86,7 +86,7 @@ var Parser = (() => {
 
 
 	/* Loop through every Passage and determine if they should be shown or shuffled, and where they belong (Front/Middle/Back). */
-
+	
 	for (let i = 0; i < _passages.length; i++) {
 		/** 
 		 * Should we display the passage? 
@@ -151,6 +151,15 @@ var Parser = (() => {
 			// _hiddenTagNames needs their additional notes tags. 
 		}
 
+		// Cover
+		// NOTE: The Cover passage will become available in a future version of Primitive.
+		if (_passageTitle.toLowerCase() === "cover") {
+			_displayPassage = false;
+			_shufflePassage = false;
+			errorsList.push(`Passage Name \`:: ${_passageTitle}\` is currently reserved for a future version of Primitive. This passage has not been processed.`);
+			_errored = true;
+		}
+
 
 
 		/* Handle Special Tags */
@@ -175,6 +184,8 @@ var Parser = (() => {
 					if (!isNaN(order)) {
 						if (!_frontMatterPassages.hasOwnProperty(order)) {
 							_frontMatterPassages[order] = _passages[i];
+							_passages[i].setAttribute("data-placement", "front-matter");
+
 							_shufflePassage = false;
 						} else {
 							warningsList.push(`The Special Tag 'frontmatter_${order}' is used multiple times. Some _passages with this numbered Special Tag will be shuffled with the rest of the _passages.`);
@@ -193,6 +204,8 @@ var Parser = (() => {
 					if (!isNaN(order)) {
 						if (!_backMatterPassages.hasOwnProperty(order)) {
 							_backMatterPassages[order] = _passages[i];
+							_passages[i].setAttribute("data-placement", "back-matter");
+
 							_shufflePassage = false;
 						} else {
 							warningsList.push(`The Special Tag 'backmatter_${order}' is used multiple times. Some _passages with this numbered Special Tag will be shuffled with the rest of the _passages.`);
@@ -220,6 +233,8 @@ var Parser = (() => {
 		}
 
 		if (_displayPassage && _shufflePassage) {
+			_passages[i].setAttribute("data-placement", "body-matter");
+
 			_shuffledIndices.push(_passages[i])
 		}
 	}
@@ -243,16 +258,30 @@ var Parser = (() => {
 		_backIndices.push(_backMatterPassages[backkeys[key]]);
 	}
 
+	let _orderedpassages = [].concat.apply([], [_frontIndices, _shuffledIndices, _backIndices]);
 
+	/* This is where we will do all of our outer-passage replacing. */
+	let _bodymatterindex = ["ErrorPassage"];
+	let _shuffledIndex = 1;
+	for (let i in _orderedpassages) {
+		// Determine Element ID.
+		if (['front-matter', 'back-matter'].includes(_orderedpassages[i].getAttribute('data-placement'))) {
+			// Set the ID of the HTML Element to the name of the Passage if it's in the front or back matter.
+			_orderedpassages[i].setAttribute('id', _orderedpassages[i].getAttribute('name'));
 
-	let _orderedpassages = [].concat.apply([], [_frontIndices, _shuffledIndices, _backIndices])
+		} else if (_orderedpassages[i].getAttribute('data-placement') === 'body-matter') {
+			// Set the ID of the HTML Element to an increasing number if it's in the body matter.
+			_orderedpassages[i].setAttribute('id', _shuffledIndex);
+			_bodymatterindex.push(_orderedpassages[i].getAttribute('name'));
 
-	// This is where we will do all of our outer-passage replacing.
-	// TODO: Replace the id of the Divs with their number, if they are not frontmatter.
-	// TODO: With each passage, give them a `data-placement` type that we can check to see if they are front matter, shuffled, or back matter.
-	// TODO: Create an array of all passages with their titles.
+			_shuffledIndex++;
+		} else {
+			// Somehow, the HTML Element has no 'data-placement' attribute.
+			console.error(`Unable to determine data-placement of :: ${_orderedpassages[i].getAttribute('name')}.`)
+		}
+	}
 
-	// This is where we will do all of our in-passage replacing.
+	/* This is where we will do all of our in-passage processing. */
 	for (let i in _orderedpassages) {
 		
 		let _innerHTML = _orderedpassages[i].innerHTML;
@@ -279,6 +308,9 @@ var Parser = (() => {
 		for (let link in links) {
 			_innerHTML = _innerHTML.replace(link, links[link].outerHTML);
 		}
+
+		// EPUB Set a span with epub id to link to.
+
 
 		_orderedpassages[i].innerHTML = _innerHTML;
 	}
@@ -333,9 +365,15 @@ var Parser = (() => {
 		function _createLink(text, href) {
 			let a_elm = document.createElement('a');
 
-			// TODO: The `href` is a Passage Title, so we need to get the converted passage ID from the Passage Title.
+			// The `href` is a Passage Title, so we need to get the converted passage ID from the Passage Title.
+			if (_bodymatterindex.indexOf(href) > 0) {
+				// NOTE: _bodymatterindex[0] is the error passage that exists to 
+				// shift the array down by one, so we don't care about it.
+				a_elm.setAttribute('href', `#${_bodymatterindex.indexOf(href)}`);
+			} else {
+				a_elm.setAttribute('href', `#${href}`);
+			}
 
-			a_elm.setAttribute('href', `#${href}`);
 			a_elm.innerText = text;
 
 			return a_elm

@@ -20,12 +20,15 @@ var Outputter = (() => {
         _waitForElm('#output').then((elm) => {
             _clearoutput();
 
+
             for (let i in Parser.passages) {
-                let child = document.createElement('div');
-                child.setAttribute('id', `${Parser.passages[i].getAttribute('name')}`);
-                child.setAttribute('original-passage-name', `:: ${Parser.passages[i].getAttribute('name')}`);
-                child.appendChild(Parser.passages[i]);
-                elm.appendChild(child);
+                elm.appendChild(Parser.passages[i]);
+
+                // let child = document.createElement('div');
+                // child.setAttribute('id', `${Parser.passages[i].getAttribute('name')}`);
+                // child.setAttribute('original-passage-name', `:: ${Parser.passages[i].getAttribute('name')}`);
+                // child.appendChild(Parser.passages[i]);
+                // elm.appendChild(child);
             }
         });
     }
@@ -43,11 +46,9 @@ var Outputter = (() => {
                 tags: [ 'epub', 'tag' ] // optional
             });
 
-            let shuffled_number = 1;
+            // Add the Passages to the EPUB.
             for (let i in Parser.passages) {
-                // TODO The title should be different based on shuffled chapter or not.
-                // TODO if shuffled, then title = shuffled_number; shuffled_number++
-                jepub.add(i.toString(), Parser.passages[i].outerHTML);
+                jepub.add(Parser.passages[i].getAttribute("id"), Parser.passages[i].outerHTML);
             }
 
             jepub.generate().then(filecontent => {
@@ -55,6 +56,7 @@ var Outputter = (() => {
         
                 // TODO: Make a download EPUB pop-up.
 
+                let filename = 'lorem-ipsum.epub';
                 // const url = URL.createObjectURL(filecontent), filename = 'lorem-ipsum.epub';
         
                 // let link = document.createElement('a');

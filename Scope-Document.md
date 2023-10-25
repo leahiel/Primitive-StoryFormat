@@ -149,6 +149,8 @@ Primitive can be broken down, very roughly, into a few parts in this version: Th
 
 Because exporting to EPUB is the most critical feature of Primitive, all considerations should be made in regards to this. For instance, when parsing the Twine HTML story data, line breaks should be removed and each paragraph should be placed within a `<p>` HTML element.
 
+There's a lot of adding Custom Attributes to HTML Elements. TME suggested that it may be wise to give these Custom Attributes a prefix, so that they don't interfere with feature Twine attributes.
+
 
 
 ### 0.1 Author Experience:
@@ -203,6 +205,7 @@ There isn't too much difference between a Passage Link Return and a Passage Link
 
 * 3a) The Flow Chart will require a table of contents, so that authors know which original passage is referred to in each box of the Flow Chart.
 
+* 4) Cover Special Passage where a user can put an image of their cover, which Primitive will use in the EPUB.
 
 
 ### 0.2 Technical Notes:
@@ -372,9 +375,12 @@ Exact generated wordage of `[chioces]` would need to be determined.
 ### Author / Developer / Programmer / Writer
 The person writing the story.
 
+### Back Matter
+### Body Matter / Shuffled Matter
 ### BBCode
 ### EPUB
 ### EPUB-RS
+### Front Matter
 ### Gordian Book
 ### HTML
 ### IF/Interactive Fiction
@@ -480,6 +486,10 @@ https://www.w3.org/TR/epub/
 
 #### The EPUB3-RS specification: 
 https://www.w3.org/TR/epub-rs/
+
+#### The Official EPUBCheck project:
+https://github.com/w3c/epubcheck
+https://github.com/w3c/epubcheck/wiki
 
 #### Amazon Kindle Create:
 https://www.amazon.com/Kindle-Create/b?ie=UTF8
