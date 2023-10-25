@@ -320,34 +320,6 @@ var Parser = (() => {
 	
     /* Helper Functions */
 
-	/** 
-	 * Shuffles the array. 
-	 * 
-	 * @param {any[]} array 
-	 * 
-	 * Taken from https://stackoverflow.com/a/2450976 
-	 * CC BY-SA 4.0, no changes. 
-	 */
-	function shuffle(array) {
-		let currentIndex = array.length,
-			randomIndex;
-
-		// While there remain elements to shuffle. 
-		while (currentIndex > 0) {
-
-			// Pick a remaining element. 
-			randomIndex = Math.floor(Math.random() * currentIndex);
-			currentIndex--;
-
-			// And swap it with the current element. 
-			[array[currentIndex], array[randomIndex]] = [
-				array[randomIndex], array[currentIndex]
-			];
-		}
-
-		return array;
-	}
-
 	/**
 	 * Converts a Twine Link into an HTML Element
 	 * 
@@ -395,6 +367,34 @@ var Parser = (() => {
 			// Found [[link]] format.
 			return _createLink(link, link);
 		}
+	}
+
+	/** 
+	 * Shuffles the array. 
+	 * 
+	 * @param {any[]} array 
+	 * 
+	 * Taken from https://stackoverflow.com/a/2450976 
+	 * CC BY-SA 4.0, no changes. 
+	 */
+	function shuffle(array) {
+		let currentIndex = array.length,
+			randomIndex;
+
+		// While there remain elements to shuffle. 
+		while (currentIndex > 0) {
+
+			// Pick a remaining element. 
+			randomIndex = Math.floor(Math.random() * currentIndex);
+			currentIndex--;
+
+			// And swap it with the current element. 
+			[array[currentIndex], array[randomIndex]] = [
+				array[randomIndex], array[currentIndex]
+			];
+		}
+
+		return array;
 	}
 
 

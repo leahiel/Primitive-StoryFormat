@@ -36,9 +36,11 @@ const CONFIG = {
     libs: [
         // For Generating EPUBs
         'src/vendor/jszip.min.js',
-        'src/vendor/ejs.min.js',
+        'src/vendor/jszip-utils.min.js',
+        'src/vendor/underscore.string.min.js',
+        'src/vendor/handlebars.min.js',
         'src/vendor/filesaver.min.js',
-        'src/vendor/jepub.min.js',
+        'src/vendor/js-epub-maker.min.js',
     ],
     twine2: {
         build: {

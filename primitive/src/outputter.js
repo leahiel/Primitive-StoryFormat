@@ -23,61 +23,28 @@ var Outputter = (() => {
 
             for (let i in Parser.passages) {
                 elm.appendChild(Parser.passages[i]);
-
-                // let child = document.createElement('div');
-                // child.setAttribute('id', `${Parser.passages[i].getAttribute('name')}`);
-                // child.setAttribute('original-passage-name', `:: ${Parser.passages[i].getAttribute('name')}`);
-                // child.appendChild(Parser.passages[i]);
-                // elm.appendChild(child);
             }
         });
     }
 
+    /**
+     * Exports an EPUB to be saved by the browser.
+     */
     function export_epub() {
-        let jepub = new jEpub();
+        let epub = new EpubMaker()
+            .withTemplate('idpf-wasteland')
+            .withTitle('Primitive Test');
 
-        try {
-            jepub.init({
-                i18n: 'en', // Internationalization
-                title: 'Book title',
-                author: 'Book author',
-                publisher: 'Book publisher',
-                description: '<b>Book</b> description', // optional
-                tags: [ 'epub', 'tag' ] // optional
-            });
+        for (let i in Parser.passages) {
+            let section = { content: Parser.passages[i].innerHTML, title: Parser.passages[i].getAttribute('id')}
 
-            // Add the Passages to the EPUB.
-            for (let i in Parser.passages) {
-                jepub.add(Parser.passages[i].getAttribute("id"), Parser.passages[i].outerHTML);
-            }
-
-            jepub.generate().then(filecontent => {
-                console.log(filecontent);
-        
-                // TODO: Make a download EPUB pop-up.
-
-                let filename = 'lorem-ipsum.epub';
-                // const url = URL.createObjectURL(filecontent), filename = 'lorem-ipsum.epub';
-        
-                // let link = document.createElement('a');
-                // document.body.appendChild(link);
-                // link.href = url;
-                // link.textContent = 'Download EPUB';
-                // link.download = filename;
-                
-                // TODO: Make the automatic download a dev only thing.
-                saveAs(filecontent, filename);
-            }).catch(err => {
-                console.error(err);
-            });
-
-            console.log("EPUB successfully generated.")
-        } catch(err) {
-            console.error(err);
+            epub.withSection(
+                new EpubMaker.Section("bodymatter", Parser.passages[i].getAttribute('id'), section, true, false)
+            );
         }
-    }
 
-        
+        epub.downloadEpub();
+    }
 
     /**
      * Outputs the generated errors into the HTML document.
