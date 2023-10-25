@@ -43,21 +43,27 @@ var Outputter = (() => {
                 tags: [ 'epub', 'tag' ] // optional
             });
 
+            let shuffled_number = 1;
             for (let i in Parser.passages) {
+                // TODO The title should be different based on shuffled chapter or not.
+                // TODO if shuffled, then title = shuffled_number; shuffled_number++
                 jepub.add(i.toString(), Parser.passages[i].outerHTML);
             }
 
             jepub.generate().then(filecontent => {
                 console.log(filecontent);
         
-                const url = URL.createObjectURL(filecontent), filename = 'lorem-ipsum.epub';
+                // TODO: Make a download EPUB pop-up.
+
+                // const url = URL.createObjectURL(filecontent), filename = 'lorem-ipsum.epub';
         
-                let link = document.createElement('a');
-                document.body.appendChild(link);
-                link.href = url;
-                link.textContent = 'Download EPUB';
-                link.download = filename;
+                // let link = document.createElement('a');
+                // document.body.appendChild(link);
+                // link.href = url;
+                // link.textContent = 'Download EPUB';
+                // link.download = filename;
                 
+                // TODO: Make the automatic download a dev only thing.
                 saveAs(filecontent, filename);
             }).catch(err => {
                 console.error(err);

@@ -206,6 +206,7 @@ There isn't too much difference between a Passage Link Return and a Passage Link
 
 
 ### 0.2 Technical Notes:
+Frontmatter and Backmatter passages cannot use or have this State tracking feature. For instance, there should be no way for two Introduction passages to exist. Therefore, these passages must generate an error if there are macros in them.
 
 
 

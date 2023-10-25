@@ -247,42 +247,21 @@ var Parser = (() => {
 
 	let _orderedpassages = [].concat.apply([], [_frontIndices, _shuffledIndices, _backIndices])
 
-	function _convertLink(link) {
-		function _createLink(text, href) {
-			let a_elm = document.createElement('a');
-			a_elm.setAttribute('href', `#${href}`);
-			a_elm.innerText = text;
+	// This is where we will do all of our outer-passage replacing.
+	// TODO: Replace the id of the Divs with their number, if they are not frontmatter.
+	// TODO: With each passage, give them a `data-placement` type that we can check to see if they are front matter, shuffled, or back matter.
+	// TODO: Create an array of all passages with their titles.
 
-			return a_elm
-		}
-
-		if (link.split("-&gt;")[1]) {
-			// Found [[display text->link]] format.
-			return _createLink(link.split("-&gt;")[0].split("[[")[1], link.split("-&gt;")[1].split("]]")[0]);
-
-		} else if (link.split("&lt;-")[1]) {
-			// Found [[link<-display text]] format.
-			return _createLink(link.split("&lt;-")[1].split("]]")[0], link.split("&lt;-")[0].split("[[")[1]);
-
-		} else if (link.split("|")[1]) {
-			// Found [[display text|link]] format.
-			return _createLink(link.split("|")[0].split("[[")[1], link.split("|")[1].split("]]")[0]);
-
-		} else {
-			// Found [[link]] format.
-			return _createLink(link, link);
-		}
-	}
-	
+	// This is where we will do all of our in-passage replacing.
 	for (let i in _orderedpassages) {
-		// This is where we will do all of our in-passage replacing.
+		
 		let _innerHTML = _orderedpassages[i].innerHTML;
 
 		/* Validate HTML tags */
 		// TODO: Validate HTML tags here. Only a very limited number of standard HTML tags are allowed as per the EPUB3.3 standard. Most of these are handled by Primitive, to allow the Author to not worry about these. Therefore, if the Author is trying to do something, like add a <script> tag, then we need to ensure that the Author knows that Primitive is not the place for that.
 
 		/* Add Paragraph Tags*/
-		// TODO: Add Paragraph Tags
+		// TODO: Add Paragraph Tags from line breaks.
 
 		/* Parse Links */
 		let regex = /\[\[(.*?)\]\]/g;
@@ -293,7 +272,6 @@ var Parser = (() => {
 		do {
 			match = regex.exec(_innerHTML);
 			if (match) {
-				// console.log(match);
 				links[match[0]] = _convertLink(match[0]);
 			}
 		} while (match);
@@ -336,6 +314,49 @@ var Parser = (() => {
 		}
 
 		return array;
+	}
+
+	/**
+	 * Converts a Twine Link into an HTML Element
+	 * 
+	 * @param {String} link
+	 * @return {HTML Element}
+	 */
+	function _convertLink(link) {
+		/**
+		 * Create and return an <a href="#href">text</a> HTML Element.
+		 * 
+		 * @param {String} text Display Text
+		 * @param {String} href Passage Title
+		 * @return {HTMLELement}
+		 */
+		function _createLink(text, href) {
+			let a_elm = document.createElement('a');
+
+			// TODO: The `href` is a Passage Title, so we need to get the converted passage ID from the Passage Title.
+
+			a_elm.setAttribute('href', `#${href}`);
+			a_elm.innerText = text;
+
+			return a_elm
+		}
+
+		if (link.split("-&gt;")[1]) {
+			// Found [[display text->link]] format.
+			return _createLink(link.split("-&gt;")[0].split("[[")[1], link.split("-&gt;")[1].split("]]")[0]);
+
+		} else if (link.split("&lt;-")[1]) {
+			// Found [[link<-display text]] format.
+			return _createLink(link.split("&lt;-")[1].split("]]")[0], link.split("&lt;-")[0].split("[[")[1]);
+
+		} else if (link.split("|")[1]) {
+			// Found [[display text|link]] format.
+			return _createLink(link.split("|")[0].split("[[")[1], link.split("|")[1].split("]]")[0]);
+
+		} else {
+			// Found [[link]] format.
+			return _createLink(link, link);
+		}
 	}
 
 
