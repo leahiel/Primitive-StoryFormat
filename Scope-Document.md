@@ -145,6 +145,11 @@ styles = {
 13) I need a way to set the visible title of a Passage for front and back matters.
 NOTE) Shuffled passages would just have their generated number.
 
+14) EPUBCSS and HTMLCSS Special Passages.
+NOTE) We don't want people to submit stylesheets as those can be difficult to disable manually. 
+TECHNICAL) We should find a way to add an attribute to every element depending on whether it's CSS or HTML. Then we can parse though the Special Passages' CSS and add that attribute to every selector there, to ensure that EPUB and HTML don't mix.
+-- Actually, that's silly. We should just add that attribute to the top level node, and then we can add `top-level-node[type='html/epub']` to the beginning of every selector.
+
 
 ### 0.1 Technical Notes:
 Primitive can be broken down, very roughly, into a few parts in this version: The parser, the export options page, the HTML export, and the EPUB export. 

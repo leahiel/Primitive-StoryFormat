@@ -2,7 +2,7 @@
  * The Parser goes through all the Passages provided by `<tw-passagedata>` and 
  * 
  * First, organizes them by front matter, shuffled matter, and back matter.
- * TODO: Second, performs elementary Passage editing that is common to all output HTML processes.
+ * Second, performs elementary Passage editing that is common to all output HTML processes.
  * TODO: Then, on demand, it goes through those Passages, and transpiles them into their requested output form.
  */
 
@@ -290,9 +290,6 @@ var Parser = (() => {
 		/* Validate HTML tags */
 		// TODO: Validate HTML tags here. Only a very limited number of standard HTML tags are allowed as per the EPUB3.3 standard. Most of these are handled by Primitive, to allow the Author to not worry about these. Therefore, if the Author is trying to do something, like add a <script> tag, then we need to ensure that the Author knows that Primitive is not the place for that.
 
-		/* Add Paragraph Tags*/
-		// TODO: Add Paragraph Tags from line breaks.
-
 		/* Parse Links */
 		let regex = /\[\[(.*?)\]\]/g;
 		let links = {};
@@ -310,13 +307,13 @@ var Parser = (() => {
 			_innerHTML = _innerHTML.replace(link, links[link].outerHTML);
 		}
 
-		// EPUB Set a span with epub id to link to.
-
+		/* Add Paragraph Tags*/
+		// TODO Config: Allow single line breaks /\n/ or collapse multiple line breaks /\n+/
+		_innerHTML = _innerHTML.split(/\n/).map(e => `<p>${e}</p>\n`).join("");
 
 		_orderedpassages[i].innerHTML = _innerHTML;
 	}
 	
-
 	
 	
     /* Helper Functions */
