@@ -142,6 +142,8 @@ styles = {
 }
 ```
 
+13) I need a way to set the visible title of a Passage for front and back matters.
+NOTE) Shuffled passages would just have their generated number.
 
 
 ### 0.1 Technical Notes:

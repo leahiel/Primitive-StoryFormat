@@ -20,9 +20,30 @@ var Outputter = (() => {
         _waitForElm('#output').then((elm) => {
             _clearoutput();
 
-
+            /** A deep clone of Parser.passages. */
+            let passages = [];
             for (let i in Parser.passages) {
-                elm.appendChild(Parser.passages[i]);
+                passages.push(Parser.passages[i].cloneNode(true));
+            }
+
+            let _shuffledIndex = 1;
+            for (let i in passages) {
+                // Prepend Header Text
+                let h2 = document.createElement('h2');
+            
+                if (['front-matter', 'back-matter'].includes(passages[i].getAttribute('data-placement'))) {
+                    h2.innerText = passages[i].getAttribute('name');
+                    passages[i].prepend(h2);
+
+                } else if (passages[i].getAttribute('data-placement') === 'body-matter') {
+                    h2.innerText = `Passage ${_shuffledIndex}`;
+                    passages[i].prepend(h2);
+
+                    _shuffledIndex++;
+                } 
+
+                // Output HTML.
+                elm.appendChild(passages[i]);
             }
         });
     }
@@ -35,9 +56,20 @@ var Outputter = (() => {
             .withTemplate('idpf-wasteland')
             .withTitle('Primitive Test');
 
+        // Create and add Passages [called Sections with js-epub-maker] to EPUB.
         for (let i in Parser.passages) {
-            let section = { content: Parser.passages[i].innerHTML, title: Parser.passages[i].getAttribute('id')}
 
+            // Set proper Section Headers.
+            let section;
+            if (['front-matter', 'back-matter'].includes(Parser.passages[i].getAttribute('data-placement'))) {
+                // Front & Back Matter
+                section = { content: Parser.passages[i].innerHTML, title: Parser.passages[i].getAttribute('id')}
+            } else {
+                // Shuffled Matter
+                section = { content: Parser.passages[i].innerHTML, title: `Passage ${Parser.passages[i].getAttribute('id')}`}
+            }
+
+            // Add Sections to EPUB.
             epub.withSection(
                 new EpubMaker.Section("bodymatter", Parser.passages[i].getAttribute('id'), section, true, false)
             );

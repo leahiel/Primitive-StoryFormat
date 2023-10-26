@@ -264,7 +264,7 @@ var Parser = (() => {
 	let _bodymatterindex = ["ErrorPassage"];
 	let _shuffledIndex = 1;
 	for (let i in _orderedpassages) {
-		// Determine Element ID.
+		// Determine Element ID and Prepend Header Text
 		if (['front-matter', 'back-matter'].includes(_orderedpassages[i].getAttribute('data-placement'))) {
 			// Set the ID of the HTML Element to the name of the Passage if it's in the front or back matter.
 			_orderedpassages[i].setAttribute('id', _orderedpassages[i].getAttribute('name'));
@@ -285,6 +285,7 @@ var Parser = (() => {
 	for (let i in _orderedpassages) {
 		
 		let _innerHTML = _orderedpassages[i].innerHTML;
+		
 
 		/* Validate HTML tags */
 		// TODO: Validate HTML tags here. Only a very limited number of standard HTML tags are allowed as per the EPUB3.3 standard. Most of these are handled by Primitive, to allow the Author to not worry about these. Therefore, if the Author is trying to do something, like add a <script> tag, then we need to ensure that the Author knows that Primitive is not the place for that.
@@ -401,7 +402,7 @@ var Parser = (() => {
 
     /* Object Exports. */
     return Object.freeze(Object.defineProperties({}, {
-		passages : { value : _orderedpassages },
+		passages : { value : _orderedpassages },  // TODO: Deep freeze Parser.passages
         errors : { value : errorsList },
         warnings : { value : warningsList},
     }));

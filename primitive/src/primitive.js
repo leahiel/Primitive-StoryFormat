@@ -5,14 +5,15 @@ window.Primitive = {};
 (() => {
 	'use strict';
 
-	console.log('Primitive Document loaded; beginning startup.');
+	/* Erase now useless tw-storydata Element. */
+	// NOTE: Leaving this in causes a few issues, including intra-webpage navigation.
+	document.getElementsByTagName('tw-storydata')[0].remove();
 
 	/* PUT passages on screen. */
-
 	Outputter.put_errors();
 	Outputter.put_warnings();
 
-	/* Header Buttons */
+	/* Add functionality to Header Buttons */
 	_waitForElm('#primitive-test-html').then((elm) => {
 		elm.addEventListener("click", ()=>{
 			Outputter.put_test_html();
@@ -24,6 +25,8 @@ window.Primitive = {};
 			Outputter.export_epub();
 		});
 	});
+
+
 
 	/**
 	 * Waits for an element to exist before doing thing.
