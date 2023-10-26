@@ -1,13 +1,17 @@
 /***
- * The Parser goes through all the Passages provided by `<tw-passagedata>` and 
+ * The Parser goes through all the Passages provided by `<tw-passagedata>` and determines 
+ * what to do with them.
  * 
- * First, organizes them by front matter, shuffled matter, and back matter.
- * Second, performs elementary Passage editing that is common to all output HTML processes.
- * TODO: Then, on demand, it goes through those Passages, and transpiles them into their requested output form.
+ * TODO If the Passage is a config passage, then it applies the config settings.
+ * TODO If the Passage is a CSS passage, this it puts the CSS in the correct location.
+ * Then, the Parser organizes all remaining Passages by front matter, body matter, and 
+ * back matter.
+ * 
+ * TODO Add a way to shuffle body matter in the processer or outputter stage.
  */
 
 var Parser = (() => {
-    'use strict';
+	'use strict';
 
 	/** 
 	 * An object containing every passage. 
@@ -86,7 +90,7 @@ var Parser = (() => {
 
 
 	/* Loop through every Passage and determine if they should be shown or shuffled, and where they belong (Front/Middle/Back). */
-	
+
 	for (let i = 0; i < _passages.length; i++) {
 		/** 
 		 * Should we display the passage? 
@@ -128,7 +132,7 @@ var Parser = (() => {
 
 		/* Handle Special Passages */
 		// NOTE: The Start Special Passage is handled after tags are handled.
-		
+
 		// StoryTitle 
 		if (_passageTitle.toLowerCase() === "storytitle") {
 			// NOTE: Primitive doesn't actually care about the StoryTitle passage, however it is required by Twine Compilers.
@@ -260,112 +264,9 @@ var Parser = (() => {
 
 	let _orderedpassages = [].concat.apply([], [_frontIndices, _shuffledIndices, _backIndices]);
 
-	/* This is where we will do all of our outer-passage replacing. */
-	let _bodymatterindex = ["ErrorPassage"];
-	let _shuffledIndex = 1;
-	for (let i in _orderedpassages) {
-		// Determine Element ID and Prepend Header Text
-		if (['front-matter', 'back-matter'].includes(_orderedpassages[i].getAttribute('data-placement'))) {
-			// Set the ID of the HTML Element to the name of the Passage if it's in the front or back matter.
-			_orderedpassages[i].setAttribute('id', _orderedpassages[i].getAttribute('name'));
 
-		} else if (_orderedpassages[i].getAttribute('data-placement') === 'body-matter') {
-			// Set the ID of the HTML Element to an increasing number if it's in the body matter.
-			_orderedpassages[i].setAttribute('id', _shuffledIndex);
-			_bodymatterindex.push(_orderedpassages[i].getAttribute('name'));
 
-			_shuffledIndex++;
-		} else {
-			// Somehow, the HTML Element has no 'data-placement' attribute.
-			console.error(`Unable to determine data-placement of :: ${_orderedpassages[i].getAttribute('name')}.`)
-		}
-	}
-
-	/* This is where we will do all of our in-passage processing. */
-	for (let i in _orderedpassages) {
-		
-		let _innerHTML = _orderedpassages[i].innerHTML;
-		
-
-		/* Validate HTML tags */
-		// TODO: Validate HTML tags here. Only a very limited number of standard HTML tags are allowed as per the EPUB3.3 standard. Most of these are handled by Primitive, to allow the Author to not worry about these. Therefore, if the Author is trying to do something, like add a <script> tag, then we need to ensure that the Author knows that Primitive is not the place for that.
-
-		/* Parse Links */
-		let regex = /\[\[(.*?)\]\]/g;
-		let links = {};
-		let match;
-
-		// Get and convert links.
-		do {
-			match = regex.exec(_innerHTML);
-			if (match) {
-				links[match[0]] = _convertLink(match[0]);
-			}
-		} while (match);
-		
-		for (let link in links) {
-			_innerHTML = _innerHTML.replace(link, links[link].outerHTML);
-		}
-
-		/* Add Paragraph Tags*/
-		// TODO Config: Allow single line breaks /\n/ or collapse multiple line breaks /\n+/
-		_innerHTML = _innerHTML.split(/\n/).map(e => `<p>${e}</p>\n`).join("");
-
-		_orderedpassages[i].innerHTML = _innerHTML;
-	}
-	
-	
-	
-    /* Helper Functions */
-
-	/**
-	 * Converts a Twine Link into an HTML Element
-	 * 
-	 * @param {String} link
-	 * @return {HTML Element}
-	 */
-	function _convertLink(link) {
-		/**
-		 * Create and return an <a href="#href">text</a> HTML Element.
-		 * 
-		 * @param {String} text Display Text
-		 * @param {String} href Passage Title
-		 * @return {HTMLELement}
-		 */
-		function _createLink(text, href) {
-			let a_elm = document.createElement('a');
-
-			// The `href` is a Passage Title, so we need to get the converted passage ID from the Passage Title.
-			if (_bodymatterindex.indexOf(href) > 0) {
-				// NOTE: _bodymatterindex[0] is the error passage that exists to 
-				// shift the array down by one, so we don't care about it.
-				a_elm.setAttribute('href', `#${_bodymatterindex.indexOf(href)}`);
-			} else {
-				a_elm.setAttribute('href', `#${href}`);
-			}
-
-			a_elm.innerText = text;
-
-			return a_elm
-		}
-
-		if (link.split("-&gt;")[1]) {
-			// Found [[display text->link]] format.
-			return _createLink(link.split("-&gt;")[0].split("[[")[1], link.split("-&gt;")[1].split("]]")[0]);
-
-		} else if (link.split("&lt;-")[1]) {
-			// Found [[link<-display text]] format.
-			return _createLink(link.split("&lt;-")[1].split("]]")[0], link.split("&lt;-")[0].split("[[")[1]);
-
-		} else if (link.split("|")[1]) {
-			// Found [[display text|link]] format.
-			return _createLink(link.split("|")[0].split("[[")[1], link.split("|")[1].split("]]")[0]);
-
-		} else {
-			// Found [[link]] format.
-			return _createLink(link, link);
-		}
-	}
+	/* Helper Functions */
 
 	/** 
 	 * Shuffles the array. 
@@ -397,10 +298,10 @@ var Parser = (() => {
 
 
 
-    /* Object Exports. */
-    return Object.freeze(Object.defineProperties({}, {
-		passages : { value : _orderedpassages },  // TODO: Deep freeze Parser.passages
-        errors : { value : errorsList },
-        warnings : { value : warningsList},
-    }));
+	/* Object Exports. */
+	return Object.freeze(Object.defineProperties({}, {
+		passages: { value: _orderedpassages }, // TODO: Deep freeze Parser.passages
+		errors: { value: errorsList },
+		warnings: { value: warningsList },
+	}));
 })();

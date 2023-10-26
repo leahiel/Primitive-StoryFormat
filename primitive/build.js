@@ -19,6 +19,8 @@ const CONFIG = {
             // 'src/config.js',
             'src/parser.js',
             'src/outputter.js',
+            'src/processer.js',
+            
             'src/primitive.js',
         ],
         wrap: {

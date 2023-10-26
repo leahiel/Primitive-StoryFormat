@@ -1,6 +1,6 @@
 * {
     --headerfooterpadding: 0.3rem;
-    font-size: 2.2vh;
+    font-size: 2.6vh;
     color: #111111;
 }
 
@@ -59,4 +59,9 @@ html {
 
 #primitive-version-number {
     color: #eeeeee;
+}
+
+p {
+    margin: 0;
+    min-height: 1rem;
 }

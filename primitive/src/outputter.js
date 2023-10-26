@@ -1,6 +1,7 @@
 /***
- * The Outputter manipulates the DOM on the HTML document.
- * The Outputter also exports data.
+ * The Outputter manipulates the DOM on the Primitive Export Screen.
+ * 
+ * The Outputter also exports stories.
  */
 
 var Outputter = (() => {
@@ -20,30 +21,9 @@ var Outputter = (() => {
         _waitForElm('#output').then((elm) => {
             _clearoutput();
 
-            /** A deep clone of Parser.passages. */
-            let passages = [];
-            for (let i in Parser.passages) {
-                passages.push(Parser.passages[i].cloneNode(true));
-            }
-
-            let _shuffledIndex = 1;
-            for (let i in passages) {
-                // Prepend Header Text
-                let h2 = document.createElement('h2');
-            
-                if (['front-matter', 'back-matter'].includes(passages[i].getAttribute('data-placement'))) {
-                    h2.innerText = passages[i].getAttribute('name');
-                    passages[i].prepend(h2);
-
-                } else if (passages[i].getAttribute('data-placement') === 'body-matter') {
-                    h2.innerText = `Passage ${_shuffledIndex}`;
-                    passages[i].prepend(h2);
-
-                    _shuffledIndex++;
-                } 
-
-                // Output HTML.
-                elm.appendChild(passages[i]);
+            /** A deep clone of Processer.htmlpassages. */
+            for (let i in Processer.passages('html')) {
+                elm.appendChild(Processer.passages('html')[i]);
             }
         });
     }
@@ -52,26 +32,32 @@ var Outputter = (() => {
      * Exports an EPUB to be saved by the browser.
      */
     function export_epub() {
+        /** A deep clone of Processer.epubpassages. */
+        let passages = [];
+        for (let i in Processer.passages('epub')) {
+            passages.push(Processer.passages('epub')[i].cloneNode(true));
+        }
+
         let epub = new EpubMaker()
             .withTemplate('idpf-wasteland')
             .withTitle('Primitive Test');
 
         // Create and add Passages [called Sections with js-epub-maker] to EPUB.
-        for (let i in Parser.passages) {
+        for (let i in passages) {
 
             // Set proper Section Headers.
             let section;
-            if (['front-matter', 'back-matter'].includes(Parser.passages[i].getAttribute('data-placement'))) {
+            if (['front-matter', 'back-matter'].includes(passages[i].getAttribute('data-placement'))) {
                 // Front & Back Matter
-                section = { content: Parser.passages[i].innerHTML, title: Parser.passages[i].getAttribute('id')}
+                section = { content: passages[i].innerHTML, title: passages[i].getAttribute('id')}
             } else {
                 // Shuffled Matter
-                section = { content: Parser.passages[i].innerHTML, title: `Passage ${Parser.passages[i].getAttribute('id')}`}
+                section = { content: passages[i].innerHTML, title: `Passage ${passages[i].getAttribute('id')}`}
             }
 
             // Add Sections to EPUB.
             epub.withSection(
-                new EpubMaker.Section("bodymatter", Parser.passages[i].getAttribute('id'), section, true, false)
+                new EpubMaker.Section("bodymatter", passages[i].getAttribute('id'), section, true, false)
             );
         }
 
@@ -82,34 +68,35 @@ var Outputter = (() => {
      * Outputs the generated errors into the HTML document.
      */
     function output_errors() {
-        if (Parser.errors.length > 0) {
-            console.error(Parser.errors); // DEBUG
-            _waitForElm('#error-notices').then((elm) => {
+        _waitForElm('#error-notices').then((elm) => {
+            if (Parser.errors.length > 0) {
+                console.error(Parser.errors); // DEBUG
                 for (let error in Parser.errors) {
     
                     let child = document.createElement('div');
                     child.innterHTML = `${Parser.errors[error]}`;
                     elm.appendChild(child);
                 }
-            });
-        }
+            }
+        });
     }
     
     /**
      * Outputs the generated warnings into the HTML document.
      */
     function output_warnings() {
-        if (Parser.warnings.length > 0) {
-            console.warn(Parser.warnings); // DEBUG
-            _waitForElm('#warning-notices').then((elm) => {
+        _waitForElm('#warning-notices').then((elm) => {
+            if (Parser.warnings.length > 0) {
+                console.warn(Parser.warnings); // DEBUG
                 for (let warning in Parser.warnings) {
     
                     let child = document.createElement('div');
                     child.innerHTML = `Warning:<br> ${Parser.warnings[warning]}`;
                     elm.appendChild(child);
                 }
-            })
-        }
+                
+            }
+        });
     }
 
 
