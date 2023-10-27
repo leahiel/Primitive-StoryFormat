@@ -46,6 +46,8 @@ var Processer = (() => {
     let converter = new showdown.Converter();
     converter.setOption('simpleLineBreaks', true);
     converter.setOption('openLinksInNewWindow', true);
+    converter.setOption('noHeaderId', true);
+    converter.setOption('requireSpaceBeforeHeadingText', true);
 
     for (let i in _passages) {
 
@@ -53,6 +55,9 @@ var Processer = (() => {
 
         /* Validate HTML tags */
         // TODO: Validate HTML tags here. Only a very limited number of standard HTML tags are allowed as per the EPUB3.3 standard. Most of these are handled by Primitive, to allow the Author to not worry about these. Therefore, if the Author is trying to do something, like add a <script> tag, then we need to ensure that the Author knows that Primitive is not the place for that.
+
+        /* Convert Markdown to HTML */
+        _innerHTML = converter.makeHtml(_innerHTML);
 
         /* Parse Links */
         let regex = /\[\[(.*?)\]\]/g;
@@ -70,9 +75,6 @@ var Processer = (() => {
         for (let link in links) {
             _innerHTML = _innerHTML.replace(link, links[link].outerHTML);
         }
-
-        // Convert Markdown to HTML
-        _innerHTML = converter.makeHtml(_innerHTML);
 
         // Update passage
         _passages[i].innerHTML = _innerHTML;
