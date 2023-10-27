@@ -8,20 +8,23 @@ var Outputter = (() => {
     'use strict';
 
     /**
-     * Clears the #output HTML element.
-     */
-    function _clearoutput() {
-        document.getElementById('output').innerHTML = "";
-    }
-
-    /**
      * Outputs the HTML export into the HTML document.
      */
     function output_test_html() {
         _waitForElm('#output').then((elm) => {
-            _clearoutput();
+            // Clear previous output.
+            elm.innerHTML = "";
+            if (document.getElementById('primitive-custom-css')) {
+                document.getElementById('primitive-custom-css').remove();
+            }
 
-            /** Put HTML onto Primitive Export Screen */
+            // Load CSS
+            let style = document.createElement('style');
+            style.setAttribute('id', 'primitive-custom-css');
+            style.innerHTML = Parser.htmlcss;
+            document.getElementsByTagName('head')[0].appendChild(style);
+
+            // Put HTML onto Primitive Export Screen 
             for (let i in Processer.passages('html')) {
                 elm.appendChild(Processer.passages('html')[i]);
             }
@@ -160,7 +163,7 @@ var Outputter = (() => {
 
                 // Update the CSS
                 // TODO New CSS should be prepended to old CSS.
-                zip.folder('EPUB').file(cssfilename, "lol");
+                zip.folder('EPUB').file(cssfilename, Parser.epubcss);
 
                 // Regenerate the EPUB.
                 zip.generateAsync({

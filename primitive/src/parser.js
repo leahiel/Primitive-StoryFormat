@@ -88,6 +88,19 @@ var Parser = (() => {
 	 */
 	var errorsList = [];
 
+	/**
+	 * The CSS we got from the EPUBStyle Special Passage.
+	 * 
+	 *  @type {string} 
+	 */
+	var epubcss = "";
+
+	/**
+	 * The CSS we got from the HTMLStyle Special Passage.
+	 * 
+	 *  @type {string} 
+	 */
+	var htmlcss = "";
 
 
 	/* Loop through every Passage and determine if they should be shown or shuffled, and where they belong (Front/Middle/Back). */
@@ -166,18 +179,16 @@ var Parser = (() => {
 
 		// epubstyle
 		if (_passageTitle.toLowerCase() === "epubstyle") {
+			epubcss = _passages[i].innerHTML;
 			_displayPassage = false;
 			_shufflePassage = false;
-			errorsList.push(`Passage Name \`:: ${_passageTitle}\` is currently reserved for a future version of Primitive. This passage has not been processed.`);
-			_errored = true;
 		}
 
 		// htmlstyle
 		if (_passageTitle.toLowerCase() === "htmlstyle") {
+			htmlcss = _passages[i].innerHTML;
 			_displayPassage = false;
 			_shufflePassage = false;
-			errorsList.push(`Passage Name \`:: ${_passageTitle}\` is currently reserved for a future version of Primitive. This passage has not been processed.`);
-			_errored = true;
 		}
 
 
@@ -331,5 +342,7 @@ var Parser = (() => {
 		passages: { value: getPassages() },
 		errors: { value: errorsList },
 		warnings: { value: warningsList },
+		htmlcss: {value: htmlcss},
+		epubcss: {value: epubcss},
 	}));
 })();
