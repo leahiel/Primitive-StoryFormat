@@ -49,10 +49,16 @@ var Outputter = (() => {
             let section;
             if (['front-matter', 'back-matter'].includes(passages[i].getAttribute('data-placement'))) {
                 // Front & Back Matter
-                section = { content: passages[i].innerHTML, title: passages[i].getAttribute('id')}
+                section = {
+                    content: passages[i].innerHTML,
+                    title: passages[i].getAttribute('id')
+                }
             } else {
                 // Shuffled Matter
-                section = { content: passages[i].innerHTML, title: `Passage ${passages[i].getAttribute('id')}`}
+                section = {
+                    content: passages[i].innerHTML,
+                    title: `Passage ${passages[i].getAttribute('id')}`
+                }
             }
 
             // Add Sections to EPUB.
@@ -61,7 +67,38 @@ var Outputter = (() => {
             );
         }
 
-        epub.downloadEpub();
+        function callback(epubZipContent, epubTitle) {
+
+            let cssfilename = `${epubTitle.split('.epub')[0]}.css`;
+
+            let css_content;
+
+            let jszip = new Jszip310();
+            jszip.loadAsync(epubZipContent).then((zip) => {
+                zip.folder('EPUB').file(cssfilename).async("string").then((content) => {
+                    // Get the CSS
+                    css_content = content;
+
+                    // Update the CSS
+                    // TODO New CSS should be prepended to "loL" or whatever.
+                    zip.folder('EPUB').file(cssfilename, "lol");
+
+                    // Regenerate and save the Epub
+                    zip.generateAsync({
+                        type: 'blob',
+                        mimeType: 'application/epub+zip',
+                        compression: 'DEFLATE',
+                        compressionOptions: {
+                            level: 9
+                        }
+                    }).then(function (blob) {
+                        saveAs(blob, epubTitle);
+                    });
+                });
+            });
+        }
+
+        epub.downloadEpub(callback);
     }
 
     /**
@@ -72,7 +109,7 @@ var Outputter = (() => {
             if (Parser.errors.length > 0) {
                 console.error(Parser.errors); // DEBUG
                 for (let error in Parser.errors) {
-    
+
                     let child = document.createElement('div');
                     child.innterHTML = `${Parser.errors[error]}`;
                     elm.appendChild(child);
@@ -80,7 +117,7 @@ var Outputter = (() => {
             }
         });
     }
-    
+
     /**
      * Outputs the generated warnings into the HTML document.
      */
@@ -89,12 +126,12 @@ var Outputter = (() => {
             if (Parser.warnings.length > 0) {
                 console.warn(Parser.warnings); // DEBUG
                 for (let warning in Parser.warnings) {
-    
+
                     let child = document.createElement('div');
                     child.innerHTML = `Warning:<br> ${Parser.warnings[warning]}`;
                     elm.appendChild(child);
                 }
-                
+
             }
         });
     }
@@ -105,49 +142,57 @@ var Outputter = (() => {
 
     // TODO This shouldn't be needed here, only in primitive.js, since the buttons shouldn't be clickable until the document is fully loaded.
     /**
-	 * Waits for an element to exist before doing thing.
-	 *
-	 * ```
-	 * const elm = await waitForElm('.some-class');
-	 * // or
-	 * waitForElm('.some-class').then((elm) => {
-	 *  console.log('Element is ready');
-	 *  console.log(elm.textContent);
-	 * });
-	 * ```
-	 * 
-	 * @param {CSS_Selector} selector 
-	 * 
-	 * Taken from https://stackoverflow.com/a/61511955
-	 * CC BY-SA 4.0, no changes
-	 */
-	function _waitForElm(selector) {
-		return new Promise(resolve => {
-			if (document.querySelector(selector)) {
-				return resolve(document.querySelector(selector));
-			}
+     * Waits for an element to exist before doing thing.
+     *
+     * ```
+     * const elm = await waitForElm('.some-class');
+     * // or
+     * waitForElm('.some-class').then((elm) => {
+     *  console.log('Element is ready');
+     *  console.log(elm.textContent);
+     * });
+     * ```
+     * 
+     * @param {CSS_Selector} selector 
+     * 
+     * Taken from https://stackoverflow.com/a/61511955
+     * CC BY-SA 4.0, no changes
+     */
+    function _waitForElm(selector) {
+        return new Promise(resolve => {
+            if (document.querySelector(selector)) {
+                return resolve(document.querySelector(selector));
+            }
 
-			const observer = new MutationObserver(mutations => {
-				if (document.querySelector(selector)) {
-					observer.disconnect();
-					resolve(document.querySelector(selector));
-				}
-			});
+            const observer = new MutationObserver(mutations => {
+                if (document.querySelector(selector)) {
+                    observer.disconnect();
+                    resolve(document.querySelector(selector));
+                }
+            });
 
-			observer.observe(document.body, {
-				childList: true,
-				subtree: true
-			});
-		});
-	}
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        });
+    }
 
 
 
     /* Object Exports. */
     return Object.freeze(Object.defineProperties({}, {
-        put_errors : { value : output_errors },
-        put_warnings : { value : output_warnings},
-        put_test_html : { value : output_test_html},
-        export_epub : {value : export_epub},
-    }));    
+        put_errors: {
+            value: output_errors
+        },
+        put_warnings: {
+            value: output_warnings
+        },
+        put_test_html: {
+            value: output_test_html
+        },
+        export_epub: {
+            value: export_epub
+        },
+    }));
 })();

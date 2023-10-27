@@ -37,6 +37,8 @@ const CONFIG = {
     libs: [
         // Processing Passages
         'src/vendor/showdown.min.js',
+        
+        'src/vendor/jszip310.min.js',
 
         // For Generating EPUBs
         'src/vendor/jszip.min.js',
