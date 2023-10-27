@@ -20,7 +20,6 @@ const CONFIG = {
             'src/parser.js',
             'src/outputter.js',
             'src/processer.js',
-            
             'src/primitive.js',
         ],
         wrap: {
@@ -36,6 +35,9 @@ const CONFIG = {
         ]
     },
     libs: [
+        // Processing Passages
+        'src/vendor/showdown.min.js',
+
         // For Generating EPUBs
         'src/vendor/jszip.min.js',
         'src/vendor/jszip-utils.min.js',

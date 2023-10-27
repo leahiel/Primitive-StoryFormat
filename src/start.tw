@@ -1,0 +1,96 @@
+:: Introduction [frontmatter_1]
+To your west, your home-town village is burning.
+To your east, the sun is burning.
+
+Track your adventure as you run from the orcs massacring your hometown, and see if you can find yourself a little bit of comfort in the harshness of my world, just as winter is onsetting.
+
+It's time to scatter! [[Flight->1A]]
+
+*Content Warnings:*
++ Indiscriminate **Gore**.
++ Discriminate **Bloody Imagery**.
++ Vanilla **Adult** Activities.
+
+See the [[#->Table of Contents]].
+Read the [[#->Credits]].
+Read the [[#->Author's Note]]. [*Contain spoilers.*]
+
+
+Written by myself, LeahPeach, this little novel is an adult fantasy romance novel. This novel was written for the [2023 Bare-Bones Jam](https://itch.io/jam/bare-bones-jam).
+
+
+
+:: Table of Contents [backmatter_1]
+Chapter 1: 
+* [[Flight->1A]]
+
+Chapter 2: 
+* [[Looking for a Cabin->2A]]
+
+Chapter 3: 
+* [[A Cabin and a Fight->3A]]
+
+Chapter 4: 
+* [[Surviving the Night->4A]]
+
+Chapter 5: 
+* Sleep: [[Food->5A-1]]
+* Not Sleep: [[Food->5A-0]]
+
+Chapter 6: 
+* Sleep: [[Exploring the Woods->6A-1]]
+* Not Sleep: [[Exploring the Woods->6B-0]]
+
+Chapter 7: 
+* Sleep: [[Mysteries->7A-1]]
+* Not Sleep: [[Mysteries->7A-0]]
+
+Chapter 8: 
+* Sleep: [[The Cabin at Night->8A-1]]
+* Not Sleep: [[The Cabin at Night->8A-0]]
+
+Return to the [[#->Introduction]].
+
+
+
+:: Credits [backmatter_2]
+Thank you to Sophie Houlden for making WritingFantasy, the Twine StoryFormat I used to display this story!
+
+I'd also like to give thanks to the hosters of the <a target="_blank" rel="noopener noreferrer" href="https://itch.io/jam/bare-bones-jam">2023 Bare-Bones Jam</a>! This little experiment likely wouldn't have been completed without the impetus of the jam.
+
+Several other people could also be thanked, but the list of those people is long, and their personal involvement with this project minimal. Hituro gave guidance, TheMadExile wrote Tweego, which I used to compile this story, Klembot made Twine, whose history was practically required to make this story in a sane way...
+
+I could even thank Microsoft for making Visual Studio Code, which I programmed this in! The list is endless.
+
+But there is one person I'd like to be sure to thank. Zauzaza, on a Discord server I frequent, gave the simple recommendation of using Text to Speech to listen to my story as a way to find errors and clean up unsightly language.
+
+This was embarrassingly effective, so I'd like to give Zauzaza my biggest thanks.
+
+Thank you all, and thank you, yourself, for reading my little tale here.
+
+Return to the [[#->Introduction]].
+
+
+
+:: Author's Note [backmatter_3]
+This is LeahPeach. I'd just like to say thank you for reading my little story.
+
+This is my first time writing a non-state interactive fiction novel. Normally within my stories, I keep extensive track of the options you make, and the various characters and settings react to it. For instance, if you choose to wear a robe instead of a shirt and skirt, the characters and your movement descriptions could change. That is, I can make alternative paragraphs of text based on your choices.
+
+But in a non-state story, I have to keep things on track. So if you decided not to hunt a bunny, I, as the author, need to find a way to align that outcome to be the exact same outcome as you hunting the bunny. I can't permanently branch the story off into completely separate stories if I wish to keep my sanity... or at least not within the current technical limitations of the software that I am using. Honestly, it's really stressful not being able to change the story in relation to what you did in the past. For instance, the story should change based on whether you decided to burn the bed frame or not. But I am simply unable to do that without tracking state.
+
+So, I've been trying to figure out a good way to make a state-tracking story possible in a "turn to page" style interactive fiction novel. If I manage to do this, I could put these novels out on several different mediums: An html file (for Itch.io), an .epub (for e-readers), a .mobi (for Kindle), an electron game (for Steam), print (for books) and a PDF (for the crazy people). But the problem is far more complex than it seems at first glance. [I mean, if it wasn't, then it would already be done!] For instance, if I make alternative paragraphs of text based on your choices, I have to duplicate many passages, but with very subtle twists. This is fine for digital formats, but would lead to a crazy inflated page count in a printed book! Even worse, with some states, I may have to give different options to the reader, while hiding other options. So if they choose to wear a shirt and dress, they can decide to go to a party or to the bar. Alternatively, if they choose to wear a robe, they could decide to go to the school or to the bar. Because the ending choices are different, the whole passage that contains those choices would have to be rewritten.
+
+I'm not actually against that idea. Data is cheap, and having an extra 50,000 words in any format [except print and maybe PDF] incurs no real loss. But the issue comes in programming a solution to do that automatically. In theory, it should be easy. In reality, there are a lot of little choices that need to be carefully made.
+
+And so, in order to figure out what those "little choices" are, I decided to write this non-state interactive fiction novel.
+
+Even so, I ended up embedding two boolean state trackers into the story. You can see these in the flow chat of this story, presented here:
+
+<img src="mermaid/flowchart-WF.webp" style="max-width: 100%;">
+
+Because I don't have a good technical way to write variations based on those two states within one passage, this story is ridiculously stiff and very inflexible. I had to write all of the variations within their own passages, I couldn't write a single passage with "if-else statements" to show the variation in each. I'm hopeful that a future project of mine will fix that issue for future stories, but that doesn't help this one.
+
+Regardless, I hope you enjoyed my stiff little story.
+
+Return to the [[#->Introduction]].

@@ -43,10 +43,13 @@ var Processer = (() => {
 
 
     /* InnerHTML Generic Processing */
+    let converter = new showdown.Converter();
+    converter.setOption('simpleLineBreaks', true);
+    converter.setOption('openLinksInNewWindow', true);
+
     for (let i in _passages) {
 
         let _innerHTML = _passages[i].innerHTML;
-
 
         /* Validate HTML tags */
         // TODO: Validate HTML tags here. Only a very limited number of standard HTML tags are allowed as per the EPUB3.3 standard. Most of these are handled by Primitive, to allow the Author to not worry about these. Therefore, if the Author is trying to do something, like add a <script> tag, then we need to ensure that the Author knows that Primitive is not the place for that.
@@ -68,10 +71,10 @@ var Processer = (() => {
             _innerHTML = _innerHTML.replace(link, links[link].outerHTML);
         }
 
-        /* Add Paragraph Tags*/
-        // TODO Config: Allow single line breaks /\n/ or collapse multiple line breaks /\n+/
-        _innerHTML = _innerHTML.split(/\n/).map(e => `<p>${e}</p>\n`).join("");
+        // Convert Markdown to HTML
+        _innerHTML = converter.makeHtml(_innerHTML);
 
+        // Update passage
         _passages[i].innerHTML = _innerHTML;
     }
 

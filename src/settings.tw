@@ -1,18 +1,12 @@
-:: StoryTitle
-StoryFormat Learning
+:: StoryTitle [hidden]
+Our Cabin Was Cold
 
 
 
-:: StoryData
+:: StoryData [hidden]
 {
+    "ifid": "5ED61EA4-85B7-49F5-8FDD-89EEEC34FEF3",
     "format": "Primitive",
     "format-version": "0.0.1",
-    "ifid": "ED46AFFE-96C0-4E1D-AE5D-B5B3244C93BB"
-}
-
-
-
-:: StoryConfig
-{
-    "title": "Your Title Here",
+    "start": "1A"
 }

@@ -21,7 +21,7 @@ var Outputter = (() => {
         _waitForElm('#output').then((elm) => {
             _clearoutput();
 
-            /** A deep clone of Processer.htmlpassages. */
+            /** Put HTML onto Primitive Export Screen */
             for (let i in Processer.passages('html')) {
                 elm.appendChild(Processer.passages('html')[i]);
             }

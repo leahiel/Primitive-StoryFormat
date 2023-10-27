@@ -60,8 +60,3 @@ html {
 #primitive-version-number {
     color: #eeeeee;
 }
-
-p {
-    margin: 0;
-    min-height: 1rem;
-}
