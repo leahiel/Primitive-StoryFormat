@@ -101,9 +101,10 @@ As required of a StoryFormat for EPUB, passages should be output in a randomized
 
 **NOTE:** Required in case authors want to attempt print versions of their stories based on Primitive.
 
-6) [WF Legacy] Passages should be able to have a non-randomly generated Passage Number by using a Passage Tag.
-* 6a) This includes a `First` passage tag.
-* 6b) This includes a `Last` passage tag.
+~~6) [WF Legacy] Passages should be able to have a non-randomly generated Passage Number by using a Passage Tag.~~
+* ~~6a) This includes a `First` passage tag.~~
+* ~~6b) This includes a `Last` passage tag.~~
+**UNIMPLEMENTED:** In retrospect, would cause compatibility issues with Version 0.2 of Primitive. The Author can just specify those passages with backmatter or frontmatter Special Passage Tags.
 
 7 - DONE) [WF Legacy] Passages tagged with "Frontmatter" and "Backmatter" should be placed before and after the Story Passages.
 * 7a) The order of both matter passages should be able to be specified with a suffix of `_number` after their tag name. i.e. A passage tagged with `[frontmatter_3]` will be the third frontmatter passage in the novel.
@@ -121,7 +122,7 @@ As required of a StoryFormat for EPUB, passages should be output in a randomized
 **RESEARCH:** Do we include BBCode as well?
 
 9) Story Comments should be available that the StoryFormat does not parse.
-* 9a) HTML, JavaScript, and curly bracket `{ }` style block comments should exist.
+* 9a) HTML and JavaScript style block comments should exist.
 * 9b) JavaScript style and double pound `##` single line comments should exist.
 
 **NOTE:** The various forms of comments are for compatibility with different software that authors commonly use.
@@ -132,6 +133,10 @@ As required of a StoryFormat for EPUB, passages should be output in a randomized
 11) Separate CSS files should be accepted for each exported version that Primitive Offers.
 * 11a) A CSS file or Special Passage for HTML exports.
 * 11b) A CSS file or Special Passage for EPUB exports. 
+NOTE) We don't want people to submit stylesheets as those can be difficult to disable manually. 
+TECHNICAL) We should find a way to add an attribute to every element depending on whether it's CSS or HTML. Then we can parse though the Special Passages' CSS and add that attribute to every selector there, to ensure that EPUB and HTML don't mix.
+-- Actually, that's silly. We should just add that attribute to the top level node, and then we can add `top-level-node[type='html/epub']` to the beginning of every selector.
+
 
 12) Allow Authors to have a set of custom link styles.
 ```
@@ -145,10 +150,6 @@ styles = {
 13) I need a way to set the visible title of a Passage for front and back matters.
 NOTE) Shuffled passages would just have their generated number.
 
-14) EPUBCSS and HTMLCSS Special Passages.
-NOTE) We don't want people to submit stylesheets as those can be difficult to disable manually. 
-TECHNICAL) We should find a way to add an attribute to every element depending on whether it's CSS or HTML. Then we can parse though the Special Passages' CSS and add that attribute to every selector there, to ensure that EPUB and HTML don't mix.
--- Actually, that's silly. We should just add that attribute to the top level node, and then we can add `top-level-node[type='html/epub']` to the beginning of every selector.
 
 
 ### 0.1 Technical Notes:

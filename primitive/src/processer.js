@@ -45,8 +45,28 @@ var Processer = (() => {
     converter.setOption('requireSpaceBeforeHeadingText', true);
 
     for (let i in _passages) {
-
+        let regex;
         let _innerHTML = _passages[i].innerHTML;
+
+        /* Remove Comments */
+        // JavaScript Single Line Comments: `// Comment Text`
+        regex = /\/\/.*/g;
+        _innerHTML = _innerHTML.replace(regex, "");
+
+        // Double Pound Single Line Comments: `## Comment Text`
+        // FIXME: Got a bit of an incompatilbity here with Markdown Headers.
+        regex = /##.*/g;
+        _innerHTML = _innerHTML.replace(regex, "");
+
+        // JavaScript Block Comments: `/* Comment Text */`
+        regex = /\/\*[\S\s]*?\*\//g;
+        _innerHTML = _innerHTML.replace(regex, "");
+
+        // HTML Block Comments: `<!-- Comment Text -->`
+        regex = /&lt;!--[\S\s]*?--&gt;/g;
+        _innerHTML = _innerHTML.replace(regex, "");
+
+
 
         /* Validate HTML tags */
         // TODO: Validate HTML tags here. Only a very limited number of standard HTML tags are allowed as per the EPUB3.3 standard. Most of these are handled by Primitive, to allow the Author to not worry about these. Therefore, if the Author is trying to do something, like add a <script> tag, then we need to ensure that the Author knows that Primitive is not the place for that.
@@ -55,7 +75,7 @@ var Processer = (() => {
         _innerHTML = converter.makeHtml(_innerHTML);
 
         /* Parse Links */
-        let regex = /\[\[(.*?)\]\]/g;
+        regex = /\[\[(.*?)\]\]/g;
         let links = {};
         let match;
 
