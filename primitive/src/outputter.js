@@ -32,11 +32,7 @@ var Outputter = (() => {
      * Exports an EPUB to be saved by the browser.
      */
     function export_epub() {
-        /** A deep clone of Processer.epubpassages. */
-        let passages = [];
-        for (let i in Processer.passages('epub')) {
-            passages.push(Processer.passages('epub')[i].cloneNode(true));
-        }
+        let passages = Processer.passages('epub');
 
         let epub = new EpubMaker()
             .withTemplate('idpf-wasteland')

@@ -28,6 +28,8 @@ window.Primitive = {};
 
 
 
+	/* Helper Functions */
+
 	/**
 	 * Waits for an element to exist before doing thing.
 	 *

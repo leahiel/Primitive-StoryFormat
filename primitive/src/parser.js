@@ -89,6 +89,7 @@ var Parser = (() => {
 	var errorsList = [];
 
 
+
 	/* Loop through every Passage and determine if they should be shown or shuffled, and where they belong (Front/Middle/Back). */
 
 	for (let i = 0; i < _passages.length; i++) {
@@ -152,12 +153,27 @@ var Parser = (() => {
 			_shufflePassage = false;
 			// TODO: Apply storyconfig settings. 
 
-			// _hiddenTagNames needs their additional notes tags. 
+			// _hiddenTagNames needs their additional tags. 
 		}
 
 		// Cover
-		// NOTE: The Cover passage will become available in a future version of Primitive.
 		if (_passageTitle.toLowerCase() === "cover") {
+			_displayPassage = false;
+			_shufflePassage = false;
+			errorsList.push(`Passage Name \`:: ${_passageTitle}\` is currently reserved for a future version of Primitive. This passage has not been processed.`);
+			_errored = true;
+		}
+
+		// epubstyle
+		if (_passageTitle.toLowerCase() === "epubstyle") {
+			_displayPassage = false;
+			_shufflePassage = false;
+			errorsList.push(`Passage Name \`:: ${_passageTitle}\` is currently reserved for a future version of Primitive. This passage has not been processed.`);
+			_errored = true;
+		}
+
+		// htmlstyle
+		if (_passageTitle.toLowerCase() === "htmlstyle") {
 			_displayPassage = false;
 			_shufflePassage = false;
 			errorsList.push(`Passage Name \`:: ${_passageTitle}\` is currently reserved for a future version of Primitive. This passage has not been processed.`);
@@ -182,17 +198,17 @@ var Parser = (() => {
 				// TODO tags[t].toLowerCase() 
 				if (_tags[t].includes("frontmatter")) {
 
-					let order = parseInt(_tags[t].split("_")[1]);
+					let number = parseInt(_tags[t].split("_")[1]);
 
 					// TODO Test for negative numbers.
-					if (!isNaN(order)) {
-						if (!_frontMatterPassages.hasOwnProperty(order)) {
-							_frontMatterPassages[order] = _passages[i];
+					if (!isNaN(number)) {
+						if (!_frontMatterPassages.hasOwnProperty(number)) {
+							_frontMatterPassages[number] = _passages[i];
 							_passages[i].setAttribute("data-placement", "front-matter");
 
 							_shufflePassage = false;
 						} else {
-							warningsList.push(`The Special Tag 'frontmatter_${order}' is used multiple times. Some _passages with this numbered Special Tag will be shuffled with the rest of the _passages.`);
+							warningsList.push(`The Special Tag 'frontmatter_${number}' is used multiple times. Some _passages with this numbered Special Tag will be shuffled with the rest of the _passages.`);
 						}
 					} else {
 						warningsList.push(`Passage \`:: ${_passageTitle}\` is using the 'frontmatter' Special Tag with an invalid number. Correct format is \`:: ${_passageTitle} [frontmatter_42]\`, where '42' can be replaced with any integer. \n Processing the Passage as a normal passage.`);
@@ -202,17 +218,17 @@ var Parser = (() => {
 				// Back Matter 
 				// TODO tags[t].toLowerCase() 
 				if (_tags[t].includes("backmatter")) {
-					let order = parseInt(_tags[t].split("_")[1]);
+					let number = parseInt(_tags[t].split("_")[1]);
 
 					// TODO Test for negative numbers.
-					if (!isNaN(order)) {
-						if (!_backMatterPassages.hasOwnProperty(order)) {
-							_backMatterPassages[order] = _passages[i];
+					if (!isNaN(number)) {
+						if (!_backMatterPassages.hasOwnProperty(number)) {
+							_backMatterPassages[number] = _passages[i];
 							_passages[i].setAttribute("data-placement", "back-matter");
 
 							_shufflePassage = false;
 						} else {
-							warningsList.push(`The Special Tag 'backmatter_${order}' is used multiple times. Some _passages with this numbered Special Tag will be shuffled with the rest of the _passages.`);
+							warningsList.push(`The Special Tag 'backmatter_${number}' is used multiple times. Some _passages with this numbered Special Tag will be shuffled with the rest of the _passages.`);
 						}
 					} else {
 						warningsList.push(`Passage \`:: ${_passageTitle}\` is using the 'backmatter' Special Tag with an invalid number. Correct format is \`:: ${_passageTitle} [backmatter_42]\`, where '42' can be replaced with any integer. \n Processing the Passage as a normal passage.`);
@@ -264,6 +280,18 @@ var Parser = (() => {
 
 	let _orderedpassages = [].concat.apply([], [_frontIndices, _shuffledIndices, _backIndices]);
 
+	/** 
+	 * Returns a clone of _orderedpassages.
+	 */
+	function getPassages() {
+		let passages = [];
+		for (let i in _orderedpassages) {
+			passages.push(_orderedpassages[i].cloneNode(true));
+		}
+
+		return passages;
+	}
+
 
 
 	/* Helper Functions */
@@ -300,7 +328,7 @@ var Parser = (() => {
 
 	/* Object Exports. */
 	return Object.freeze(Object.defineProperties({}, {
-		passages: { value: _orderedpassages }, // TODO: Deep freeze Parser.passages
+		passages: { value: getPassages() },
 		errors: { value: errorsList },
 		warnings: { value: warningsList },
 	}));

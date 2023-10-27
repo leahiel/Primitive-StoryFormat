@@ -10,13 +10,7 @@
 var Processer = (() => {
     'use strict';
 
-    /** A deep clone of Parser.passages. */
-    let _passages = [];
-    for (let i in Parser.passages) {
-        _passages.push(Parser.passages[i].cloneNode(true));
-    }
-
-
+    let _passages = Parser.passages;
 
     /* OuterHTML Generic Processing */
     let _linkerindex = ["ErrorPassage"];
@@ -47,6 +41,7 @@ var Processer = (() => {
     converter.setOption('simpleLineBreaks', true);
     converter.setOption('openLinksInNewWindow', true);
     converter.setOption('noHeaderId', true);
+    converter.setOption('prefixHeaderId', 'custom-'); // If an ID is set somehow, it'll have 'custom-' as a prefix.
     converter.setOption('requireSpaceBeforeHeadingText', true);
 
     for (let i in _passages) {
@@ -83,7 +78,7 @@ var Processer = (() => {
 
 
     /* HTML Processing */
-    
+
     /** A deep clone of Parser.passages. */
     let _htmlpassages = [];
     for (let i in _passages) {
@@ -176,20 +171,28 @@ var Processer = (() => {
     }
 
     /**
-     * Returns an array of properly processed passages.
-     * 
-     * TODO: Deep clone passages to prevent future issues?
+     * Returns a deep clone of the properly processed passages.
      */
-    const getPassages = (type) => {
+    function getPassages(type) {
+        let passages = [];
+
         if (type.toLowerCase() === "html") {
-            return _processedhtmlpassages;
+            for (let i in _processedhtmlpassages) {
+                passages.push(_processedhtmlpassages[i].cloneNode(true));
+            }
         } else if (type.toLowerCase() === "epub") {
-            return _processedepubpassages;
+            for (let i in _processedepubpassages) {
+                passages.push(_processedepubpassages[i].cloneNode(true));
+            }
         }
+
+        return passages;
     }
 
     /* Object Exports. */
     return Object.freeze(Object.defineProperties({}, {
-        passages: { value: getPassages },
+        passages: {
+            value: getPassages
+        },
     }));
 })();
