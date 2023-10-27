@@ -67,38 +67,7 @@ var Outputter = (() => {
             );
         }
 
-        function callback(epubZipContent, epubTitle) {
-
-            let cssfilename = `${epubTitle.split('.epub')[0]}.css`;
-
-            let css_content;
-
-            let jszip = new Jszip310();
-            jszip.loadAsync(epubZipContent).then((zip) => {
-                zip.folder('EPUB').file(cssfilename).async("string").then((content) => {
-                    // Get the CSS
-                    css_content = content;
-
-                    // Update the CSS
-                    // TODO New CSS should be prepended to "loL" or whatever.
-                    zip.folder('EPUB').file(cssfilename, "lol");
-
-                    // Regenerate and save the Epub
-                    zip.generateAsync({
-                        type: 'blob',
-                        mimeType: 'application/epub+zip',
-                        compression: 'DEFLATE',
-                        compressionOptions: {
-                            level: 9
-                        }
-                    }).then(function (blob) {
-                        saveAs(blob, epubTitle);
-                    });
-                });
-            });
-        }
-
-        epub.downloadEpub(callback);
+        epub.downloadEpub(modifyEPUB);
     }
 
     /**
@@ -174,6 +143,41 @@ var Outputter = (() => {
             observer.observe(document.body, {
                 childList: true,
                 subtree: true
+            });
+        });
+    }
+
+    // Let us modify the EPUB after it has been generation.
+    function modifyEPUB(epubZipContent, epubTitle) {
+        let jszip = new Jszip310(); // js-maker-epub uses 2.5.0, but we needed a modern version.
+
+        /** The file name of the CSS file. */
+        let cssfilename = `${epubTitle.split('.epub')[0]}.css`;
+
+        /** The original content of the CSS file. */
+        let css_content;
+        
+        jszip.loadAsync(epubZipContent).then((zip) => {
+            zip.folder('EPUB').file(cssfilename).async("string").then((content) => {
+                // Get the CSS
+                css_content = content;
+
+                // Update the CSS
+                // TODO New CSS should be prepended to old CSS.
+                zip.folder('EPUB').file(cssfilename, "lol");
+
+                // Regenerate the EPUB.
+                zip.generateAsync({
+                    type: 'blob',
+                    mimeType: 'application/epub+zip',
+                    compression: 'DEFLATE',
+                    compressionOptions: {
+                        level: 9
+                    }
+                }).then(function (blob) {
+                    // Save the EPUB.
+                    saveAs(blob, epubTitle);
+                });
             });
         });
     }

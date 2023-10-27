@@ -37,16 +37,17 @@ const CONFIG = {
     libs: [
         // Processing Passages
         'src/vendor/showdown.min.js',
-        
-        'src/vendor/jszip310.min.js',
 
-        // For Generating EPUBs
+        // Generating EPUBs with js-epub-maker
         'src/vendor/jszip.min.js',
         'src/vendor/jszip-utils.min.js',
         'src/vendor/underscore.string.min.js',
         'src/vendor/handlebars.min.js',
         'src/vendor/filesaver.min.js',
-        'src/vendor/js-epub-maker.min.js',
+        'src/vendor/js-epub-maker.min.js', // WARNING: A forked version of js-epub-maker.js is used.
+
+        // Editing the EPUB after Generation.
+        'src/vendor/jszip310.min.js',
     ],
     twine2: {
         build: {
