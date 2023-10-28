@@ -68,7 +68,7 @@ As required of a StoryFormat for EPUB, passages should be output in a randomized
 * 2a) "Standard"     `[[Passage Links]]                 => Passage Links (turn to 6)`
 * 2b) "Standard"     `[[display text->Passage Link]]    => display text (turn to 6)`
 * 2c) "Standard"     `[[Passage Link<-display text]]    => display text (turn to 6)`
-* 2d) Twine1-Legacy  `[[display text|Passage Link]]     => (turn to 6)`
+* 2d) Twine1-Legacy  `[[display text|Passage Link]]     => display text (turn to 6)`
 * 2e) WF-Legacy      `[[->Passage Link]]                => (turn to 6)`
 * 2e) WF-Legacy      `[[Passage Link<-]]                => (turn to 6)`
 * 2g) WF-Legacy      `[[#->Passage Link]]               => 6`

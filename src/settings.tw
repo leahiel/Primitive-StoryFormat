@@ -10,3 +10,12 @@ Our Cabin Was Cold
     "format-version": "0.0.1",
     "start": "1A"
 }
+
+
+
+:: StoryConfig
+{
+    "link-affixes" : {
+        "%s": "lmao you gotta turn to %n"
+    }
+}

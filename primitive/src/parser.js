@@ -102,6 +102,20 @@ var Parser = (() => {
 	 */
 	var htmlcss = "";
 
+	/**
+	 * The configuration we loaded from StoryConfig 
+	 * 
+	 * @type {Object}
+	 */
+	var _configuration = {
+		'link-affixes': {
+			'': '(turn to %n)',
+			'#': '%n',
+		},
+		'direct-to-epub': false,
+		'direct-to-html': false,
+	}
+
 
 	/* Loop through every Passage and determine if they should be shown or shuffled, and where they belong (Front/Middle/Back). */
 
@@ -150,14 +164,17 @@ var Parser = (() => {
 		// StoryTitle 
 		if (_passageTitle.toLowerCase() === "storytitle") {
 			// NOTE: Primitive doesn't actually care about the StoryTitle passage, however it is required by Twine Compilers.
+			// TODO: Use this to title the story in the EPUB, I guess.
 			_displayPassage = false;
 			_shufflePassage = false;
+			_errored = true;
 		}
 
 		// StoryData 
 		if (_passageTitle.toLowerCase() === "storydata") {
 			_displayPassage = false;
 			_shufflePassage = false;
+			_errored = true;
 		}
 
 		// StoryConfig 
@@ -166,7 +183,11 @@ var Parser = (() => {
 			_shufflePassage = false;
 			// TODO: Apply storyconfig settings. 
 
+			let _user_config = JSON.parse(_passages[i].innerHTML);
+			_configuration = mergeDeep(_configuration, _user_config);
+
 			// _hiddenTagNames needs their additional tags. 
+			_errored = true;
 		}
 
 		// Cover
@@ -182,6 +203,7 @@ var Parser = (() => {
 			epubcss = _passages[i].innerHTML;
 			_displayPassage = false;
 			_shufflePassage = false;
+			_errored = true;
 		}
 
 		// htmlstyle
@@ -189,6 +211,11 @@ var Parser = (() => {
 			htmlcss = _passages[i].innerHTML;
 			_displayPassage = false;
 			_shufflePassage = false;
+			_errored = true;
+		}
+
+		if (_errored) {
+			continue;
 		}
 
 
@@ -292,7 +319,7 @@ var Parser = (() => {
 	let _orderedpassages = [].concat.apply([], [_frontIndices, _shuffledIndices, _backIndices]);
 
 	/** 
-	 * Returns a clone of _orderedpassages.
+	 * Returns a deep clone of _orderedpassages.
 	 */
 	function getPassages() {
 		let passages = [];
@@ -301,6 +328,13 @@ var Parser = (() => {
 		}
 
 		return passages;
+	}
+
+	/** 
+	 * Returns a deep clone of _configuration.
+	 */
+	function getConfiguration() {
+		return structuredClone(_configuration);
 	}
 
 
@@ -335,7 +369,38 @@ var Parser = (() => {
 		return array;
 	}
 
-
+	/**
+	 * Performs a deep merge of objects and returns new object. Does not modify
+	 * objects (immutable) and merges arrays via concatenation.
+	 *
+	 * @param {...object} objects - Objects to merge
+	 * @returns {object} New object with merged key/values
+	 * 
+	 * Taken from https://stackoverflow.com/a/48218209
+	 * CC BY-SA 4.0, no changes.
+	 */
+	function mergeDeep(...objects) {
+		const isObject = obj => obj && typeof obj === 'object';
+		
+		return objects.reduce((prev, obj) => {
+		Object.keys(obj).forEach(key => {
+			const pVal = prev[key];
+			const oVal = obj[key];
+			
+			if (Array.isArray(pVal) && Array.isArray(oVal)) {
+			prev[key] = pVal.concat(...oVal);
+			}
+			else if (isObject(pVal) && isObject(oVal)) {
+			prev[key] = mergeDeep(pVal, oVal);
+			}
+			else {
+			prev[key] = oVal;
+			}
+		});
+		
+		return prev;
+		}, {});
+	}
 
 	/* Object Exports. */
 	return Object.freeze(Object.defineProperties({}, {
@@ -344,5 +409,6 @@ var Parser = (() => {
 		warnings: { value: warningsList },
 		htmlcss: {value: htmlcss},
 		epubcss: {value: epubcss},
+		config: {value: getConfiguration() }, // return deep clone
 	}));
 })();

@@ -54,7 +54,7 @@ var Processer = (() => {
         _innerHTML = _innerHTML.replace(regex, "");
 
         // Double Pound Single Line Comments: `## Comment Text`
-        // FIXME: Got a bit of an incompatilbity here with Markdown Headers.
+        // FIXME: Got a bit of an incompatibility here with Markdown Headers.
         regex = /##.*/g;
         _innerHTML = _innerHTML.replace(regex, "");
 
@@ -71,8 +71,12 @@ var Processer = (() => {
         /* Validate HTML tags */
         // TODO: Validate HTML tags here. Only a very limited number of standard HTML tags are allowed as per the EPUB3.3 standard. Most of these are handled by Primitive, to allow the Author to not worry about these. Therefore, if the Author is trying to do something, like add a <script> tag, then we need to ensure that the Author knows that Primitive is not the place for that.
 
+
+
         /* Convert Markdown to HTML */
         _innerHTML = converter.makeHtml(_innerHTML);
+
+
 
         /* Parse Links */
         regex = /\[\[(.*?)\]\]/g;
@@ -91,7 +95,9 @@ var Processer = (() => {
             _innerHTML = _innerHTML.replace(link, links[link].outerHTML);
         }
 
-        // Update passage
+
+
+        /* Update passage */
         _passages[i].innerHTML = _innerHTML;
     }
 
@@ -158,18 +164,41 @@ var Processer = (() => {
         function _createLink(text, href) {
             let a_elm = document.createElement('a');
 
+            // TODO: If text is "#" or "", special things should happen.
+
             // The `href` is a Passage Title, so we need to get the converted passage ID from the Passage Title.
             if (_linkerindex.indexOf(href) > 0) {
                 // NOTE: _linkerindex[0] is the error passage that exists to 
                 // shift the array down by one, so we don't care about it.
-                a_elm.setAttribute('href', `#${_linkerindex.indexOf(href)}`);
+                href = _linkerindex.indexOf(href)
+                a_elm.setAttribute('href', `#${href}`);
             } else {
                 a_elm.setAttribute('href', `#${href}`);
             }
 
-            a_elm.innerText = text;
+            console.log(`text = ${text}`)
 
-            return a_elm
+            // Check for link-affixes.
+            for (let affix in Parser.config["link-affixes"]) {
+                console.log(`affix = ${affix}`)
+                console.log(text === affix)
+                if (text === affix) {
+                    // Replace %n if found.
+                    if (Parser.config["link-affixes"][affix].includes('%n')) {
+                        console.log("hi")
+                        a_elm.innerText = Parser.config["link-affixes"][affix].replace('%n', href);
+                        return a_elm;
+                    } else {
+                        console.log("hi2")
+                        a_elm.innerText = Parser.config["link-affixes"][affix];
+                        return a_elm;
+                    }
+                }
+            }
+
+            // link-affix not found.
+            a_elm.innerText = text;
+            return a_elm;
         }
 
         if (link.split("-&gt;")[1]) {
