@@ -164,8 +164,6 @@ var Processer = (() => {
         function _createLink(text, href) {
             let a_elm = document.createElement('a');
 
-            // TODO: If text is "#" or "", special things should happen.
-
             // The `href` is a Passage Title, so we need to get the converted passage ID from the Passage Title.
             if (_linkerindex.indexOf(href) > 0) {
                 // NOTE: _linkerindex[0] is the error passage that exists to 
@@ -176,20 +174,14 @@ var Processer = (() => {
                 a_elm.setAttribute('href', `#${href}`);
             }
 
-            console.log(`text = ${text}`)
-
             // Check for link-affixes.
             for (let affix in Parser.config["link-affixes"]) {
-                console.log(`affix = ${affix}`)
-                console.log(text === affix)
                 if (text === affix) {
                     // Replace %n if found.
                     if (Parser.config["link-affixes"][affix].includes('%n')) {
-                        console.log("hi")
                         a_elm.innerText = Parser.config["link-affixes"][affix].replace('%n', href);
                         return a_elm;
                     } else {
-                        console.log("hi2")
                         a_elm.innerText = Parser.config["link-affixes"][affix];
                         return a_elm;
                     }

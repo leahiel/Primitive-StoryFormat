@@ -113,7 +113,7 @@ var Parser = (() => {
 			'#': '%n',
 		},
 		'direct-to-epub': false,
-		'direct-to-html': false,
+		'direct-to-html': false, // TODO Direct to HTML option.
 	}
 
 

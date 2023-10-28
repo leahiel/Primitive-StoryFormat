@@ -24,6 +24,13 @@ window.Primitive = {};
 		elm.addEventListener("click", ()=>{
 			Outputter.export_epub();
 		});
+
+		console.log(Parser.config)
+
+		if (Parser.config['direct-to-epub']) {
+			console.log("hi")
+			Outputter.export_epub();
+		}
 	});
 
 
