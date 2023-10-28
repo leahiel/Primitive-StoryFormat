@@ -114,6 +114,7 @@ var Parser = (() => {
 		},
 		'direct-to-epub': false,
 		'direct-to-html': false, // TODO Direct to HTML option.
+		'enable-hyperlinks': true,
 	}
 
 

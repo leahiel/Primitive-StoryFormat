@@ -7,14 +7,6 @@
 
 
 :: Introduction [frontmatter_1]
-
-''-> [[->1A]]
-<-'' [[1A<-]]
-#-> [[#->1A]]
-<-# [[1A<-#]]
-%s-> [[%s->1A]]
-->%s [[1A<-%s]]
-
 To your west, your home-town village is burning.
 To your east, the sun is burning.
 

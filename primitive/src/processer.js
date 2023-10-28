@@ -162,16 +162,21 @@ var Processer = (() => {
          * @return {HTMLELement}
          */
         function _createLink(text, href) {
-            let a_elm = document.createElement('a');
+            let a_elm;
+            if (Parser.config['enable-hyperlinks']) {
+                a_elm = document.createElement('a');
 
-            // The `href` is a Passage Title, so we need to get the converted passage ID from the Passage Title.
-            if (_linkerindex.indexOf(href) > 0) {
-                // NOTE: _linkerindex[0] is the error passage that exists to 
-                // shift the array down by one, so we don't care about it.
-                href = _linkerindex.indexOf(href)
-                a_elm.setAttribute('href', `#${href}`);
+                // The `href` is a Passage Title, so we need to get the converted passage ID from the Passage Title.
+                if (_linkerindex.indexOf(href) > 0) {
+                    // NOTE: _linkerindex[0] is the error passage that exists to 
+                    // shift the array down by one, so we don't care about it.
+                    href = _linkerindex.indexOf(href)
+                    a_elm.setAttribute('href', `#${href}`);
+                } else {
+                    a_elm.setAttribute('href', `#${href}`);
+                }
             } else {
-                a_elm.setAttribute('href', `#${href}`);
+                a_elm = document.createElement('span');
             }
 
             // Check for link-affixes.

@@ -80,8 +80,6 @@ As required of a StoryFormat for EPUB, passages should be output in a randomized
 
 **RESEARCH:** In fact, this may be a reasonable EPUB requirement for the Table of Contents. If it is not, then 2i will be moved to Version 0.3.
 
-* 2j) All links should have that `(turn to n)` added to them.
-
 3) All passages must be randomly shuffled.
 
 **TECHNICAL:** This will require Passage Names to be randomly generated, and for links to refer to the generated Passage Name. So while the author may write `[[display text->Passage Link]]`, the final output of the story should look as if it was written like, `[[display text->18]]`.
@@ -95,8 +93,7 @@ As required of a StoryFormat for EPUB, passages should be output in a randomized
 
 **TECHNICAL:** This would act as if the user simply presses that associated button to generate the EPUB or HTML document on story load.
 * 5b) Regarding `(turn to n)`:
-* * 5ba) Must be able to disable the `(turn to n)` text, if desired.
-* * 5bb) Should be able to customize the `(turn to n)`  text.
+* * 5ba) Should be able to customize the `(turn to n)`  text.
 * 5c) The ability to disable HTML hyperlinks from appearing.
 
 **NOTE:** Required in case authors want to attempt print versions of their stories based on Primitive.
@@ -104,7 +101,7 @@ As required of a StoryFormat for EPUB, passages should be output in a randomized
 ~~6) [WF Legacy] Passages should be able to have a non-randomly generated Passage Number by using a Passage Tag.~~
 * ~~6a) This includes a `First` passage tag.~~
 * ~~6b) This includes a `Last` passage tag.~~
-**UNIMPLEMENTED:** In retrospect, would cause compatibility issues with Version 0.2 of Primitive. The Author can just specify those passages with backmatter or frontmatter Special Passage Tags.
+**UNIMPLEMENTED:** In retrospect, would cause compatibility issues with Version 0.2 of Primitive. The Author can just specify those passages with backmatter or frontmatter Special Passage Tags. However, since Version 0.2 will split passages into many, this itself will also have issues.
 
 7 - DONE) [WF Legacy] Passages tagged with "Frontmatter" and "Backmatter" should be placed before and after the Story Passages.
 * 7a) The order of both matter passages should be able to be specified with a suffix of `_number` after their tag name. i.e. A passage tagged with `[frontmatter_3]` will be the third frontmatter passage in the novel.
@@ -118,8 +115,6 @@ As required of a StoryFormat for EPUB, passages should be output in a randomized
 * 8f) Markup syntax should be able to be escaped with a `\`.
 
 **NOTE:** Not all of WF's text markup are included.
-
-**RESEARCH:** Do we include BBCode as well?
 
 9) Story Comments should be available that the StoryFormat does not parse.
 * 9a) HTML and JavaScript style block comments should exist.
