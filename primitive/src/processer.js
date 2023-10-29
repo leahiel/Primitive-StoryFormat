@@ -50,7 +50,7 @@ var Processer = (() => {
 
         /* Remove Comments */
         // JavaScript Single Line Comments: `// Comment Text`
-        regex = /\/\/.*/g;
+        regex = /(?<!:)\/\/.*/g;
         _innerHTML = _innerHTML.replace(regex, "");
 
         // Double Pound Single Line Comments: `## Comment Text`
