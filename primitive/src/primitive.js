@@ -20,15 +20,22 @@ window.Primitive = {};
 		});
 	});
 
+	_waitForElm('#primitive-export-html').then((elm) => {
+		elm.addEventListener("click", ()=>{
+			Outputter.export_html();
+		});
+
+		if (Parser.config['direct-to-html']) {
+			Outputter.export_html();
+		}
+	});
+
 	_waitForElm('#primitive-export-epub').then((elm) => {
 		elm.addEventListener("click", ()=>{
 			Outputter.export_epub();
 		});
 
-		console.log(Parser.config)
-
 		if (Parser.config['direct-to-epub']) {
-			console.log("hi")
 			Outputter.export_epub();
 		}
 	});

@@ -8,6 +8,12 @@ html {
     background-color:  #F5F3E9;
 }
 
+tw-passagedata {
+    max-width: 60vw;
+    display: block;
+    margin: auto;
+}
+
 #wrapper {
     display: flex;
     flex-direction: column;

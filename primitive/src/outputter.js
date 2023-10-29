@@ -14,21 +14,18 @@ var Outputter = (() => {
         _waitForElm('#output').then((elm) => {
             // Clear previous output.
             elm.innerHTML = "";
-            if (document.getElementById('primitive-custom-css')) {
-                document.getElementById('primitive-custom-css').remove();
-            }
 
-            // Load CSS
-            let style = document.createElement('style');
-            style.setAttribute('id', 'primitive-custom-css');
-            style.innerHTML = Parser.htmlcss;
-            document.getElementsByTagName('head')[0].appendChild(style);
-
-            // Put HTML onto Primitive Export Screen 
-            for (let i in Processer.passages('html')) {
-                elm.appendChild(Processer.passages('html')[i]);
-            }
+            // Append!
+            elm.appendChild(_createHTML());
         });
+    }
+
+    function export_html() {
+        let html = _createHTML();
+        let blob = new Blob([html.outerHTML], {type: 'text/html'});
+        let url = URL.createObjectURL(blob);
+
+        saveAs(url, `${Parser.title}.html`);
     }
 
     /**
@@ -107,6 +104,58 @@ var Outputter = (() => {
 
 
     /* Helper Functions */
+    function _createHTML() {
+        // html
+        let html = document.createElement('html');
+
+        // head
+        let head = document.createElement('head');
+        html.appendChild(head);
+
+        let meta_charset = document.createElement('meta');
+        meta_charset.setAttribute('charset', 'UTF-8');
+
+        let title = document.createElement('title');
+        title.innerText = Parser.title;
+
+        let meta_viewport = document.createElement('meta');
+        meta_viewport.setAttribute('name', 'viewport');
+        meta_viewport.setAttribute('content', 'width=device-width,initial-scale=1');
+
+        // TODO: Get this without being a pain.
+        let primitive_style = document.createElement('style');
+        primitive_style.setAttribute('id', 'primitive_style');
+        primitive_style.innerHTML = "*{--headerfooterpadding:0.3rem;font-size:2.6vh;color:#111111}html{background-color:#F5F3E9}tw-passagedata{max-width:60vw;display:block;margin:auto}#wrapper{display:flex;flex-direction:column;height:100vh;width:100%}#output{display:flex;flex:1;flex-direction:column;margin:1rem}#error-notices,#warning-notices{display:flex;flex:0}#warning-notices{background-color:yellow}#error-notices{background-color:lightcoral}#error-notices:empty,#warning-notices:empty{display:none}#primitive-footer,#primitive-header{display:flex;flex:0;flex-direction:column;align-items:flex-start;background-color:#3f2a14;padding:0.3rem 1rem}#primitive-title{color:#eeeeee;font-size:1.5rem}#primitive-version-number{color:#eeeeee}";
+
+        let custom_style = document.createElement('style');
+        custom_style.setAttribute('id', 'primitive-custom-css');
+        custom_style.innerHTML = Parser.htmlcss;
+
+        // TODO: Figure out how to leave an HTML comment for license information lol.
+        let license = document.createElement('license');
+        license.setAttribute('style', 'display: none;');
+        license.innerText = `Created with Primitive Version ${version.long()}.`;
+
+        head.append(
+            meta_charset,
+            title,
+            meta_viewport,
+            primitive_style,
+            custom_style,
+            license,
+        );
+
+        // body
+        let body = document.createElement('body');
+        html.appendChild(body);
+
+        // Put Passages into body 
+        for (let i in Processer.passages('html')) {
+            body.appendChild(Processer.passages('html')[i]);
+        }
+
+        return html;
+    }
 
     // TODO This shouldn't be needed here, only in primitive.js, since the buttons shouldn't be clickable until the document is fully loaded.
     /**
@@ -155,7 +204,7 @@ var Outputter = (() => {
 
         /** The original content of the CSS file. */
         let css_content;
-        
+
         jszip.loadAsync(epubZipContent).then((zip) => {
             zip.folder('EPUB').file(cssfilename).async("string").then((content) => {
                 // Get the CSS
@@ -193,6 +242,9 @@ var Outputter = (() => {
         },
         put_test_html: {
             value: output_test_html
+        },
+        export_html: {
+            value: export_html
         },
         export_epub: {
             value: export_epub

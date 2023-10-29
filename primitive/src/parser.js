@@ -2,8 +2,8 @@
  * The Parser goes through all the Passages provided by `<tw-passagedata>` and determines 
  * what to do with them.
  * 
- * TODO If the Passage is a config passage, then it applies the config settings.
- * TODO If the Passage is a CSS passage, this it puts the CSS in the correct location.
+ * If the Passage is a config passage, then it applies the config settings.
+ * If the Passage is a CSS passage, this it puts the CSS in the correct location.
  * Then, the Parser organizes all remaining Passages by front matter, body matter, and 
  * back matter.
  * 
@@ -113,9 +113,17 @@ var Parser = (() => {
 			'#': '%n',
 		},
 		'direct-to-epub': false,
-		'direct-to-html': false, // TODO Direct to HTML option.
+		'direct-to-html': false, 
 		'enable-hyperlinks': true,
 	}
+	// TODO Add hidden tag names here.
+
+	/**
+	 * The title of the story from StoryTitle
+	 * 
+	 * @type {string}
+	 */
+	var title = document.getElementsByTagName('title')[0].innerText;
 
 
 	/* Loop through every Passage and determine if they should be shown or shuffled, and where they belong (Front/Middle/Back). */
@@ -163,9 +171,10 @@ var Parser = (() => {
 		// NOTE: The Start Special Passage is handled after tags are handled.
 
 		// StoryTitle 
+		// FIXME: This never runs. Why?
 		if (_passageTitle.toLowerCase() === "storytitle") {
-			// NOTE: Primitive doesn't actually care about the StoryTitle passage, however it is required by Twine Compilers.
-			// TODO: Use this to title the story in the EPUB, I guess.
+			title = _passages[i].innerHTML;
+
 			_displayPassage = false;
 			_shufflePassage = false;
 			_errored = true;
@@ -182,7 +191,6 @@ var Parser = (() => {
 		if (_passageTitle.toLowerCase() === "storyconfig") {
 			_displayPassage = false;
 			_shufflePassage = false;
-			// TODO: Apply storyconfig settings. 
 
 			let _user_config = JSON.parse(_passages[i].innerHTML);
 			_configuration = mergeDeep(_configuration, _user_config);
@@ -408,8 +416,9 @@ var Parser = (() => {
 		passages: { value: getPassages() },
 		errors: { value: errorsList },
 		warnings: { value: warningsList },
-		htmlcss: {value: htmlcss},
-		epubcss: {value: epubcss},
-		config: {value: getConfiguration() }, // return deep clone
+		htmlcss: { value: htmlcss },
+		epubcss: { value: epubcss },
+		config: { value: getConfiguration() }, 
+		title: { value: title }
 	}));
 })();

@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <title>{{STORY_NAME}}</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <!-- TODO: Add Copyright and License here. -->
+    <!-- Primitive v"{{BUILD_VERSION_VERSION}}"."{{BUILD_VERSION_BUILD}}", c S. "Leahiel" Herring. LICENSE: BSD 2-Clause. See full details at https://github.com/leahiel/Primitive-StoryFormat/blob/master/LICENSE -->
     <script id="script-libraries" type="text/javascript">
         if (document.head && document.addEventListener && document.querySelector && Object.create && Object.freeze &&
             JSON) {
@@ -50,11 +50,13 @@
                 <button id='primitive-test-html' class='primitive-button'>
                     Test HTML
                 </button>
+                <!--
                 <button id='primitive-test-epub' class='primitive-button'>
-                    Test EPUB [nyi]
+                    Test EPUB
                 </button>
+                -->
                 <button id='primitive-export-html' class='primitive-button'>
-                    Export HTML [nyi]
+                    Export HTML
                 </button>
                 <button id='primitive-export-epub' class='primitive-button'>
                     Export EPUB
