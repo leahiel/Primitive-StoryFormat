@@ -48,6 +48,9 @@ var Processer = (() => {
         let regex;
         let _innerHTML = _passages[i].innerHTML;
 
+        /* Macros */
+        // Block Macros: `{{ Macro: Text }}`
+
         /* Remove Comments */
         // JavaScript Single Line Comments: `// Comment Text`
         regex = /(?<!:)\/\/.*/g;
