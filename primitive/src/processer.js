@@ -64,7 +64,7 @@ var Processer = (() => {
             match = regex.exec(_innerHTML);
             if (match) {
                 macros[match[0]] = Minotaur.send(match[0], _passages[i]);
-                _innerHTML = _innerHTML.replace(match[0], "");
+                _innerHTML = _innerHTML.replace(match[0], ""); 
             }
         } while (match);
 
