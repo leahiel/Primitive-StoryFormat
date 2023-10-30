@@ -48,8 +48,27 @@ var Processer = (() => {
         let regex;
         let _innerHTML = _passages[i].innerHTML;
 
+        // Set Source name
+        _passages[i].setAttribute('data-source-name', `${_passages[i].getAttribute('name')}`);
+
         /* Macros */
         // Block Macros: `{{ Macro: Text }}`
+        regex = /{{[\s\S]*?}}/g;
+        // TODO Send to macro
+        // Macro.send(_passages[i]);
+        let macros = {};
+        let match;
+
+        // Get and convert links.
+        do {
+            match = regex.exec(_innerHTML);
+            if (match) {
+                macros[match[0]] = Minotaur.send(match[0], _passages[i]);
+                _innerHTML = _innerHTML.replace(match[0], "");
+            }
+        } while (match);
+
+
 
         /* Remove Comments */
         // JavaScript Single Line Comments: `// Comment Text`
@@ -84,7 +103,7 @@ var Processer = (() => {
         /* Parse Links */
         regex = /\[\[(.*?)\]\]/g;
         let links = {};
-        let match;
+        match = undefined;
 
         // Get and convert links.
         do {

@@ -1,0 +1,14 @@
+:: Start [frontmatter_1]
+{{title: Macro}}
+{{set myvar: null}}
+Start!
+
+
+
+:: Credits [backmatter_1]
+Return to the [[Introduction->Start]].
+
+
+
+:: Author's Note [backmatter_2]
+Return to the [[Introduction->Start]].

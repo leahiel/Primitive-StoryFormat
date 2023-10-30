@@ -115,6 +115,7 @@ var Parser = (() => {
 		'direct-to-epub': false,
 		'direct-to-html': false, 
 		'enable-hyperlinks': true,
+		'nbsv': [],
 	}
 	// TODO Add hidden tag names here.
 
@@ -192,10 +193,25 @@ var Parser = (() => {
 			_displayPassage = false;
 			_shufflePassage = false;
 
-			let _user_config = JSON.parse(_passages[i].innerHTML);
-			_configuration = mergeDeep(_configuration, _user_config);
+			let _user_config;
+			if (Array.from(_passages[i].innerHTML)[0] === "{") {
+				// TODO Try/catch JSON error.
+				// It's JSON.
+				_user_config = JSON.parse(_passages[i].innerHTML);
+				_configuration = mergeDeep(_configuration, _user_config);
+			} else {
+				// It's TOML or some other unholy amalgation.
+				try {
+					_user_config = TOML.parse(_passages[i].innerHTML);
+					_configuration = mergeDeep(_configuration, _user_config);
+				} catch (err) {
+					errorsList.push(`Error within \`:: ${_passageTitle}\`:\n${err}`);
+				}
+			}
 
-			// _hiddenTagNames needs their additional tags. 
+			Minotaur.getNBSVs(_configuration.nbsv);
+
+			// TODO _hiddenTagNames needs their additional tags. 
 			_errored = true;
 		}
 
@@ -299,6 +315,7 @@ var Parser = (() => {
 			_shufflePassage = false;
 		}
 
+		// Shuffle passages.
 		if (_displayPassage && _shufflePassage) {
 			_passages[i].setAttribute("data-placement", "body-matter");
 

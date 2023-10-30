@@ -1,0 +1,24 @@
+:: StoryTitle
+Test Primitive Story
+
+
+
+:: StoryConfig
+direct-to-epub = false
+direct-to-html = false
+enable-hyperlinks = true
+nbsv = [
+    'myvar',
+]
+
+[link-affixes]
+'%s' = "lmao turn to %n"
+
+
+
+:: StoryData
+{
+    "ifid": "D01F8549-3221-4A2D-8E1E-13A3041D6114",
+    "format": "Primitive",
+    "format-version": "0.2.0"
+}

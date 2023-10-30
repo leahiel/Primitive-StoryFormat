@@ -17,6 +17,7 @@ const CONFIG = {
         files: [
             'src/version.js',
             // 'src/config.js',
+            'src/minotaur.js',
             'src/parser.js',
             'src/outputter.js',
             'src/processer.js',
@@ -35,6 +36,9 @@ const CONFIG = {
         ]
     },
     libs: [
+        // Processing TOML
+        'src/vendor/smol-toml.min.js',
+
         // Processing Passages
         'src/vendor/showdown.min.js',
 
