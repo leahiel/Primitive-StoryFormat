@@ -8,6 +8,15 @@
  * back matter.
  * 
  * TODO Add a way to shuffle body matter in the processer or outputter stage.
+ *
+ * ===== Walking the Graph
+ * TODO The parser should create a JSON that outputs the passage, with each possible
+ * outbound link, for 'walking the graph' purposes. 
+ * TODO Additionally, that object should state whether each possible State Variable is 
+ * even possible to achieve, or required, at all.
+ * 
+ * So we would have every possible variation of a passage. Then we would use the passage's
+ * object to determine which one should be used.
  */
 
 var Parser = (() => {
