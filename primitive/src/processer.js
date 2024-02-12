@@ -5,6 +5,15 @@
  * First, it performs elementary Passage editing that is common to all output processes.
  * Then, depending on which output is desired, it processes those passages to make them 
  * possible for the Outputter to transpile them into their requested output form.
+ * 
+ * ===== Walking the Graph
+ * TODO The parser should create a JSON that outputs the passage, with each possible
+ * outbound link, for 'walking the graph' purposes. 
+ * TODO Additionally, that object should state whether each possible State Variable is 
+ * even possible to achieve, or required, at all.
+ * 
+ * So we would have every possible variation of a passage. Then we would use the passage's
+ * object to determine which one should be used.
  */
 
 var Processer = (() => {
@@ -82,6 +91,7 @@ var Processer = (() => {
         regex = /\[\[(.*?)\]\]/g;
         let links = {};
         let match;
+        let outboundLinkHREF = [];
 
         // Get and convert links.
         do {
@@ -93,13 +103,22 @@ var Processer = (() => {
 
         for (let link in links) {
             _innerHTML = _innerHTML.replace(link, links[link].outerHTML);
+
+            // FIXME This isn't very secure. If passage names are weird, this will fail.
+            outboundLinkHREF.push(links[link].outerHTML.substring(
+                links[link].outerHTML.indexOf("\"#") + 2,
+                links[link].outerHTML.lastIndexOf("\"")
+            ).replace("[[", "").replace("]]", ""));
         }
-
-
 
         /* Update passage */
         _passages[i].innerHTML = _innerHTML;
+        _passages[i].outboundLinkHREF = outboundLinkHREF;
     }
+
+    /* Generate passage-nodes */
+    _walkOriginalNodes(_passages)
+    console.log(_mermaidOriginalNodes(_passages))
 
 
 
@@ -216,6 +235,88 @@ var Processer = (() => {
         }
     }
 
+
+
+    /**
+	 * Adds the populated field outboundOrigPID to each Story Passage. 
+     * outboundOrigPID contains the original PID of each outbound link within the passage.
+	 * 
+	 * @param {tw-passagedata} array 
+	 */
+	function _walkOriginalNodes(passages) {
+        // Go through every outbound link in the passage, and find the PID for it.
+        for (let passage of passages) {
+            passage.outboundOrigPID = [];
+
+            for (let outbound of passage.outboundLinkHREF) {
+                // Check shuffled passages for PID.
+                if (_linkerindex[outbound]) {
+                    passage.outboundOrigPID.push(_linkerindex[outbound])
+                    continue;
+                }
+                
+                let isFound = false;
+                // Check non-shuffled passages for PID.
+                // TODO: Make a list of non-shuffled passages to greatly reduce the amount of passages to loop through.
+                for (let otherpassage of passages) {
+                    if (outbound === otherpassage.attributes.name.value) {
+                        passage.outboundOrigPID.push(otherpassage.attributes.pid.value);
+                        isFound = true;
+                    }
+                }
+
+                if (!isFound) {
+                    console.warn(`Outbound ${outbound} was not found as a passage name or a PID.`);
+                }
+            }
+        }
+
+        console.log(passages)
+	}
+
+    /** 
+     * Returns a string of Mermaid that can be used to graphically display the nodes.
+     * 
+     * @param {tw-passagedata} array 
+     */ 
+    function _mermaidOriginalNodes(passages) {
+        let connections = [];
+
+        for (let passage in passages) {
+            let psg = passages[passage]
+
+            // Ensure there are links to look at.
+            // TODO Add isolated links to a subgraph of isolated passages.
+            if (psg.outboundOrigPID.length <= 0) {
+                continue;
+            }
+
+            // TODO Figure out how to handle front and back matter.
+            if (psg.attributes['data-placement'].value !== 'body-matter') {
+                continue;
+            }
+
+            // TODO Order this by PID and not name.
+            let current = psg.attributes.name.value.replace(/\s/g, ""); // whitesapce not allowed in mermaid
+
+            psg.outboundOrigPID.forEach((PID) => {
+                let connect_str = `${current} --> ${PID}`
+                
+                if (!connections.includes(connect_str)) {
+                    connections.push(connect_str)
+                }
+            });
+
+        }
+
+        let collator = new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'});
+        connections = connections.sort(collator.compare);
+        connections.unshift("flowchart LR");
+        return connections.join('\n');
+    }
+
+
+
     /**
      * Returns a deep clone of the properly processed passages.
      */
@@ -238,6 +339,9 @@ var Processer = (() => {
     /* Object Exports. */
     return Object.freeze(Object.defineProperties({}, {
         passages: {
+            value: getPassages
+        },
+        original_passages: {
             value: getPassages
         },
     }));

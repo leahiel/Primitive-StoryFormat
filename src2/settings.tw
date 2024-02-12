@@ -14,5 +14,5 @@ StoryFormat Learning
 
 :: StoryConfig
 {
-    "title": "Your Title Here",
+    "title": "Your Title Here"
 }

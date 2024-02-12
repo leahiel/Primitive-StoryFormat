@@ -16,7 +16,6 @@ const CONFIG = {
     js: {
         files: [
             'src/version.js',
-            // 'src/config.js',
             'src/parser.js',
             'src/outputter.js',
             'src/processer.js',
@@ -58,11 +57,11 @@ const CONFIG = {
         // copy : [
         // 	{
         // 		src  : 'icon.svg',
-        // 		dest : 'build/twine2/sugarcube-2/icon.svg'
+        // 		dest : 'build/twine2/primitive/icon.svg'
         // 	},
         // 	{
         // 		src  : 'LICENSE',
-        // 		dest : 'build/twine2/sugarcube-2/LICENSE'
+        // 		dest : 'build/twine2/primitive/LICENSE'
         // 	}
         // ]
     }

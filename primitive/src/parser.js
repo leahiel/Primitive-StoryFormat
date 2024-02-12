@@ -188,6 +188,7 @@ var Parser = (() => {
 		}
 
 		// StoryConfig 
+		// TODO: Allow TOML configuration, make JSON configurations deprecated.
 		if (_passageTitle.toLowerCase() === "storyconfig") {
 			_displayPassage = false;
 			_shufflePassage = false;

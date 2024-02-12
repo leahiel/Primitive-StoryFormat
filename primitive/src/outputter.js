@@ -2,6 +2,7 @@
  * The Outputter manipulates the DOM on the Primitive Export Screen.
  * 
  * The Outputter also exports stories.
+ * TODO: Split export functionality into Exporter.
  */
 
 var Outputter = (() => {
@@ -105,6 +106,8 @@ var Outputter = (() => {
 
     /* Helper Functions */
     function _createHTML() {
+        // TODO: Use a template.
+
         // html
         let html = document.createElement('html');
 
