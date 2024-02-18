@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <title>Our Cabin Was Cold</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <!-- Primitive v0.1.0.956, c S. "Leahiel" Herring. LICENSE: BSD 2-Clause. See full details at https://github.com/leahiel/Primitive-StoryFormat/blob/master/LICENSE -->
+    <!-- Primitive v0.1.0.959, c S. "Leahiel" Herring. LICENSE: BSD 2-Clause. See full details at https://github.com/leahiel/Primitive-StoryFormat/blob/master/LICENSE -->
     <script id="script-libraries" type="text/javascript">
         if (document.head && document.addEventListener && document.querySelector && Object.create && Object.freeze &&
             JSON) {
@@ -826,7 +826,8 @@ Heat rushes through your veins and your pulse begins to race.
 She beckons to you with a seductive whisper. &quot;I-I... why don&#39;t we share this warmth together?&quot; The way she said it was almost like a caress, her words sending a shiver through your body.
 
 [[Agree.-&gt;4D-1]]
-[[Disagree.-&gt;4D-0]]</tw-passagedata><tw-passagedata pid="32" name="4D-1" tags="" position="225,475" size="100,100">&quot;Of course.&quot; There was no way a gentleman like you would deny a pleading lady like Tent.
+[[Disagree.-&gt;4D-0]]</tw-passagedata><tw-passagedata pid="32" name="4D-1" tags="" position="225,475" size="100,100">&lt;&lt;set choice1 to true&gt;&gt;
+&quot;Of course.&quot; There was no way a gentleman like you would deny a pleading lady like Tent.
 
 You lay down behind her, careful not to touch her, and put a small space between you. Her hair was in your face and her scent wafted towards you, making you blush.
 
@@ -869,7 +870,8 @@ You shift to get comfortable, a subtle sigh of pleasure escaping your lips as yo
 &quot;Good night.&quot;
 
 Begin Chapter 5:
-[[Food-&gt;5A-1]]</tw-passagedata><tw-passagedata pid="33" name="4D-0" tags="" position="350,475" size="100,100">You feel a sense of unease as you look at her. You know deep down that getting involved with a woman you hardly even know isn&#39;t the best idea.
+[[Food-&gt;5A-1]]</tw-passagedata><tw-passagedata pid="33" name="4D-0" tags="" position="350,475" size="100,100">&lt;&lt;set choice1 to false&gt;&gt;
+You feel a sense of unease as you look at her. You know deep down that getting involved with a woman you hardly even know isn&#39;t the best idea.
 
 She looks downcast, but her eyes show a silent understanding of your decision as you lay down on the floor. The night will be long, hard and cold; however, it&#39;s better than compromising your values and beliefs.
 
@@ -892,7 +894,8 @@ Tent seemed eager to enjoy the comfort of shared warmth throughout the night.
 
 [[Share your warmth with Tent.-&gt;4D-alt]]
 Alternatively, begin Chapter 6:
-[[Exploring the Woods-&gt;6B-0]]</tw-passagedata><tw-passagedata pid="35" name="4D-alt" tags="" position="600,475" size="100,100">&quot;Of course.&quot; There was no way a gentleman like you would deny a pleading lady like Tent.
+[[Exploring the Woods-&gt;6B]]</tw-passagedata><tw-passagedata pid="35" name="4D-alt" tags="" position="600,475" size="100,100">&lt;&lt;set choice to true&gt;&gt;
+&quot;Of course.&quot; There was no way a gentleman like you would deny a pleading lady like Tent.
 
 You lay down behind her, careful not to touch her, and put a small space between you. Her hair was in your face and her scent wafted towards you, making you blush.
 
@@ -1003,7 +1006,7 @@ She blinks, turning away from you before raising her small arm and fiercely jabb
 
 You curl up, turning onto your side with as pain emanated from your abdomen. How did you wake up in such bliss just for it to be ruined like this?
 
-[[Continue-&gt;5B-1]]</tw-passagedata><tw-passagedata pid="37" name="5A-0" tags="" position="850,475" size="100,100">When you wake up, your neck is sore from sleeping on your back. You notice the fire pit has gone out and the cabin is freezing. Tent is lying on the hay mattress in front of the fire pit, shivering in her sleep.
+[[Continue-&gt;5B]]</tw-passagedata><tw-passagedata pid="37" name="5A-0" tags="" position="850,475" size="100,100">When you wake up, your neck is sore from sleeping on your back. You notice the fire pit has gone out and the cabin is freezing. Tent is lying on the hay mattress in front of the fire pit, shivering in her sleep.
 
 You sigh with a foggy breath as you watch her.
 
@@ -1025,7 +1028,7 @@ Tent grins, showing her fangs. She then starts stretching her legs as she prepar
 
 You stretch a bit yourself before leaving the cabin.
 
-[[Continue-&gt;5B-0]]</tw-passagedata><tw-passagedata pid="38" name="5B-0" tags="" position="975,475" size="100,100">Tent glares at the sky, her face hidden beneath her hood. &quot;I hate the sun,&quot; she growls, &quot;if only something could just block it away.&quot;
+[[Continue-&gt;5B]]</tw-passagedata><tw-passagedata pid="38" name="5B" tags="" position="975,475" size="100,100">Tent glares at the sky, her face hidden beneath her hood. &quot;I hate the sun,&quot; she growls, &quot;if only something could just block it away.&quot;
 
 You and Tent set off for the woods. Your goal was to collect firewood for a few hours, then return and take turns bathing. As you walked, you were both on the lookout for something edible. It was late fall and it seemed unlikely that any of the trees would have any fruit left, so it was really any other animals that you were really looking out for.
 
@@ -1047,7 +1050,7 @@ You glance her way, but her attention is already back on the ground, kicking aro
 
 &quot;If we could find the something to use, I could make us hats to hide from the sun.&quot;
 
- She gives you a doubtful glance and you silently stare back. She locks eyes with you, her voice serious and stern as she speaks. &quot;We could use a big leaf, a stick, and a thick vine.&quot; she declares.
+She gives you a doubtful glance and you silently stare back. She locks eyes with you, her voice serious and stern as she speaks. &quot;We could use a big leaf, a stick, and a thick vine.&quot; she declares.
 
 &quot;And make a giant leaf hat?&quot;, you chuckle, picturing her wearing a giant leaf hat. She laughs in agreement. 
 
@@ -1077,71 +1080,13 @@ Tent&#39;s patience wore thin. &quot;Ugh!&quot; She lunged forward and grabbed y
 
 The two of you continue gathering wood, but no food shows up.
 
-[[Later on in the day.-&gt;5C-0]]</tw-passagedata><tw-passagedata pid="39" name="5B-1" tags="" position="1100,475" size="100,100">Tent glares at the sky, her face hidden beneath her hood. &quot;I hate the sun,&quot; she growls, &quot;if only something could just block it away.&quot;
-
-You and Tent set off for the woods. Your goal was to collect firewood for a few hours, then return and take turns bathing. As you walked, you were both on the lookout for something edible. It was late fall and it seemed unlikely that any of the trees would have any fruit left, so it was really any other animals that you were really looking out for.
-
-You join Tent in glaring at the sun from beneath your hood. It&#39;s impossible to cover the sun, but perhaps if you two had a wide brimmed hat...
-
-&quot;Tent.&quot;
-
-&quot;Hmm?&quot; She looks at you with her full attention.
-
-&quot;When I was a boy, there was a group of men coming into the village, selling things. One of those things was a big round hat.&quot;
-
-She cocks an eyebrow. &quot;And?&quot;
-
-&quot;That&#39;s the one thing I wish we had.&quot;
-
-She frowns, &quot;A round hat? What would you do with that, look dumb wearing it?&quot;
-
-You glance her way, but her attention is already back on the ground, kicking around the leaves and dirt.
-
-&quot;If we could find the something to use, I could make us hats to hide from the sun.&quot;
-
- She gives you a doubtful glance and you silently stare back. She locks eyes with you, her voice serious and stern as she speaks. &quot;We could use a big leaf, a stick, and a thick vine.&quot; she declares.
-
-&quot;And make a giant leaf hat?&quot;, you chuckle, picturing her wearing a giant leaf hat. She laughs in agreement. 
-
-&quot;Yeah! A giant leaf hat!&quot; Her mirth is contagious, and you can&#39;t help but smile.
-
-Of course, you both know that you wouldn&#39;t be finding any giant leaves here, regardless of the season. Those types of trees just didn&#39;t grow here.
-
-After the two of you settle down, you say, &quot;Well, keep an eye out. It&#39;ll help keep us from getting sun burnt.&quot;
-
-She gives a small nod in agreement as she bends over and picks up a stick of dead wood with her bandaged arm.
-
-&quot;How&#39;s your arm doing?&quot;
-
-&quot;Hmm?&quot; She looks at her arm. &quot;It&#39;s not hurting anymore, but the skin isn&#39;t quite back together yet. So I&#39;ll have to keep my bandage on a bit longer.&quot; She sighed. &quot;I&#39;ll have to remember to clean it later.&quot;
-
-It... doesn&#39;t hurt? You extracted wood from her muscles! It&#39;s unbelievable that she could be healed in just one day. &quot;Are you sure it doesn&#39;t hurt?&quot;
-
-She puts her wood under her arm and walks up to you, showing you the bandaged arm. &quot;No, not at all. Press on it. It won&#39;t hurt any more than than touching any other part of my body.&quot;
-
-&quot;Uhhh...&quot; Pressing on a bandage stained with blood and dirt seems... ill-advised. Inappropriate, even.
-
-Tent&#39;s patience wore thin. &quot;Ugh!&quot; She lunged forward and grabbed your arm, causing the two of you to drop your wood. &quot;Just do it!&quot; She firmly guided your hand towards the wound but didn&#39;t flinch.
-
-&quot;See! No problem!&quot;
-
-...You&#39;re very curious as to how her wound looks, but you&#39;ll ask to see it later.
-
-The two of you continue gathering wood, but no food shows up.
-
-[[Later on in the day.-&gt;5C-1]]</tw-passagedata><tw-passagedata pid="40" name="5C-0" tags="" position="1225,475" size="100,100">You&#39;re refreshed from your bath at the creek and have returned to the cabin. Unfortunately, your clothes are still damp, but there&#39;s nothing you can do at the moment. Tent is taking her own bath and has ordered you with attending to either the cabin or the food.
+[[Later on in the day.-&gt;5C]]</tw-passagedata><tw-passagedata pid="39" name="5C" tags="" position="1100,475" size="100,100">You&#39;re refreshed from your bath at the creek and have returned to the cabin. Unfortunately, your clothes are still damp, but there&#39;s nothing you can do at the moment. Tent is taking her own bath and has ordered you with attending to either the cabin or the food.
 
 Despite going a day and a half on very little food, you&#39;re not nearly as hungry as you anticipated. Oh, if there was food, you&#39;d eat it, but you&#39;re more concerned about the cold of night.
 
 The cabin has many openings, from warped planks that no longer fit properly and gaps left by the shrinking of the wood. This allows air to flow freely throughout, making it clear why the cabin is so drafty.
 
-[[Fix the holes.-&gt;5D-0]]</tw-passagedata><tw-passagedata pid="41" name="5C-1" tags="" position="100,600" size="100,100">You&#39;re refreshed from your bath at the creek and have returned to the cabin. Unfortunately, your clothes are still damp, but there&#39;s nothing you can do at the moment. Tent is taking her own bath and has ordered you with attending to either the cabin or the food.
-
-Despite going a day and a half on very little food, you&#39;re not nearly as hungry as you anticipated. Oh, if there was food, you&#39;d eat it, but you&#39;re more concerned about the cold of night.
-
-The cabin has many openings, from warped planks that no longer fit properly and gaps left by the shrinking of the wood. This allows air to flow freely throughout, making it clear why the cabin is so drafty.
-
-[[Fix the holes.-&gt;5D-1]]</tw-passagedata><tw-passagedata pid="42" name="5D-0" tags="" position="225,600" size="100,100">You grab your homemade clay and attempt to patch the holes, hoping to make your nights a bit warmer.
+[[Fix the holes.-&gt;5D]]</tw-passagedata><tw-passagedata pid="40" name="5D" tags="" position="1225,475" size="100,100">You grab your homemade clay and attempt to patch the holes, hoping to make your nights a bit warmer.
 
 You begin the tiresome process of restoring the walls with your telekinesis, keeping your consciousness expanded just in case some food hops by.
 
@@ -1177,45 +1122,13 @@ The bear was massive, and she must have been strong to haul it here. You couldn&
 
 A thought pops into your head and a broad smile spreads across your face.
 
-[[Tease her.-&gt;5E-0]]
-[[Don&#39;t tease her.-&gt;5F-0]]</tw-passagedata><tw-passagedata pid="43" name="5D-1" tags="" position="350,600" size="100,100">You grab your homemade clay and attempt to patch the holes, hoping to make your nights a bit warmer.
-
-You begin the tiresome process of restoring the walls with your telekinesis, keeping your consciousness expanded just in case some food hops by.
-
-An hour or so passes by, and Tent hasn&#39;t returned. You&#39;re worried since the bathing spot isn&#39;t that far away, but there&#39;s no way you could go looking for her while she&#39;s bathing.
-
-An hour later, the cabin still full of holes, you sense Tent&#39;s return from her bath. Turning to face her, she&#39;s bent over and dragging a massive furry creature towards the cabin.
-
-You hasten to her aid, and find her drenched. Her wet locks lay upon her shoulders like a shimmering veil, and the damp fabric of her dress adheres to every contour of her body, leaving nothing hidden from sight. But you soon forget her problems as you gaze upon the massive creature she is dragging behind her.
-
-It&#39;s a bear. With its head removed. Blood draining from its neck.
-
-Tent&#39;s beaming with pride, she declares, &quot;Dinner!&quot;
-
-Your mouth opens and closes, before opening again. &quot;How did you kill a bear?!?&quot;
-
-&quot;It attacked me while I was bathing! I thought that would be more your style.&quot; She tries to tease him, but she can&#39;t hide her pride and joy at catching the creature. Her wet hair frames her face, making her smile all the brighter.
-
-She was fighting a bear... naked? You grab a leg of the bear and help her haul it to the cabin. &quot;Yeah, but… how&#39;d you kill it?&quot;
-
-&quot;I hit its head with a rock!&quot;
-
-&quot;How did you survive?!?&quot;
-
-&quot;Hmph, I&#39;m not some weakling. If I can fight goblins, then I can fight a bear, easy.&quot;
-
-You raise your eyebrows. A bear could easily defeat seven or eight goblins, so there must be more to this tale. Could the bear have been ill or hurt?
-
-Tent is stronger than a bear... and yet, you feel a sense of relief. This creature will provide food, and its fur will be warm. Even the bones could have their uses.
-
-&quot;I had to resort to climbing a tree and dropping rocks on its head,&quot; Tent said, her cheeks lightly flushing in embarrassment. &quot;There was no way I could fight it straight on.&quot;
-
-The bear was massive, and she must have been strong to haul it here. You couldn&#39;t help but marvel at her strength.
-
-A thought pops into your head and a broad smile spreads across your face.
-
-[[Tease the bear killer.-&gt;5E-1]]
-[[Don&#39;t tease the bear killer.-&gt;5F-1]]</tw-passagedata><tw-passagedata pid="44" name="5E-0" tags="" position="475,600" size="100,100">&quot;Wait, let me get this straight. You fought it while in the nude?&quot; 
+&lt;&lt;if choice1&gt;&gt;
+    [[Tease the bear killer.-&gt;5E]]
+    [[Don&#39;t tease the bear killer.-&gt;5F]]
+&lt;&lt;else&gt;&gt;
+    [[Tease her.-&gt;5E]]
+    [[Don&#39;t tease her.-&gt;5F]]
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="41" name="5E" tags="" position="100,600" size="100,100">&quot;Wait, let me get this straight. You fought it while in the nude?&quot; 
 
 She gives you a skeptical look. 
 
@@ -1223,17 +1136,8 @@ She gives you a skeptical look.
 
 Pain pierces through your knee and you collapse to the ground, smashing against the rocky terrain. Tent towers above you, shaking her head. &quot;Hmph! I know what he was planning! He wasn&#39;t going to mate with me, he was about to devour me!&quot; 
 
-[[Continue teasing her.-&gt;5G-0]]
-[[Don&#39;t tease her.-&gt;5F-0]]</tw-passagedata><tw-passagedata pid="45" name="5E-1" tags="" position="600,600" size="100,100">&quot;Wait, let me get this straight. You fought it while in the nude?&quot; 
-
-She gives you a skeptical look. 
-
-&quot;Uh, yeah...&quot; &quot;So how do you know it wasn&#39;t just trying to make cubs with you?&quot;
-
-Pain pierces through your knee and you collapse to the ground, smashing against the rocky terrain. Tent towers above you, shaking her head. &quot;Hmph! I know what he was planning! He wasn&#39;t going to mate with me, he was about to devour me!&quot; 
-
-[[Continue teasing her.-&gt;5G-1]]
-[[Don&#39;t tease her.-&gt;5F-1]]</tw-passagedata><tw-passagedata pid="46" name="5G-0" tags="" position="725,600" size="100,100">From your spot on the ground, you tell her, &quot;It&#39;s a pity. You could have had cubs with him and been queen of the woods!&quot;
+[[Continue teasing her.-&gt;5G]]
+[[Don&#39;t tease her.-&gt;5F]]</tw-passagedata><tw-passagedata pid="42" name="5G" tags="" position="225,600" size="100,100">From your spot on the ground, you tell her, &quot;It&#39;s a pity. You could have had cubs with him and been queen of the woods!&quot;
 
 Tent&#39;s foot rubs against your sternum, causing an aggravating pain to flare throughout your body. However, simply sliding her foot against your chest causes the underside of her dress to be shown to you. You look up at her shapely legs, and notice that they&#39;re blue. Looking past them, her wet dress clings to her belly, preventing you from seeing her breasts. She holds her foot firmly in place atop your sternum, forcing you to endure the excruciating agony as you appreciate the sight before you. You try not to pass out as you remain subject to her whims.
 
@@ -1249,13 +1153,7 @@ She grinned slyly, her eyes twinkling. &quot;You know, this bear is a female. Wa
 
 You glance between the bear&#39;s legs and nodded; it was certainly a female.
 
-[[Continue-&gt;5H-0]]</tw-passagedata><tw-passagedata pid="47" name="5G-1" tags="" position="850,600" size="100,100">From your spot on the ground, you tell her, &quot;It&#39;s a pity. You could have had cubs with him and been queen of the woods!&quot;
-
-Tent&#39;s foot rubs against your sternum, causing an aggravating pain to flare throughout your body. However, simply sliding her foot against your chest causes the underside of her dress to be shown to you. You look up at her shapely legs, and notice that they&#39;re blue. Looking past them, her wet dress clings to her belly, preventing you from seeing her breasts. She holds her foot firmly in place atop your sternum, forcing you to endure the excruciating agony as you appreciate the sight before you. You try not to pass out as you remain subject to her whims.
-
-After a moment, she figures out your plan and her cheeks flush. She quickly removed her foot from you.
-
-You lay there for a few moments, waiting for the pain to subside before getting up and dragging the bear back towards the cabin. Tent soon joins you, an uncomfortable silence settling between you two. Sure, you had gone too far, but so had she! There was no need to stomp on your chest like that!
+[[Continue-&gt;5H]]</tw-passagedata><tw-passagedata pid="43" name="5F" tags="" position="350,600" size="100,100">You manage to keep your teasing comment to yourself from the scary village girl who is strong and smart enough to kill a bear.
 
 &quot;...Hey.&quot;
 
@@ -1265,27 +1163,7 @@ She grinned slyly, her eyes twinkling. &quot;You know, this bear is a female. Wa
 
 You glance between the bear&#39;s legs and nodded; it was certainly a female.
 
-[[Continue-&gt;5H-1]]</tw-passagedata><tw-passagedata pid="48" name="5F-0" tags="" position="975,600" size="100,100">You manage to keep your teasing comment to yourself from the scary village girl who is strong and smart enough to kill a bear.
-
-&quot;...Hey.&quot;
-
-Tent is looking at you.
-
-She grinned slyly, her eyes twinkling. &quot;You know, this bear is a female. Want it to carry your babies?&quot; 
-
-You glance between the bear&#39;s legs and nodded; it was certainly a female.
-
-[[Continue-&gt;5H-0]]</tw-passagedata><tw-passagedata pid="49" name="5F-1" tags="" position="1100,600" size="100,100">You manage to keep your teasing comment to yourself from the scary village girl who is strong and smart enough to kill a bear.
-
-&quot;...Hey.&quot;
-
-Tent is looking at you.
-
-She grinned slyly, her eyes twinkling. &quot;You know, this bear is a female. Want it to carry your babies?&quot; 
-
-You glance between the bear&#39;s legs and nodded; it was certainly a female.
-
-[[Continue-&gt;5H-1]]</tw-passagedata><tw-passagedata pid="50" name="5H-0" tags="" position="1225,600" size="100,100">You and your companion struggle to hang up the bear in order to drain its blood. You manage to place it on a slight incline, so that the blood flows down. Without a proper knife or dagger, you rely on your telekinesis to cut through the fur and flesh.
+[[Continue-&gt;5H]]</tw-passagedata><tw-passagedata pid="44" name="5H" tags="" position="475,600" size="100,100">You and your companion struggle to hang up the bear in order to drain its blood. You manage to place it on a slight incline, so that the blood flows down. Without a proper knife or dagger, you rely on your telekinesis to cut through the fur and flesh.
 
 The task is tricky, as neither of you knows how to skin the animal. You are simply doing your best to get it done.
 
@@ -1293,18 +1171,14 @@ It&#39;s a long, hard process, but the two of you manage to take off the majorit
 
 That night, the two of you dine on delicious meat cooked by Tent. You now have food, water and shelter for a while. Though warmth and clothing haven&#39;t been made yet, if you work together to collect firewood in the coming days, you should be fine.
 
-[[Continue-&gt;4D-pre-alt]]</tw-passagedata><tw-passagedata pid="51" name="5H-1" tags="" position="100,725" size="100,100">You and your companion struggle to hang up the bear in order to drain its blood. You manage to place it on a slight incline, so that the blood flows down. Without a proper knife or dagger, you rely on your telekinesis to cut through the fur and flesh.
-
-The task is tricky, as neither of you knows how to skin the animal. You are simply doing your best to get it done.
-
-It&#39;s a long, hard process, but the two of you manage to take off the majority of the bear&#39;s fur and meat. Thankfully, it has plenty of fat due to its preparation for hibernation. The two of you will have to dry it out over the coming days for it to last into winter. Tent has gone ahead and built a small rack for the bearskin to dry on over the night, so tonight will be cold too. You&#39;ve done your best to use your skill to get all the blood off of everything, but you did far from a perfect job.
-
-That night, the two of you dine on delicious meat cooked by Tent. You now have food, water and shelter for a while. Though warmth and clothing haven&#39;t been made yet, if you work together to collect firewood in the coming days, you should be fine.
-
+&lt;&lt;if choice1&gt;&gt;
 And with Tent laying her head on your chest again, feeling her breaths tickle your neck all night, you can hardly believe life can be this blissful after such disaster. The warmth of the moment radiates throughout your body, a calm and content feeling that only deepens as you drift off to sleep together. The peace and serenity of the night acts like a shield for the two of you from the outside world; in this moment, it&#39;s just you two wrapped up in each other&#39;s embrace.
 
 Begin Chapter 6:
-[[Exploring the Woods-&gt;6A-1]]</tw-passagedata><tw-passagedata pid="52" name="6A-1" tags="" position="225,725" size="100,100">This time, you wake up before Tent. You&#39;re less of a pillow, and more of a mattress as she sprawled over you. Even her feet rest on your shins, keeping them off of the lumpy hay mattress. Her rhythmic breathing lands right on your neck, and your heart is racing as you realize how comfortable it is to have her sleeping on you.
+[[Exploring the Woods-&gt;6A-1]]
+&lt;&lt;else&gt;&gt;
+[[Continue-&gt;4D-pre-alt]]
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="45" name="6A-1" tags="" position="600,600" size="100,100">This time, you wake up before Tent. You&#39;re less of a pillow, and more of a mattress as she sprawled over you. Even her feet rest on your shins, keeping them off of the lumpy hay mattress. Her rhythmic breathing lands right on your neck, and your heart is racing as you realize how comfortable it is to have her sleeping on you.
 
 Her curves press tightly against you, and you can feel her heart beat against your own. Listening to it, you feel cradled, sinking deeper into your lumpy mattress, wanting to stay here forever.
 
@@ -1332,7 +1206,7 @@ Tent smiles softly, a flush emanating on her face. &quot;Good morning, Mr. red f
 
 Tent turns away from you and stretches in preparation for the day ahead. Her back and waist are beautiful, making you wonder what it would feel like to caress her back, not realizing that you just had the opportunity to do so.
 
-[[Continue-&gt;6B-1]]</tw-passagedata><tw-passagedata pid="53" name="6B-0" tags="" position="350,725" size="100,100">The sun&#39;s rays stream through the gaps in the cabin.
+[[Continue-&gt;6B]]</tw-passagedata><tw-passagedata pid="46" name="6B" tags="" position="725,600" size="100,100">The sun&#39;s rays stream through the gaps in the cabin.
 
 Preparing the bear remains was the task for the day. You had some bones, a bearskin and a pile of meat. The plan you both agreed upon was straightforward: cook the meat then smoke it in the fireplace to last through winter. To do that, you&#39;ll need plenty more wood.
 
@@ -1388,63 +1262,7 @@ The ground vibrates as a chunk of earth lifts you and Tent onto the balcony. You
 
 The elf beckoned, &quot;Come along now, my dears.&quot;
 
-[[Continue.-&gt;6C-0]]</tw-passagedata><tw-passagedata pid="54" name="6B-1" tags="" position="475,725" size="100,100">The sun&#39;s rays stream through the gaps in the cabin.
-
-Preparing the bear remains was the task for the day. You had some bones, a bearskin and a pile of meat. The plan you both agreed upon was straightforward: cook the meat then smoke it in the fireplace to last through winter. To do that, you&#39;ll need plenty more wood.
-
-During an unappealing breakfast of boiled bear meat, you watch Tent taking extra care not to spill onto her tattered dress. You&#39;re both in need of new clothes after the previous day&#39;s struggle. Perhaps instead of making a blanket from the bear coat, the two of you would do better to figure out how to make some clothes from it.
-
-...But then you&#39;d both look like cavemen.
-
-You two venture into the woods, the trees looming tall above. Your mission is to find suitable wood for kindling, but the search proves difficult. You contemplate attempting to fell a tree, but without any tools it seems impossible.
-
-You both continue to look for wood, but it&#39;s obvious that there just isn&#39;t any. It&#39;s starting to become clear that someone else has already collected it all. You and Tent must think of another plan, or you&#39;ll end up burning your own cabin.
-
-Tent&#39;s eyes widened as she gazes through the trees, searching for whatever had caught her attention. &quot;Hey, what&#39;s that?&quot;
-
-You have no idea what she is seeing. Expanding your consciousness reveals nothing alive in that space. &quot;Guess it can&#39;t hurt to take a look,&quot; you say with a shrug.
-
-As you two wind through the trees, a tan brick tower emerges in a clearing. It&#39;s tall, with a bulbous top. Halfway up, there&#39;s a balcony on one side. There are no doors in sight, but walking around it shows a few windows.
-
-Tent trails her fingers over the brick tower before rapping on it. With a hint of disappointment, she says, &quot;It looks just like any other brick tower...but there&#39;s no door.&quot; She glances up. &quot;Do you think anybody is inside?&quot;
-
-&quot;Do we really want to meet a hermit who built a tower, out of brick, all the way out here?&quot;
-
-You peer into the tower&#39;s window, but under the wooden shutters, your view is blocked by heavy wooden planks.
-
-&quot;Well, this is interesting. Someone must be in there, trying to stay out of sight.&quot;
-
-&quot;Why don&#39;t we just break a window? There might be wood, clothes... or even salt!&quot; Tent&#39;s eyes lit up with anticipation, her stomach growling in hunger.
-
-Frowning, you consider the tower placed so far from any significant civilization. Unfamiliar with who or what may dwell inside, it could be a dangerous trap, a tempting lure, or even an ancient ruin.
-
-&quot;Let&#39;s at least try to get the attention of whoever&#39;s in there first.&quot;
-
-Tent nods. &quot;Let&#39;s walk around again and find the door.&quot;
-
-You and Tent make your way around the tower, only to find that there is no door in sight. She huffs in exasperation. &quot;What now? How do we even knock?&quot;
-
-&quot;You may ascend to the balcony by taking flight,&quot; a woman&#39;s voice echoes from behind you. &quot;It helps keeps the humans out. How may the Tower of Evis assist you today?&quot;
-
-You spin around in surprise, to behold an elf adorned in a forest-green robe that flows beneath her feet. The hood of her garment hides her tresses of dull blonde hair, though you can still catch a glimpse of the glimmering gray hue in her eyes. Her delicate hand wraps around a staff firmly, its tip reverberates reality around it as the winds of magic pulse and hum with energy. 
-
-This woman is a mage.
-
-&quot;Wah~!&quot; Tent yells in surprise. &quot;Who are you!&quot;
-
-The elven mage dismisses Tent with a roll of her eyes. &quot;I have informed you that I am a member of the Tower of Evis. Is there something that you require, or are you simply trespassing on our land while out on your date?&quot;
-
-&quot;D-d-date!?&quot; Tent seems taken aback by the idea.
-
-&quot;No.. it doesn&#39;t appear that you two are having a very enjoyable time. May I inquire as to what has transpired? Might I suggest that you come and join me for tea?&quot;
-
-Tent is still flustering around with the idea of dating you, so you reply that you would love to.
-
-The ground vibrates as a chunk of earth lifts you and Tent onto the balcony. You notice that it doesn&#39;t have a railing, but there is a sturdy wooden door leading indoors.
-
-The elf beckoned, &quot;Come along now, my dears.&quot;
-
-[[Continue.-&gt;6C-1]]</tw-passagedata><tw-passagedata pid="55" name="6C-0" tags="" position="600,725" size="100,100">The inside of the tower was filled with wood furnishings: chairs, tables, and bookshelves. A staircase wound both up and down, but the elf took you to a room on the same floor as you&#39;d entered.
+[[Continue.-&gt;6C]]</tw-passagedata><tw-passagedata pid="47" name="6C" tags="" position="850,600" size="100,100">The inside of the tower was filled with wood furnishings: chairs, tables, and bookshelves. A staircase wound both up and down, but the elf took you to a room on the same floor as you&#39;d entered.
 
 Curious, you expanded your consciousness, but found no one above or below you. Not even Tent was detectable, and the effort made you queasy so you stopped. The tower must have had a way to block your magic. Looking at pulsating staff the elven mage carried, perhaps that was preventing you from using magic.
 
@@ -1486,51 +1304,8 @@ The elf cocked her head curiously. &quot;Wouldn&#39;t… you two want that?&quot
 
 The cabin is in a wooded area, making you wary of inviting strangers over. The thought of being murdered in your sleep weighs heavily on your mind.
 
-[[Agree to her request.-&gt;6D-0]]
-[[Shake your head.-&gt;6E-0]]</tw-passagedata><tw-passagedata pid="56" name="6C-1" tags="" position="725,725" size="100,100">The inside of the tower was filled with wood furnishings: chairs, tables, and bookshelves. A staircase wound both up and down, but the elf took you to a room on the same floor as you&#39;d entered.
-
-Curious, you expanded your consciousness, but found no one above or below you. Not even Tent was detectable, and the effort made you queasy so you stopped. The tower must have had a way to block your magic. Looking at pulsating staff the elven mage carried, perhaps that was preventing you from using magic.
-
-The two of you settled into a plush sofa behind a coffee table while the elf pulled up an extra-comfy one-and-a-half person chair, also known as a love seat.
-
-Three white cups and a steaming kettle sat on the table, signaling that the two of you were expected.
-
-The elf poured you two tea, its pleasant scent drifting up to your nose. The cup was a stark white and had intricate floral designs at the bottom.
-
-&quot;So, what reason brings the both of you to this part of our woods?&quot; The elf&#39;s question was simple.
-
-You tell her how you and Tent lived in a village recently attacked by orcs. While you struggle to find the words, you don&#39;t feel sorrow or pain or any emotion at all as you talk to her.
-
-You told her you had found a cabin, but it was already inhabited by an orc so you decided to keep going north and find another one. Fortunately, you were able to locate a another one, and that&#39;s where the two of you are now staying.
-
-You asked her, &quot;We&#39;ve got water and slaughtered a bear for food, and soon we&#39;ll turn it&#39;s pelt into clothing. But there&#39;s no axe in the cabin, and no nearby wood either. We&#39;re worried about staying warm this winter.&quot;
-
-The elf sips her tea quietly, enjoying the sweet taste as it covers her tongue before sliding down her throat. &quot;So that&#39;s why you two came all the way out here,&quot; the elf replies.
-
-&quot;Yeah, but there&#39;s nothing for leagues, so I don&#39;t really get why this tower is here,&quot; you say.
-
-The elf laughed, her voice chiming in high tones. &quot;Ah, how amusing, so very amusing, it is to observe you two.&quot; You can feel her hermit vibes from this statement.
-
-&quot;Let me explain,&quot; the elf replies, leaning back in her oversized chair and crossing her legs. &quot;I was dispatched by my superior to analyze the nature of this tower and its ability to manipulate the winds of magic. Haven&#39;t you noticed it? You are a practitioner of the magical arts, yes?&quot;
-
-You agree. &quot;I can&#39;t feel anything in here.&quot;
-
-&quot;This is due to our manipulation of the tower to disperse dew every morning, allowing the settlements nearby, such as your own, to cultivate and thrive. It is for this purpose that I am here.&quot; She carefully places her mug on the glossy wooden coffee table. 
-
-&quot;However, this is not of concern to you. We have been carrying out forest maintenance operations, which is why you have been unable to locate any wood.&quot; She looked past you for a moment, before continuing. &quot;However, I shall provide you with some wood as well as a few other materials. I merely request that you abstain from indiscriminately cutting down our woods. If ever there is need for an additional supply, kindly do come back if you need more, okay?&quot;
-
-The two of you nod at her request.
-
-&quot;Additionally, that cabin is owned by us. However, we permit you both to make use of it. Should any merchants or mages come across your path, please be so kind as to accommodate them with a night&#39;s stay.&quot;
-
-Tent&#39;s gaze rested on you, giving you the power to decide what to do. But when the elven mage asked if strangers could stay the night, doubt clouded your mind. While she spoke very formally, ger eyes were kind and soft. But you weren&#39;t sure if it was a safe idea.
-
-The elf cocked her head curiously. &quot;Wouldn&#39;t… you two want that?&quot; she spoke to herself, her voice barely a whisper. She furrowed her brows in thought.
-
-The cabin is in a wooded area, making you wary of inviting strangers over. The thought of being murdered in your sleep weighs heavily on your mind.
-
-[[Agree to her request.-&gt;6D-1]]
-[[Shake your head.-&gt;6E-1]]</tw-passagedata><tw-passagedata pid="57" name="6D-0" tags="" position="850,725" size="100,100">&quot;Absolutely,&quot; you tell her. &quot;Having someone stay for a few days is nothing in comparison to the aid you&#39;re providing us.&quot;
+[[Agree to her request.-&gt;6D]]
+[[Shake your head.-&gt;6E]]</tw-passagedata><tw-passagedata pid="48" name="6D" tags="" position="975,600" size="100,100">&quot;Absolutely,&quot; you tell her. &quot;Having someone stay for a few days is nothing in comparison to the aid you&#39;re providing us.&quot;
 
 You could feel a faint, satisfied smile in your mind&#39;s eye from Tent as you spoke those words.
 
@@ -1546,23 +1321,7 @@ The scroll contains a pattern of circular symbols, each one inscribed with myste
 
 The elf chuckles. &quot;Now allow me to prepare a bag for the both of you. Please remain here while I do so.&quot;
 
-[[Continue-&gt;6F-0]]</tw-passagedata><tw-passagedata pid="58" name="6D-1" tags="" position="975,725" size="100,100">&quot;Absolutely,&quot; you tell her. &quot;Having someone stay for a few days is nothing in comparison to the aid you&#39;re providing us.&quot;
-
-You could feel a faint, satisfied smile in your mind&#39;s eye from Tent as you spoke those words.
-
-The elf smiles. &quot;That is excellent. Naturally, I would be remiss to leave you two without the necessary resources and appropriate defenses.&quot; The elf walks to a nearby bookshelf, and takes a scroll, unfurling it onto the coffee table. Tent and you scoot forward and lean over, seeing the detailed drawing.
-
-&quot;This ward serves to provide protection against both monstrous entities and sentient creatures who may intend to do harm. It is a measure taken to prevent unwanted entry into an area.&quot;
-
-The scroll contains a pattern of circular symbols, each one inscribed with mysterious runes.
-
-&quot;Place this at the doorway, and the winds of magic will prevent access to anyone with malicious intent. Only those with good intentions will be permitted entry.&quot;
-
-&quot;That&#39;ll be a great help!&quot; Tent yells at her.
-
-The elf chuckles. &quot;Now allow me to prepare a bag for the both of you. Please remain here while I do so.&quot;
-
-[[Continue-&gt;6F-1]]</tw-passagedata><tw-passagedata pid="59" name="6E-0" tags="" position="1100,725" size="100,100">You shake your head to her request. &quot;No, I&#39;m sorry, I don&#39;t think we can do that.&quot;
+[[Continue-&gt;6F]]</tw-passagedata><tw-passagedata pid="49" name="6E" tags="" position="1100,600" size="100,100">You shake your head to her request. &quot;No, I&#39;m sorry, I don&#39;t think we can do that.&quot;
 
 &quot;Very well, how about this?&quot;
 
@@ -1580,25 +1339,7 @@ You&#39;re not sure how much you can trust-
 
 The elf chuckles. &quot;Now allow me to prepare a bag for the both of you. Please remain here while I do so.&quot;
 
-[[Continue-&gt;6F-0]]</tw-passagedata><tw-passagedata pid="60" name="6E-1" tags="" position="1225,725" size="100,100">You shake your head to her request. &quot;No, I&#39;m sorry, I don&#39;t think we can do that.&quot;
-
-&quot;Very well, how about this?&quot;
-
-The elf walks to a nearby bookshelf, and takes a scroll, unfurling it onto the coffee table. Tent and you scoot forward and lean over, seeing the detailed drawing.
-
-&quot;This ward serves to provide protection against both monstrous entities and sentient creatures who may intend to do harm. It is a measure taken to prevent unwanted entry into an area.&quot;
-
-The scroll contains a pattern of circular symbols, each one inscribed with mysterious runes.
-
-&quot;Place this at the doorway, and the winds of magic will prevent access to anyone with malicious intent. Only those with good intentions will be permitted entry. Would it be possible for me to barter this in exchange for allowing those individuals to rest in the cabin? They are not of ill intent.&quot;
-
-You&#39;re not sure how much you can trust-
-
-&quot;Sure, we&#39;ll take care of your friends!&quot; Tent agrees without thinking.
-
-The elf chuckles. &quot;Now allow me to prepare a bag for the both of you. Please remain here while I do so.&quot;
-
-[[Continue-&gt;6F-1]]</tw-passagedata><tw-passagedata pid="61" name="6F-0" tags="" position="100,850" size="100,100">You and Tent are left alone in the room as your host goes to prepare a bag for you two. You bot exchange a glance.
+[[Continue-&gt;6F]]</tw-passagedata><tw-passagedata pid="50" name="6F" tags="" position="1225,600" size="100,100">You and Tent are left alone in the room as your host goes to prepare a bag for you two. You bot exchange a glance.
 
 &quot;I apologize for yelling,&quot; she said, her gaze averting.
 
@@ -1622,34 +1363,12 @@ You find your face warming up despite the cold breeze.
 
 After thanking her one last time, you walk off the balcony and land on the ground, your knees bending from the shock. The impact was surprisingly gentle, as if something had softened your landing. You look back at the balcony one last time before moving on. Tent was waiting for you and you chattered about how strange and formal the elf was all the way back to the cabin, where she proceeded to immediately cook some bear meat with her beloved salt.
 
-[[Mysteries-&gt;7A-0]]</tw-passagedata><tw-passagedata pid="62" name="6F-1" tags="" position="225,850" size="100,100">You and Tent are left alone in the room as your host goes to prepare a bag for you two. You bot exchange a glance.
-
-&quot;I apologize for yelling,&quot; she said, her gaze averting.
-
-You notice that the elf&#39;s formalness has rubbed off on Tent, possibly due to her feeling embarrassed. &quot;It&#39;s fine... Why would she invite strangers to our house? It&#39;s deep in the woods, so how would they even find us? And who are we expecting exactly? Merchants and mages?&quot;
-
-&quot;Hey, it&#39;s free wood. When spring comes we can move on and find somewhere else to live.&quot;
-
-The elf sounds out from the doorway, scratching the back of her ear. &quot;Erm, I regret to inform you that I am unable to provide you with any wood today. Would it be possible for you to return tomorrow?&quot; She&#39;s holding a large sack full. &quot;I have acquired additional attire for the two of you, as well as soap, knives, salt, thread-&quot;
-
-Tent leaps up, snatching the sack of salt from the elf. &quot;Salt!&quot; she splutters with joy. &quot;Thank you!&quot;
-
-She may even shed some tears from the salt. Personally, you thought the clothes would be the best part. Tent&#39;s tear in her dress, the one that reveals her leg, is a little too stimulating at times.
-
-She holds the sack out before chirping, &quot;Look she&#39;s giving us salt! Let&#39;s go make something tasty!&quot; Tent runs to the balcony. Rushing after her, you just barely witness her jump off, spinning as she falls three stories to the ground below.
-
-&quot;Erm...&quot; You&#39;re not quite sure what to say to the elf. &quot;Thank you for your help.&quot;
-
-&quot;There is no issue. I anticipate that there will not be any visitors before spring, so please you are free to make yourself as cozy as possible with Tent.&quot; She gives you a wink as she teases you.
-
-You find your face warming up despite the cold breeze.
-
-After thanking her one last time, you walk off the balcony and land on the ground, your knees bending from the shock. The impact was surprisingly gentle, as if something had softened your landing. You look back at the balcony one last time before moving on. Tent was waiting for you and you chattered about how strange and formal the elf was all the way back to the cabin, where she proceeded to immediately cook some bear meat with her beloved salt.
-
-You spent another wonderful night acting as a mattress for Tent, sharing your heartbeat with her.
+&lt;&lt;if choice1&gt;&gt;
+    You spent another wonderful night acting as a mattress for Tent, sharing your heartbeat with her.
+&lt;&lt;/if&gt;&gt;
 
 Begin Chapter 7:
-[[Mysteries-&gt;7A-1]]</tw-passagedata><tw-passagedata pid="63" name="7A-0" tags="" position="350,850" size="100,100">After a breakfast of salt with a side of bear bacon, you two decided that Tent would get the wood while you worked on turning the bear pelt into a blanket and filling up any remaining holes in the cabin with your magic.
+[[Mysteries-&gt;7A]]</tw-passagedata><tw-passagedata pid="51" name="7A" tags="" position="100,725" size="100,100">After a breakfast of salt with a side of bear bacon, you two decided that Tent would get the wood while you worked on turning the bear pelt into a blanket and filling up any remaining holes in the cabin with your magic.
 
 You began with the bear pelt. Essentially, all you had to do was wash it in the river and hang it up on Tent&#39;s clothesline. You worried that the hide was too coarse to use as a blanket. You might need to ask an elf for a wool or linen sheet instead.
 
@@ -1657,17 +1376,9 @@ Perhaps hopeful by the idea, you went through the sack that the elf gave you. So
 
 There were two glass flasks of a deep red liquid. You didn&#39;t remember ever seeing one before, so you were curious as to what it was. Lifting the wooden lid of one, you caught a whiff of its sweet aroma--like honey. It seemed safe enough.
 
-[[Take a sip of it.-&gt;7B-0]]
-[[Ask the elf about it later.-&gt;7C-0]]</tw-passagedata><tw-passagedata pid="64" name="7A-1" tags="" position="475,850" size="100,100">After a breakfast of salt with a side of bear bacon, you two decided that Tent would get the wood while you worked on turning the bear pelt into a blanket and filling up any remaining holes in the cabin with your magic.
-
-You began with the bear pelt. Essentially, all you had to do was wash it in the river and hang it up on Tent&#39;s clothesline. You worried that the hide was too coarse to use as a blanket. You might need to ask an elf for a wool or linen sheet instead.
-
-Perhaps hopeful by the idea, you went through the sack that the elf gave you. Soap, a metal bucket, salt, a pan, clothing... Oh, right. Tent probably should&#39;ve worn these before going to pick up the wood. Oh look, a few knives.
-
-There were two glass flasks of a deep red liquid. You didn&#39;t remember ever seeing one before, so you were curious as to what it was. Lifting the wooden lid of one, you caught a whiff of its sweet aroma--like honey. It seemed safe enough.
-
-[[Take a sip of it.-&gt;7B-1]]
-[[Ask the elf about it later.-&gt;7C-1]]</tw-passagedata><tw-passagedata pid="65" name="7B-0" tags="" position="600,850" size="100,100">You took a sip. It was thick and syrupy, the flavor enigmatic. There was something sweet, something floral, something fruity. A saltiness that made those flavors more complex. A distinct mixture that hinted at uncertainty and determination. Whoever had created this drink must have been wavering over its composition, yet confident it was the right thing to do.
+[[Take a sip of it.-&gt;7B]]
+[[Ask the elf about it later.-&gt;7C]]</tw-passagedata><tw-passagedata pid="52" name="7B" tags="" position="225,725" size="100,100">&lt;&lt;set choice2 to true&gt;&gt;
+You took a sip. It was thick and syrupy, the flavor enigmatic. There was something sweet, something floral, something fruity. A saltiness that made those flavors more complex. A distinct mixture that hinted at uncertainty and determination. Whoever had created this drink must have been wavering over its composition, yet confident it was the right thing to do.
 
 You had never tasted emotions before. Was this a potion of some kind?
 
@@ -1679,23 +1390,10 @@ You had to be sure. Taking an elven knife, you made a shallow cut on your wrist 
 
 You replaced the cap and decided to give some to Tent later, allowing the wound on her arm to fully recover.
 
-[[Continue-&gt;7D-01]]</tw-passagedata><tw-passagedata pid="66" name="7B-1" tags="" position="725,850" size="100,100">You took a sip. It was thick and syrupy, the flavor enigmatic. There was something sweet, something floral, something fruity. A saltiness that made those flavors more complex. A distinct mixture that hinted at uncertainty and determination. Whoever had created this drink must have been wavering over its composition, yet confident it was the right thing to do.
+[[Continue-&gt;7D]]</tw-passagedata><tw-passagedata pid="53" name="7C" tags="" position="350,725" size="100,100">&lt;&lt;set choice2 to false&gt;&gt;
+You decide to put the cap back on and resolved to ask the elf about it later.
 
-You had never tasted emotions before. Was this a potion of some kind?
-
-Your heart raced, your body warmed, adrenaline coursed through you. You felt invigorated and stronger. Soon enough, you realized that the dull ache in your knees had stopped.
-
-You could not believe it. The liquid was healing you. Was this really happening?
-
-You had to be sure. Taking an elven knife, you made a shallow cut on your wrist and observed as the wound healed in mere seconds. The liquid was healing you, even from just one sip.
-
-You replaced the cap and decided to give some to Tent later, allowing the wound on her arm to fully recover.
-
-[[Continue-&gt;7D-11]]</tw-passagedata><tw-passagedata pid="67" name="7C-0" tags="" position="850,850" size="100,100">You decide to put the cap back on and resolved to ask the elf about it later.
-
-[[Continue-&gt;7D-00]]</tw-passagedata><tw-passagedata pid="68" name="7C-1" tags="" position="975,850" size="100,100">You decide to put the cap back on and resolved to ask the elf about it later.
-
-[[Continue-&gt;7D-10]]</tw-passagedata><tw-passagedata pid="69" name="7D-10" tags="" position="1100,850" size="100,100">You sort through the clothes next. The elf provided two sets of white long-sleeved shirts and two black trousers. One for Tent and one for you.
+[[Continue-&gt;7D]]</tw-passagedata><tw-passagedata pid="54" name="7D" tags="" position="475,725" size="100,100">You sort through the clothes next. The elf provided two sets of white long-sleeved shirts and two black trousers. One for Tent and one for you.
 
 The clothes are simple and unassuming, made of inexpensive fabric and a bit too big. Though because you both had a tendency to get things dirty, you wonder if white was the best color.
 
@@ -1715,67 +1413,7 @@ You discovered a bundle of silverware in the sack as well. It contained two fork
 
 The last thing you drew from the sack was a book. You couldn&#39;t read, but on its cover was a man&#39;s silhouette with some red stains on his face and upper chest. You&#39;d have to ask the elf about it later.
 
-[[Continue-&gt;7E-10]]</tw-passagedata><tw-passagedata pid="70" name="7D-01" tags="" position="1225,850" size="100,100">You sort through the clothes next. The elf provided two sets of white long-sleeved shirts and two black trousers. One for Tent and one for you.
-
-The clothes are simple and unassuming, made of inexpensive fabric and a bit too big. Though because you both had a tendency to get things dirty, you wonder if white was the best color.
-
-The elf had gifted you two pairs of leather boots and some pairs of woolen socks, preparing you well for the cold winter season.
-
-There was also some underwear, including a particularly salacious pair of black panties. A lacy border ran along the waistband, inviting fingers to lower them when shown.
-
-Your mind immediately went to dreaming of Tent&#39;s bare, sun-kissed skin. Her muscled wrists just barely enough to cover her perky breasts. Her eyes diverting from yours, her brown hair flowing behind her. A plump bottom that sends shivers down your spine.
-
-You shake off the thoughts. Tent wasn&#39;t the type of girl to fall for that sort of thing. And besides, she was always wearing a dress, so you had no idea what her legs looked like anyways.
-
-You briefly wondered if the elf was hoping to bring you two closer together, but quickly dismissed the idea. Women simply needed panties, nothing more.
-
-Your clothing was ragged and stained with soot, mud, and dried blood, so you decided to change.
-
-You discovered a bundle of silverware in the sack as well. It contained two forks, two spoons, and two knives, this time designed for eating.
-
-The last thing you drew from the sack was a book. You couldn&#39;t read, but on its cover was a man&#39;s silhouette with some red stains on his face and upper chest. You&#39;d have to ask the elf about it later.
-
-[[Continue-&gt;7E-01]]</tw-passagedata><tw-passagedata pid="71" name="7D-00" tags="" position="100,975" size="100,100">You sort through the clothes next. The elf provided two sets of white long-sleeved shirts and two black trousers. One for Tent and one for you.
-
-The clothes are simple and unassuming, made of inexpensive fabric and a bit too big. Though because you both had a tendency to get things dirty, you wonder if white was the best color.
-
-The elf had gifted you two pairs of leather boots and some pairs of woolen socks, preparing you well for the cold winter season.
-
-There was also some underwear, including a particularly salacious pair of black panties. A lacy border ran along the waistband, inviting fingers to lower them when shown.
-
-Your mind immediately went to dreaming of Tent&#39;s bare, sun-kissed skin. Her muscled wrists just barely enough to cover her perky breasts. Her eyes diverting from yours, her brown hair flowing behind her. A plump bottom that sends shivers down your spine.
-
-You shake off the thoughts. Tent wasn&#39;t the type of girl to fall for that sort of thing. And besides, she was always wearing a dress, so you had no idea what her legs looked like anyways.
-
-You briefly wondered if the elf was hoping to bring you two closer together, but quickly dismissed the idea. Women simply needed panties, nothing more.
-
-Your clothing was ragged and stained with soot, mud, and dried blood, so you decided to change.
-
-You discovered a bundle of silverware in the sack as well. It contained two forks, two spoons, and two knives, this time designed for eating.
-
-The last thing you drew from the sack was a book. You couldn&#39;t read, but on its cover was a man&#39;s silhouette with some red stains on his face and upper chest. You&#39;d have to ask the elf about it later.
-
-[[Continue-&gt;7E-00]]</tw-passagedata><tw-passagedata pid="72" name="7D-11" tags="" position="225,975" size="100,100">You sort through the clothes next. The elf provided two sets of white long-sleeved shirts and two black trousers. One for Tent and one for you.
-
-The clothes are simple and unassuming, made of inexpensive fabric and a bit too big. Though because you both had a tendency to get things dirty, you wonder if white was the best color.
-
-The elf had gifted you two pairs of leather boots and some pairs of woolen socks, preparing you well for the cold winter season.
-
-There was also some underwear, including a particularly salacious pair of black panties. A lacy border ran along the waistband, inviting fingers to lower them when shown.
-
-Your mind immediately went to dreaming of Tent&#39;s bare, sun-kissed skin. Her muscled wrists just barely enough to cover her perky breasts. Her eyes diverting from yours, her brown hair flowing behind her. A plump bottom that sends shivers down your spine.
-
-You shake off the thoughts. Tent wasn&#39;t the type of girl to fall for that sort of thing. And besides, she was always wearing a dress, so you had no idea what her legs looked like anyways.
-
-You briefly wondered if the elf was hoping to bring you two closer together, but quickly dismissed the idea. Women simply needed panties, nothing more.
-
-Your clothing was ragged and stained with soot, mud, and dried blood, so you decided to change.
-
-You discovered a bundle of silverware in the sack as well. It contained two forks, two spoons, and two knives, this time designed for eating.
-
-The last thing you drew from the sack was a book. You couldn&#39;t read, but on its cover was a man&#39;s silhouette with some red stains on his face and upper chest. You&#39;d have to ask the elf about it later.
-
-[[Continue-&gt;7E-11]]</tw-passagedata><tw-passagedata pid="73" name="7E-10" tags="" position="350,975" size="100,100">Tent returns with an armful of lumber and drops it by the cabin. You greet her warmly as she catches her breath.
+[[Continue-&gt;7E]]</tw-passagedata><tw-passagedata pid="55" name="7E" tags="" position="600,725" size="100,100">Tent returns with an armful of lumber and drops it by the cabin. You greet her warmly as she catches her breath.
 
 &quot;I&#39;m starving!&quot; she cried, grabbing some wood. She quickly started a fire and soon had bear meat roasting.
 
@@ -1813,121 +1451,11 @@ You stumble over your words. &quot;It looks good... You look nice, uh, and neat.
 
 &quot;Oh...&quot; Tent responds, glancing at you. She appears relieved, but her face is still flush. &quot;I can&#39;t believe elves actually wear this stuff...&quot;
 
-[[Continue-&gt;7I-10]]</tw-passagedata><tw-passagedata pid="74" name="7E-01" tags="" position="475,975" size="100,100">Tent returns with an armful of lumber and drops it by the cabin. You greet her warmly as she catches her breath.
-
-&quot;I&#39;m starving!&quot; she cried, grabbing some wood. She quickly started a fire and soon had bear meat roasting.
-
-&quot;That elf is so awesome!&quot; Tent begins. &quot;I saw her talk to some trees and they pulled wood outside of themselves! The elf said the trees have something called &#39;density&#39; that they use to make wood, but it means that we can&#39;t ask them for too much wood...&quot;
-
-Tent was a complete chatterbox while cooking, a symphony that filled the room. You couldn&#39;t keep up with everything she said, but it was comforting. Her chatter distracted you from all your worries.
-
-Your village was burnt down and your family gone. You have a young lady with you, and the only person who can help you is a mysterious woman living in an abandoned tower. Tent&#39;s symphony helped keep up both of your spirits.
-
-You were thankful for her presence.
-
-Tent&#39;s eyes survey the items you put out from the sack on the floor. &quot;What&#39;s this?&quot; She looks at the clothes laid out for her. &quot;A white shirt and pants? I don&#39;t usually wear pants though...&quot;
-
-She grabs the shirt and drapes it over herself, confirming that it fit her properly. Satisfied, she picks up the pants to do the same, only for a small black garment fall out from them.
-
-&quot;What&#39;s this?&quot; Tent muttered. She picked the salacious fabric up and them in front of her, her face turning a deep shade of crimson. 
-
-&quot;Uh, y-you didn&#39;t see this! I-I&#39;m going to change now so go outside!&quot;
-
-You leave the cabin and think some naughty thoughts about how that small collection of fabric would take residence with Tent in the moments she spent living, not just an everyday garment but also a little reminder that life could be sexy every once in awhile as well.
-
-&quot;I-I&#39;m done,&quot; Tent&#39;s voice comes through the door. &quot;Y-you can come in now...&quot;
-
-You enter the cabin to see a very shy and embarrassed young woman in a white tunic and black pants. The white shirt drapes over her breasts, emphasizing them, before being tucked into her pants. Her pants cling tight to her legs, hiding none of the curves that her dress normally hid.
-
-Your gaze is inexorably drawn to her pelvis, the curves of her pants highlighting and accentuating the tantalizingly empty space.
-
-You&#39;re not a creep, yet you can&#39;t help but gawk. Shame fills your chest.
-
-Tent cried out in indignation, her face reddening as she frantically tries to cover her private area. &quot;What&#39;s wrong?! Is it strange? Did I put it on incorrectly?&quot;
-
-She turns sideways to hide from you, but that only shows off the curves her pants hug. &quot;…It&#39;s wrong for a lady to wear pants after all, isn&#39;t it?&quot; You can see the tips of her ears through her hair, burning red. Her face must be completely flushed. 
-
-You stumble over your words. &quot;It looks good... You look nice, uh, and neat.&quot;
-
-&quot;Oh...&quot; Tent responds, glancing at you. She appears relieved, but her face is still flush. &quot;I can&#39;t believe elves actually wear this stuff...&quot;
-
-[[Continue-&gt;7F-01]]</tw-passagedata><tw-passagedata pid="75" name="7E-00" tags="" position="600,975" size="100,100">Tent returns with an armful of lumber and drops it by the cabin. You greet her warmly as she catches her breath.
-
-&quot;I&#39;m starving!&quot; she cried, grabbing some wood. She quickly started a fire and soon had bear meat roasting.
-
-&quot;That elf is so awesome!&quot; Tent begins. &quot;I saw her talk to some trees and they pulled wood outside of themselves! The elf said the trees have something called &#39;density&#39; that they use to make wood, but it means that we can&#39;t ask them for too much wood...&quot;
-
-Tent was a complete chatterbox while cooking, a symphony that filled the room. You couldn&#39;t keep up with everything she said, but it was comforting. Her chatter distracted you from all your worries.
-
-Your village was burnt down and your family gone. You have a young lady with you, and the only person who can help you is a mysterious woman living in an abandoned tower. Tent&#39;s symphony helped keep up both of your spirits.
-
-You were thankful for her presence.
-
-Tent&#39;s eyes survey the items you put out from the sack on the floor. &quot;What&#39;s this?&quot; She looks at the clothes laid out for her. &quot;A white shirt and pants? I don&#39;t usually wear pants though...&quot;
-
-She grabs the shirt and drapes it over herself, confirming that it fit her properly. Satisfied, she picks up the pants to do the same, only for a small black garment fall out from them.
-
-&quot;What&#39;s this?&quot; Tent muttered. She picked the salacious fabric up and them in front of her, her face turning a deep shade of crimson. 
-
-&quot;Uh, y-you didn&#39;t see this! I-I&#39;m going to change now so go outside!&quot;
-
-You leave the cabin and think some naughty thoughts about how that small collection of fabric would take residence with Tent in the moments she spent living, not just an everyday garment but also a little reminder that life could be sexy every once in awhile as well.
-
-&quot;I-I&#39;m done,&quot; Tent&#39;s voice comes through the door. &quot;Y-you can come in now...&quot;
-
-You enter the cabin to see a very shy and embarrassed young woman in a white tunic and black pants. The white shirt drapes over her breasts, emphasizing them, before being tucked into her pants. Her pants cling tight to her legs, hiding none of the curves that her dress normally hid.
-
-Your gaze is inexorably drawn to her pelvis, the curves of her pants highlighting and accentuating the tantalizingly empty space.
-
-You&#39;re not a creep, yet you can&#39;t help but gawk. Shame fills your chest.
-
-Tent cried out in indignation, her face reddening as she frantically tries to cover her private area. &quot;What&#39;s wrong?! Is it strange? Did I put it on incorrectly?&quot;
-
-She turns sideways to hide from you, but that only shows off the curves her pants hug. &quot;…It&#39;s wrong for a lady to wear pants after all, isn&#39;t it?&quot; You can see the tips of her ears through her hair, burning red. Her face must be completely flushed. 
-
-You stumble over your words. &quot;It looks good... You look nice, uh, and neat.&quot;
-
-&quot;Oh...&quot; Tent responds, glancing at you. She appears relieved, but her face is still flush. &quot;I can&#39;t believe elves actually wear this stuff...&quot;
-
-[[Continue-&gt;7I-00]]</tw-passagedata><tw-passagedata pid="76" name="7E-11" tags="" position="725,975" size="100,100">Tent returns with an armful of lumber and drops it by the cabin. You greet her warmly as she catches her breath.
-
-&quot;I&#39;m starving!&quot; she cried, grabbing some wood. She quickly started a fire and soon had bear meat roasting.
-
-&quot;That elf is so awesome!&quot; Tent begins. &quot;I saw her talk to some trees and they pulled wood outside of themselves! The elf said the trees have something called &#39;density&#39; that they use to make wood, but it means that we can&#39;t ask them for too much wood...&quot;
-
-Tent was a complete chatterbox while cooking, a symphony that filled the room. You couldn&#39;t keep up with everything she said, but it was comforting. Her chatter distracted you from all your worries.
-
-Your village was burnt down and your family gone. You have a young lady with you, and the only person who can help you is a mysterious woman living in an abandoned tower. Tent&#39;s symphony helped keep up both of your spirits.
-
-You were thankful for her presence.
-
-Tent&#39;s eyes survey the items you put out from the sack on the floor. &quot;What&#39;s this?&quot; She looks at the clothes laid out for her. &quot;A white shirt and pants? I don&#39;t usually wear pants though...&quot;
-
-She grabs the shirt and drapes it over herself, confirming that it fit her properly. Satisfied, she picks up the pants to do the same, only for a small black garment fall out from them.
-
-&quot;What&#39;s this?&quot; Tent muttered. She picked the salacious fabric up and them in front of her, her face turning a deep shade of crimson. 
-
-&quot;Uh, y-you didn&#39;t see this! I-I&#39;m going to change now so go outside!&quot;
-
-You leave the cabin and think some naughty thoughts about how that small collection of fabric would take residence with Tent in the moments she spent living, not just an everyday garment but also a little reminder that life could be sexy every once in awhile as well.
-
-&quot;I-I&#39;m done,&quot; Tent&#39;s voice comes through the door. &quot;Y-you can come in now...&quot;
-
-You enter the cabin to see a very shy and embarrassed young woman in a white tunic and black pants. The white shirt drapes over her breasts, emphasizing them, before being tucked into her pants. Her pants cling tight to her legs, hiding none of the curves that her dress normally hid.
-
-Your gaze is inexorably drawn to her pelvis, the curves of her pants highlighting and accentuating the tantalizingly empty space.
-
-You&#39;re not a creep, yet you can&#39;t help but gawk. Shame fills your chest.
-
-Tent cried out in indignation, her face reddening as she frantically tries to cover her private area. &quot;What&#39;s wrong?! Is it strange? Did I put it on incorrectly?&quot;
-
-She turns sideways to hide from you, but that only shows off the curves her pants hug. &quot;…It&#39;s wrong for a lady to wear pants after all, isn&#39;t it?&quot; You can see the tips of her ears through her hair, burning red. Her face must be completely flushed. 
-
-You stumble over your words. &quot;It looks good... You look nice, uh, and neat.&quot;
-
-&quot;Oh...&quot; Tent responds, glancing at you. She appears relieved, but her face is still flush. &quot;I can&#39;t believe elves actually wear this stuff...&quot;
-
-[[Continue-&gt;7F-11]]</tw-passagedata><tw-passagedata pid="77" name="7F-01" tags="" position="850,975" size="100,100">After your lunch of salted and slightly burnt bear meat, you tell her about the red liquid.
+&lt;&lt;if choice2&gt;&gt;
+[[Continue-&gt;7F]]
+&lt;&lt;else&gt;&gt;
+[[Continue-&gt;7I]]
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="56" name="7F" tags="" position="725,725" size="100,100">After your lunch of salted and slightly burnt bear meat, you tell her about the red liquid.
 
 &quot;Yes, the elf gave us a remedy for your wound.&quot; You display the red liquid and explain its healing properties, having already taken a sip to figure out what it was.
 
@@ -1943,25 +1471,8 @@ Tent furrows her brow, confusion coloring her features as she hesitantly says, &
 
 &quot;Is it?&quot;
 
-[[Persuade her to show you.-&gt;7G-01]]
-[[Believe her.-&gt;7H-01]]</tw-passagedata><tw-passagedata pid="78" name="7F-11" tags="" position="975,975" size="100,100">After your lunch of salted and slightly burnt bear meat, you tell her about the red liquid.
-
-&quot;Yes, the elf gave us a remedy for your wound.&quot; You display the red liquid and explain its healing properties, having already taken a sip to figure out what it was.
-
-&quot;Huh,&quot; Tent murmured, her disinterest. Her gaze drifted across the room, seemingly looking for something more interesting to focus on.
-
-&quot;Have some of this.&quot; You offer her the liquid that will heal her wound.
-
-Tent furrows her brow, confusion coloring her features as she hesitantly says, &quot;Uh, but I&#39;m fine?&quot;
-
-&quot;But if you drink this, your wound will be gone quickly,&quot; you say.
-
-&quot;But, I&#39;m already healed?&quot; She tries to roll up the white sleeve of her new shirt, but it was too tight to roll it up high enough for you to see. Frustrated, Blind tells you, &quot;The cut is gone.&quot;
-
-&quot;Is it?&quot;
-
-[[Persuade her to show you.-&gt;7G-11]]
-[[Believe her.-&gt;7H-11]]</tw-passagedata><tw-passagedata pid="79" name="7G-01" tags="" position="1100,975" size="100,100">&quot;Can you show me your wound again?&quot; You were aware that this might bring up a sore topic, yet you want to check if her injury had fully healed, or if the potion could been effective.
+[[Persuade her to show you.-&gt;7G]]
+[[Believe her.-&gt;7H]]</tw-passagedata><tw-passagedata pid="57" name="7G" tags="" position="850,725" size="100,100">&quot;Can you show me your wound again?&quot; You were aware that this might bring up a sore topic, yet you want to check if her injury had fully healed, or if the potion could been effective.
 
 &quot;No...&quot; Tent muttered, cheeks flushed. She avoided eye contact, making it clear he didn&#39;t want to go any further.
 
@@ -1975,33 +1486,21 @@ You realize how you sounded and regret it instantly. You mentally berate yoursel
 
 Tent lets out a &quot;Hmph!&quot; and ignores you.
 
-[[The Cabin at Night-&gt;7I-01]]</tw-passagedata><tw-passagedata pid="80" name="7G-11" tags="" position="1225,975" size="100,100">&quot;Can you show me your wound again?&quot; You were aware that this might bring up a sore topic, yet you want to check if her injury had fully healed, or if the potion could been effective.
-
-&quot;No...&quot; Tent muttered, cheeks flushed. She avoided eye contact, making it clear he didn&#39;t want to go any further.
-
-&quot;Tent, I&#39;m here to check if you are alright,&quot; you say reassuringly as you move closer and place a gentle hand on her shoulder. She jumps reflexively at the sudden contact.
-
-You gaze into her eyes, a deep brown with a hint of red. She was hesitant and scared, but not completely against showing you the injury.
-
-&quot;You sick pervert! I&#39;m not going to strip down just so you can take a look at my injury! No way am I getting naked for you!&quot;
-
-You realize how you sounded and regret it instantly. You mentally berate yourself for your thoughtlessness. &quot;I&#39;m sorry, I didn&#39;t mean for it to sound like that,&quot; you apologize. &quot;I just want to make sure you&#39;re okay, alright?&quot;
-
-Tent lets out a &quot;Hmph!&quot; and ignores you.
-
-[[Continue-&gt;7I-11]]</tw-passagedata><tw-passagedata pid="81" name="7H-01" tags="" position="100,1100" size="100,100">You choose to believe Tent. Although you hope for her complete recovery, it&#39;s not your decision to make. You apologize for badgering her and return the bottle to the sack.
+&lt;&lt;if choice1&gt;&gt;
+[[Continue-&gt;7I]]
+&lt;&lt;else&gt;&gt;
+[[The Cabin at Night-&gt;7I]]
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="58" name="7H" tags="" position="975,725" size="100,100">You choose to believe Tent. Although you hope for her complete recovery, it&#39;s not your decision to make. You apologize for badgering her and return the bottle to the sack.
 
 &quot;Maybe it&#39;ll come in handy later on?&quot; you say, not certain what else to do.
 
 Tent hums softly in response. She gazes at you for a moment, then looks away. &quot;No, probably not,&quot; she says in a quiet voice. You wait to see if she&#39;ll say more, but she remains silent.
 
-[[The Cabin at Night-&gt;8A-0]]</tw-passagedata><tw-passagedata pid="82" name="7H-11" tags="" position="225,1100" size="100,100">You choose to believe Tent. Although you hope for her complete recovery, it&#39;s not your decision to make. You apologize for badgering her and return the bottle to the sack.
-
-&quot;Maybe it&#39;ll come in handy later on?&quot; you say, not certain what else to do.
-
-Tent hums softly in response. She gazes at you for a moment, then looks away. &quot;No, probably not,&quot; she says in a quiet voice. You wait to see if she&#39;ll say more, but she remains silent.
-
-[[Continue-&gt;7I-11]]</tw-passagedata><tw-passagedata pid="83" name="7I-01" tags="" position="350,1100" size="100,100">The two of you sit together in front of the fire. Tent has her legs crossed, and the tight fabric wrapping around her thighs mesmerizes you.
+&lt;&lt;if choice1&gt;&gt;
+[[Continue-&gt;7I]]
+&lt;&lt;else&gt;&gt;
+[[The Cabin at Night-&gt;8A]]
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="59" name="7I" tags="" position="1100,725" size="100,100">The two of you sit together in front of the fire. Tent has her legs crossed, and the tight fabric wrapping around her thighs mesmerizes you.
 
 Tent gazes at you. &quot;So, there&#39;s something you should know about us, if we&#39;re going to be together for a while.&quot;
 
@@ -2021,113 +1520,15 @@ She&#39;s not wrong. Tent has extraordinary abilities. You&#39;ve seen how well 
 
 But this doesn&#39;t make sense. At the very least, if you were a vampire... &quot;But then how come we both still eat meat, like this bear we had for lunch?&quot;
 
+&lt;&lt;if choice2&gt;&gt;
 &quot;Huh?&quot; Tent&#39;s eyes met yours. Her cheeks flushed before she looked away. &quot;Their blood is disgusting. I don&#39;t want to drink that,&quot; she said. You remembered feeling the same way about all the blood you&#39;ve seen recently, though Tent&#39;s own blood was strangely captivating. &quot;You mentioned the &#39;potion&#39; that the elf gave you, right? That&#39;s probably her blood.&quot;
 
 Oh, delightful. You drank some of that.
 
 &quot;...Maybe we&#39;re not real vampires,&quot; Tent continued, her cheeks reddening further as she realized her new shirt didn&#39;t have a hood like her dress did. &quot;Maybe we&#39;re just half-vampires, and so we can eat meat just fine.”
-
-&quot;So we have some strengths and some weaknesses of vampires?&quot;
-
-&quot;Things like that. I heal quickly and have better vision in the dark.&quot; She could see in the dark? &quot;Look, how long have you been alive?&quot;
-
-You glance at the fire, calculating the passing winters. It&#39;s a difficult number to pinpoint, but you tell Tent that you have likely seen about 530 of them.
-
-&quot;I see...&quot; Tent responds, joining you in looking at the fire. &quot;I&#39;m nearing 360.&quot;
-
-360 years? No wonder you don&#39;t remember playing with Tent growing up. You two were simple in different generations.
-
-&quot;Do you know how long humans live?&quot; Tent asks you. &quot;They start to wither like a tree in their 50s, and then they die before their 85th year.&quot; You stare at her in disbelief, unable to comprehend how humans could be so fragile to die to something as simple as time. It&#39;s simply inconceivable.
-
-Silence descends for a moment before you speak up. &quot;Will we be like this forever?&quot;
-
-Tent remains quiet. She looks scared and uncomfortable, refusing to meet your gaze, but after a while, she tells you, &quot;...we are, probably.&quot;
-
-Your mind is spinning, overwhelmed by many things to make sense of. The elf. Your family. Your village. And now Tent is telling you that you&#39;re a vampire. A half-vampire. Whatever that means.
-
-Tent rises and moves toward the door, taking the clay bowl you crafted with her. &quot;I&#39;m… going to go get some some water.&quot;
-
-As you watch her walk out, her swaying butt captures your attention.
-
-Could it be... that there&#39;s something to this vampire thing? Is your human side drawn to her vampire side?
-
-You spent the rest of the day cleaning yourselves with the elf&#39;s soap, filling any remaining holes in the cabin, having dinner, and confirming that the bearskin can be used as a blanket. It can.
-
-Begin Chapter 8:
-[[The Cabin at Night-&gt;8A-0]]</tw-passagedata><tw-passagedata pid="84" name="7I-11" tags="" position="475,1100" size="100,100">The two of you sit together in front of the fire. Tent has her legs crossed, and the tight fabric wrapping around her thighs mesmerizes you.
-
-Tent gazes at you. &quot;So, there&#39;s something you should know about us, if we&#39;re going to be together for a while.&quot;
-
-&quot;What is it, Tent?&quot; You ask. You can&#39;t imagine what could be so serious.
-
-&quot;We&#39;re...vampires,&quot; Tent says, looking at you worriedly. You&#39;re taken aback. &quot;...at least the very least, half vampires.&quot;
-
-Vampires. You&#39;ve heard about them before. They are creatures of the night who suck the blood of people that they&#39;ve enthralled. They don&#39;t eat, they don&#39;t age, they have incredible strength and agility, the winds of magic favor them, they live forever, they heal fast, and most humans become irresistibly attracted to them.
-
-However, they have their limits. Sunlight burns them, they cannot cross running water, and they cannot enter homes uninvited.
-
-&quot;So,” you ask her, “What does that mean?&quot; 
-
-Tent stares at the ground. &quot;Well, I didn&#39;t realize to before, but... you&#39;ve been watching me carefully, haven&#39;t you? I&#39;ve been... aware of you as well.&quot;
-
-She&#39;s not wrong. Tent has extraordinary abilities. You&#39;ve seen how well she can navigate the forest. Her incredible jumping, fast healing, and ability to fight goblins make her strong. You also know that she shares your vulnerability to the sun, which is why she wore hooded dress all the time.
-
-But this doesn&#39;t make sense. At the very least, if you were a vampire... &quot;But then how come we both still eat meat, like this bear we had for lunch?&quot;
-
-&quot;Huh?&quot; Tent&#39;s eyes met yours. Her cheeks flushed before she looked away. &quot;Their blood is disgusting. I don&#39;t want to drink that,&quot; she said. You remembered feeling the same way about all the blood you&#39;ve seen recently, though Tent&#39;s own blood was strangely captivating. &quot;You mentioned the &#39;potion&#39; that the elf gave you, right? That&#39;s probably her blood.&quot;
-
-Oh, delightful. You drank some of that.
-
-&quot;...Maybe we&#39;re not real vampires,&quot; Tent continued, her cheeks reddening further as she realized her new shirt didn&#39;t have a hood like her dress did. &quot;Maybe we&#39;re just half-vampires, and so we can eat meat just fine.”
-
-&quot;So we have some strengths and some weaknesses of vampires?&quot;
-
-&quot;Things like that. I heal quickly and have better vision in the dark.&quot; She could see in the dark? &quot;Look, how long have you been alive?&quot;
-
-You glance at the fire, calculating the passing winters. It&#39;s a difficult number to pinpoint, but you tell Tent that you have likely seen about 530 of them.
-
-&quot;I see...&quot; Tent responds, joining you in looking at the fire. &quot;I&#39;m nearing 360.&quot;
-
-360 years? No wonder you don&#39;t remember playing with Tent growing up. You two were simple in different generations.
-
-&quot;Do you know how long humans live?&quot; Tent asks you. &quot;They start to wither like a tree in their 50s, and then they die before their 85th year.&quot; You stare at her in disbelief, unable to comprehend how humans could be so fragile to die to something as simple as time. It&#39;s simply inconceivable.
-
-Silence descends for a moment before you speak up. &quot;Will we be like this forever?&quot;
-
-Tent remains quiet. She looks scared and uncomfortable, refusing to meet your gaze, but after a while, she tells you, &quot;...we are, probably.&quot;
-
-Your mind is spinning, overwhelmed by many things to make sense of. The elf. Your family. Your village. And now Tent is telling you that you&#39;re a vampire. A half-vampire. Whatever that means.
-
-Tent rises and moves toward the door, taking the clay bowl you crafted with her. &quot;I&#39;m… going to go get some some water.&quot;
-
-As you watch her walk out, her swaying butt captures your attention.
-
-Could it be... that there&#39;s something to this vampire thing? Is your human side drawn to her vampire side?
-
-You spent the rest of the day cleaning yourselves with the elf&#39;s soap, filling any remaining holes in the cabin, having dinner, and confirming that the bearskin can be used as a blanket. It can.
-
-Begin Chapter 8:
-[[The Cabin at Night-&gt;8A-0]]</tw-passagedata><tw-passagedata pid="85" name="7I-00" tags="" position="600,1100" size="100,100">The two of you sit together in front of the fire. Tent has her legs crossed, and the tight fabric wrapping around her thighs mesmerizes you.
-
-Tent gazes at you. &quot;So, there&#39;s something you should know about us, if we&#39;re going to be together for a while.&quot;
-
-&quot;What is it, Tent?&quot; You ask. You can&#39;t imagine what could be so serious.
-
-&quot;We&#39;re...vampires,&quot; Tent says, looking at you worriedly. You&#39;re taken aback. &quot;...at least the very least, half vampires.&quot;
-
-Vampires. You&#39;ve heard about them before. They are creatures of the night who suck the blood of people that they&#39;ve enthralled. They don&#39;t eat, they don&#39;t age, they have incredible strength and agility, the winds of magic favor them, they live forever, they heal fast, and most humans become irresistibly attracted to them.
-
-However, they have their limits. Sunlight burns them, they cannot cross running water, and they cannot enter homes uninvited.
-
-&quot;So,” you ask her, “What does that mean?&quot; 
-
-Tent stares at the ground. &quot;Well, I didn&#39;t realize to before, but... you&#39;ve been watching me carefully, haven&#39;t you? I&#39;ve been... aware of you as well.&quot;
-
-She&#39;s not wrong. Tent has extraordinary abilities. You&#39;ve seen how well she can navigate the forest. Her incredible jumping, fast healing, and ability to fight goblins make her strong. You also know that she shares your vulnerability to the sun, which is why she wore hooded dress all the time.
-
-But this doesn&#39;t make sense. At the very least, if you were a vampire... &quot;But then how come we both still eat meat, like this bear we had for lunch?&quot;
-
+&lt;&lt;else&gt;&gt;
 &quot;Huh?&quot; Tent&#39;s eyes met yours. Her cheeks flushed before she looked away. &quot;Their blood is disgusting. I don&#39;t want to drink that,&quot; she said. You remembered feeling the same way about all the blood you&#39;ve seen recently, though Tent&#39;s own blood was strangely captivating. &quot;Maybe we&#39;re not real vampires,&quot; Tent continued, her cheeks reddening further as she realized her new shirt didn&#39;t have a hood like her dress did. &quot;Maybe we&#39;re just half-vampires, and so we can eat meat just fine.”
+&lt;&lt;/if&gt;&gt;
 
 &quot;So we have some strengths and some weaknesses of vampires?&quot;
 
@@ -2156,60 +1557,15 @@ Could it be... that there&#39;s something to this vampire thing? Is your human s
 You spent the rest of the day cleaning yourselves with the elf&#39;s soap, filling any remaining holes in the cabin, having dinner, and confirming that the bearskin can be used as a blanket. It can.
 
 Begin Chapter 8:
-[[The Cabin at Night-&gt;8A-0]]</tw-passagedata><tw-passagedata pid="86" name="7I-10" tags="" position="725,1100" size="100,100">The two of you sit together in front of the fire. Tent has her legs crossed, and the tight fabric wrapping around her thighs mesmerizes you.
-
-Tent gazes at you. &quot;So, there&#39;s something you should know about us, if we&#39;re going to be together for a while.&quot;
-
-&quot;What is it, Tent?&quot; You ask. You can&#39;t imagine what could be so serious.
-
-&quot;We&#39;re...vampires,&quot; Tent says, looking at you worriedly. You&#39;re taken aback. &quot;...at least the very least, half vampires.&quot;
-
-Vampires. You&#39;ve heard about them before. They are creatures of the night who suck the blood of people that they&#39;ve enthralled. They don&#39;t eat, they don&#39;t age, they have incredible strength and agility, the winds of magic favor them, they live forever, they heal fast, and most humans become irresistibly attracted to them.
-
-However, they have their limits. Sunlight burns them, they cannot cross running water, and they cannot enter homes uninvited.
-
-&quot;So,” you ask her, “What does that mean?&quot; 
-
-Tent stares at the ground. &quot;Well, I didn&#39;t realize to before, but... you&#39;ve been watching me carefully, haven&#39;t you? I&#39;ve been... aware of you as well.&quot;
-
-She&#39;s not wrong. Tent has extraordinary abilities. You&#39;ve seen how well she can navigate the forest. Her incredible jumping, fast healing, and ability to fight goblins make her strong. You also know that she shares your vulnerability to the sun, which is why she wore hooded dress all the time.
-
-But this doesn&#39;t make sense. At the very least, if you were a vampire... &quot;But then how come we both still eat meat, like this bear we had for lunch?&quot;
-
-&quot;Huh?&quot; Tent&#39;s eyes met yours. Her cheeks flushed before she looked away. &quot;Their blood is disgusting. I don&#39;t want to drink that,&quot; she said. You remembered feeling the same way about all the blood you&#39;ve seen recently, though Tent&#39;s own blood was strangely captivating. &quot;Maybe we&#39;re not real vampires,&quot; Tent continued, her cheeks reddening further as she realized her new shirt didn&#39;t have a hood like her dress did. &quot;Maybe we&#39;re just half-vampires, and so we can eat meat just fine.”
-
-&quot;So we have some strengths and some weaknesses of vampires?&quot;
-
-&quot;Things like that. I heal quickly and have better vision in the dark.&quot; She could see in the dark? &quot;Look, how long have you been alive?&quot;
-
-You glance at the fire, calculating the passing winters. It&#39;s a difficult number to pinpoint, but you tell Tent that you have likely seen about 530 of them.
-
-&quot;I see...&quot; Tent responds, joining you in looking at the fire. &quot;I&#39;m nearing 360.&quot;
-
-360 years? No wonder you don&#39;t remember playing with Tent growing up. You two were simple in different generations.
-
-&quot;Do you know how long humans live?&quot; Tent asks you. &quot;They start to wither like a tree in their 50s, and then they die before their 85th year.&quot; You stare at her in disbelief, unable to comprehend how humans could be so fragile to die to something as simple as time. It&#39;s simply inconceivable.
-
-Silence descends for a moment before you speak up. &quot;Will we be like this forever?&quot;
-
-Tent remains quiet. She looks scared and uncomfortable, refusing to meet your gaze, but after a while, she tells you, &quot;...we are, probably.&quot;
-
-Your mind is spinning, overwhelmed by many things to make sense of. The elf. Your family. Your village. And now Tent is telling you that you&#39;re a vampire. A half-vampire. Whatever that means.
-
-Tent rises and moves toward the door, taking the clay bowl you crafted with her. &quot;I&#39;m… going to go get some some water.&quot;
-
-As you watch her walk out, her swaying butt captures your attention.
-
-Could it be... that there&#39;s something to this vampire thing? Is your human side drawn to her vampire side?
-
-You spent the rest of the day cleaning yourselves with the elf&#39;s soap, filling any remaining holes in the cabin, having dinner, and confirming that the bearskin can be used as a blanket. It can.
-
-Begin Chapter 8:
-[[The Cabin at Night-&gt;8A-1]]</tw-passagedata><tw-passagedata pid="87" name="8A-0" tags="" position="850,1100" size="100,100">You and Tent are in a cabin. It&#39;s dark and freezing outside, but the bearskin is warm enough to use as a blanket, and the fire in the chimney crackles.
+[[The Cabin at Night-&gt;8A]]</tw-passagedata><tw-passagedata pid="60" name="8A" tags="" position="1225,725" size="100,100">You and Tent are in a cabin. It&#39;s dark and freezing outside, but the bearskin is warm enough to use as a blanket, and the fire in the chimney crackles.
 
 You both can&#39;t take the bearskin, so if you want warmth you&#39;ll have to sleep together. With no other choice, you suggest to Tent, &quot;Should we… snuggle together for warmth?&quot;
 
 A soft sound escaped her lips as she took in the sight of you. Her eyes moved slowly over your body, almost as if they were memorizing every contour and curve. You returned the gaze, tracing her curves that were encased by a white long sleeved shirt and black pants that hugged her alluring figure.
+
+&lt;&lt;if choice1&gt;&gt;
+It&#39;s not too different from the previous nights. There&#39;s a bearskin blanket, a fire, and more clothing now... and yet you know it would be warmer if you two slept together.
+&lt;&lt;/if&gt;&gt;
 
 In truth, it was freezing outside. You both knew that if you were to spend the night away from each other, one of you would be forced to endure a night of discomfort and cold on the hard floor. Likely you. Your intentions were pure and honorable. Definitely.
 
@@ -2217,10 +1573,14 @@ It&#39;s undisputed that vampires are irresistible to humans, especially given h
 
 As is Tent.
 
+&lt;&lt;if choice1&gt;&gt;
 But it&#39;s different from the previous nights. Your fire is warm, and you have a bearskin blanket. There&#39;s no need to sleep together. There&#39;s no need for your attraction to each other to take control.
+&lt;&lt;else&gt;&gt;
+Tent&#39;s defenses break down in your presence and she slowly moves closer to you, eventually sitting on the bed with her knees pulled up to her chest. She is a shy but spirited young woman, trembling from the chill of the room, sitting right beside you.
+&lt;&lt;/if&gt;&gt;
 
 [[Engage with with Tent.-&gt;8B]]
-[[Resolve yourself to sleeping alone.-&gt;8A-Ending]]</tw-passagedata><tw-passagedata pid="88" name="8A-Ending" tags="" position="975,1100" size="100,100">You decide not to get too caught up with the situation. Taking a deep breath, you sit next to her and drape the bearskin blanket over her shoulders. Its comforting embrace will ward off the cold as the pleasant crackle of wood burning fills the air.
+[[Resolve yourself to sleeping alone.-&gt;8A-Ending]]</tw-passagedata><tw-passagedata pid="61" name="8A-Ending" tags="" position="100,850" size="100,100">You decide not to get too caught up with the situation. Taking a deep breath, you sit next to her and drape the bearskin blanket over her shoulders. Its comforting embrace will ward off the cold as the pleasant crackle of wood burning fills the air.
 
 Taking a deep breath, you focus on calming your mind and heart of any negative thoughts. There&#39;s no place for them here.
 
@@ -2236,24 +1596,7 @@ And with that, you give the bearskin blanket to Blind and bid her a good night, 
 As you open your eyes in the morning, the heavy bearskin weighed down on your chest. Sitting up made you a little dizzy as you glanced over to see Tent sleeping peacefully on the mattress.
 
 Thank you for enjoying my story!
-Read the [[Author&#39;s Note]].</tw-passagedata><tw-passagedata pid="89" name="8A-1" tags="" position="1100,1100" size="100,100">You and Tent are in a cabin. It&#39;s dark and freezing outside, but the bearskin is warm enough to use as a blanket, and the fire in the chimney crackles.
-
-You both can&#39;t take the bearskin, so if you want warmth you&#39;ll have to sleep together. With no other choice, you suggest to Tent, &quot;Should we… snuggle together for warmth?&quot;
-
-A soft sound escaped her lips as she took in the sight of you. Her eyes moved slowly over your body, almost as if they were memorizing every contour and curve. You returned the gaze, tracing her curves that were encased by a white long sleeved shirt and black pants that hugged her alluring figure.
-
-It&#39;s not too different from the previous nights. There&#39;s a bearskin blanket, a fire, and more clothing now... and yet you know it would be warmer if you two slept together.
-
-In truth, it was freezing outside. You both knew that if you were to spend the night away from each other, one of you would be forced to endure a night of discomfort and cold on the hard floor. Likely you. Your intentions were pure and honorable. Definitely.
-
-It&#39;s undisputed that vampires are irresistible to humans, especially given how close you and Tent have been recently. You&#39;re both a human and a vampire, yet not fully one or the other - making you both an especially tantalizing prey and predator.
-
-As is Tent.
-
-Tent&#39;s defenses break down in your presence and she slowly moves closer to you, eventually sitting on the bed with her knees pulled up to her chest. She is a shy but spirited young woman, trembling from the chill of the room, sitting right beside you.
-
-[[Engage with with Tent.-&gt;8B]]
-[[Resolve yourself to sleeping alone.-&gt;8A-Ending]]</tw-passagedata><tw-passagedata pid="90" name="8B" tags="" position="1225,1100" size="100,100">You sit down next to Tent.
+Read the [[Author&#39;s Note]].</tw-passagedata><tw-passagedata pid="62" name="8B" tags="" position="225,850" size="100,100">You sit down next to Tent.
 
 Soon, you feel her chilled shoulder pressing against your chest. You adjust yourself to support her more and take in the sweet scent of her hair. It smells like sunshine... or at least something nice.
 
@@ -2291,7 +1634,7 @@ That was my first kiss! It was awful, so do it better this time!&quot; she murmu
 
 [[Let Tent kiss you at her own pace.-&gt;8C]]
 [[Guide Tent along the steps to adulthood.-&gt;8D]]
-[[Stop this here.-&gt;8A-Ending]]</tw-passagedata><tw-passagedata pid="91" name="8C" tags="" position="100,1225" size="100,100">You allow Tent to kiss you at her own pace. You lay back, gazing up as her glossy brown hair frames your face.
+[[Stop this here.-&gt;8A-Ending]]</tw-passagedata><tw-passagedata pid="63" name="8C" tags="" position="350,850" size="100,100">You allow Tent to kiss you at her own pace. You lay back, gazing up as her glossy brown hair frames your face.
 
 Tent kisses you fervently, her small body doing its best. The sheer force of her kisses is overwhelming, and it&#39;s clear that subtlety and finesse are not her strengths. You consider breaking up the kiss to make it more enjoyable.
 
@@ -2336,7 +1679,7 @@ She slowly and deliberately slides off her clothes, pausing for a moment to feel
 She blushes and coyly covers her petite breasts with her arms. &quot;What next? Are you going to take off your clothes too?&quot;
 
 [[Goad her.-&gt;8F]]
-[[Stop.-&gt;8A-Ending]]</tw-passagedata><tw-passagedata pid="92" name="8D" tags="" position="225,1225" size="100,100">You grasp Tent gently at the hips, pulling her close and placing her atop you. &quot;Come here,&quot; you murmur softly to her. Your hands slide slowly up and down her back, caressing her in a loving embrace. 
+[[Stop.-&gt;8A-Ending]]</tw-passagedata><tw-passagedata pid="64" name="8D" tags="" position="475,850" size="100,100">You grasp Tent gently at the hips, pulling her close and placing her atop you. &quot;Come here,&quot; you murmur softly to her. Your hands slide slowly up and down her back, caressing her in a loving embrace. 
 
 She leans forward on your chest, her body radiating warmth and desire. &quot;Sorry,&quot; she breathes, a shy smile playing on her lips as she glances around. &quot;I&#39;ve never done this before.&quot; You can feel the excitement coursing through her veins, the anticipation of something new and thrilling.
 
@@ -2387,7 +1730,7 @@ She slowly and deliberately slides off her clothes, pausing for a moment to feel
 She blushes and coyly covers her petite breasts with her arms. &quot;What next? Are you going to take off your clothes too?&quot;
 
 [[Goad her.-&gt;8F]]
-[[Stop.-&gt;8A-Ending]]</tw-passagedata><tw-passagedata pid="93" name="8F" tags="" position="350,1225" size="100,100">Tent takes a deep breath before reaching over your waist to tug down on your pants, sending a wave of pleasure coursing through your body with each inch that she pulls. You can hear her breathing getting heavier, the anticipation building as she brings them lower and lower. Finally, Tent looks up at you with her mouth half open, a sultry expression in her eyes as she takes in the sight of your hard erection.
+[[Stop.-&gt;8A-Ending]]</tw-passagedata><tw-passagedata pid="65" name="8F" tags="" position="600,850" size="100,100">Tent takes a deep breath before reaching over your waist to tug down on your pants, sending a wave of pleasure coursing through your body with each inch that she pulls. You can hear her breathing getting heavier, the anticipation building as she brings them lower and lower. Finally, Tent looks up at you with her mouth half open, a sultry expression in her eyes as she takes in the sight of your hard erection.
 
 She inches closer, her eyelashes fluttering as she blinks. In a quiet voice, she uttered &quot;Y-you pervert!&quot; as her eyes settled on your penis. &quot;So... this is the thing that has been rubbing against me all this time?&quot;
 
@@ -2422,7 +1765,7 @@ Tent trembles atop you, the sensations becoming unbearable. Her legs wrap tightl
 Tent slides her body upwards, the soft sensation of her breasts pushing against your chest. She angles her face up, kissing your neck at her own pace as you rub her back. The feeling of her breath against your neck fills you with desire. Tent&#39;s lips tease all over your neck, sending shivers down your spine.
 
 [[Let her bite you.-&gt;8G]]
-[[Don&#39;t let her bite you.-&gt;8H]]</tw-passagedata><tw-passagedata pid="94" name="8G" tags="" position="475,1225" size="100,100">Tent bites into your neck, you feel two piercing pains that send pleasure coursing through you. You both moan as she sucks your blood.
+[[Don&#39;t let her bite you.-&gt;8H]]</tw-passagedata><tw-passagedata pid="66" name="8G" tags="" position="725,850" size="100,100">Tent bites into your neck, you feel two piercing pains that send pleasure coursing through you. You both moan as she sucks your blood.
 Her warm body writhes in your arms, her hips moving up and down in time with the sucking motions of her mouth. The feeling of your skin pressed tightly against hers sends a shiver down your spine. She feels your body heat radiating off of yours, and you can feel the sweat beginning to bead up on both of your bodies. You run your hands across her back and around her butt, squeezing her ass cheeks together before moving to her breasts, caressing them softly.
 
 Your hands cup Tent&#39;s face, holding it still while she drinks from you, your eyes locked on hers. She looks so beautiful as she does this. The sensation of your blood leaving your body is something that you have never experienced before, but you don&#39;t care. You can&#39;t believe how amazing it feels.
@@ -2451,7 +1794,7 @@ You&#39;ll have to pay her back for sucking your blood tomorrow.
 
 &lt;hr&gt;
 Thank you for enjoying my story!
-Read the [[Author&#39;s Note]].</tw-passagedata><tw-passagedata pid="95" name="8H" tags="" position="600,1225" size="100,100">You shake your neck and Tent backs off. Her cheeks are a deep crimson as she tilts her head and inquires, &quot;Is it... really okay? To do something like this?&quot; Her breasts press against your chest, her nipples teasingly flicking over you as she continues to grind against you. 
+Read the [[Author&#39;s Note]].</tw-passagedata><tw-passagedata pid="67" name="8H" tags="" position="850,850" size="100,100">You shake your neck and Tent backs off. Her cheeks are a deep crimson as she tilts her head and inquires, &quot;Is it... really okay? To do something like this?&quot; Her breasts press against your chest, her nipples teasingly flicking over you as she continues to grind against you. 
 
 You gently shake her ass as you look her in the eyes. &quot;Everything is going to be alright.&quot;
 
@@ -2495,7 +1838,7 @@ Read the [[Author&#39;s Note]].</tw-passagedata></tw-storydata>
     <script id="script-primitive" type="text/javascript">
         /*! Primitive JS */
         if (document.documentElement.getAttribute("data-init") === "loading") {
-            !function(window,document,undefined){"use strict";var version=Object.freeze({title:"Primitive",major:0,minor:1,patch:0,prerelease:null,build:956,date:new Date("2024-02-12T04:26:07.261Z"),toString(){const prerelease=this.prerelease?`-${this.prerelease}`:"";return`${this.major}.${this.minor}.${this.patch}${prerelease}+${this.build}`},short(){const prerelease=this.prerelease?`-${this.prerelease}`:"";return`${this.title} (v${this.major}.${this.minor}.${this.patch}${prerelease})`},long(){return`${this.title} v${this.toString()} (${this.date.toUTCString()})`}}),Parser=(()=>{var _passages=document.getElementsByTagName("tw-passagedata"),_shuffledIndices=[],_frontIndices=[],_frontMatterPassages={},_backIndices=[],_backMatterPassages={},_hiddenTagNames=["hidden","note","notes"],warningsList=[],errorsList=[],epubcss="",htmlcss="",_configuration={"link-affixes":{"":"(turn to %n)","#":"%n"},"direct-to-epub":!1,"direct-to-html":!1,"enable-hyperlinks":!0},title=document.getElementsByTagName("title")[0].innerText;for(let i=0;i<_passages.length;i++){let _displayPassage=!0,_shufflePassage=!0,_tags=_passages[i].getAttribute("tags").split(" "),_passageTitle=_passages[i].getAttribute("name"),_errored=!1;if("storytitle"===_passageTitle.toLowerCase()&&(title=_passages[i].innerHTML,_displayPassage=!1,_shufflePassage=!1,_errored=!0),"storydata"===_passageTitle.toLowerCase()&&(_displayPassage=!1,_shufflePassage=!1,_errored=!0),"storyconfig"===_passageTitle.toLowerCase()){_displayPassage=!1,_shufflePassage=!1;let _user_config=JSON.parse(_passages[i].innerHTML);_configuration=mergeDeep(_configuration,_user_config),_errored=!0}if("cover"===_passageTitle.toLowerCase()&&(_displayPassage=!1,_shufflePassage=!1,errorsList.push(`Passage Name \`:: ${_passageTitle}\` is currently reserved for a future version of Primitive. This passage has not been processed.`),_errored=!0),"epubstyle"===_passageTitle.toLowerCase()&&(epubcss=_passages[i].innerHTML,_displayPassage=!1,_shufflePassage=!1,_errored=!0),"htmlstyle"===_passageTitle.toLowerCase()&&(htmlcss=_passages[i].innerHTML,_displayPassage=!1,_shufflePassage=!1,_errored=!0),!_errored){if(_displayPassage)for(let t=0;t<_tags.length;t++){if(_tags[t].includes("frontmatter")){let number=parseInt(_tags[t].split("_")[1]);isNaN(number)?warningsList.push(`Passage \`:: ${_passageTitle}\` is using the 'frontmatter' Special Tag with an invalid number. Correct format is \`:: ${_passageTitle} [frontmatter_42]\`, where '42' can be replaced with any integer. \n Processing the Passage as a normal passage.`):_frontMatterPassages.hasOwnProperty(number)?warningsList.push(`The Special Tag 'frontmatter_${number}' is used multiple times. Some _passages with this numbered Special Tag will be shuffled with the rest of the _passages.`):(_frontMatterPassages[number]=_passages[i],_passages[i].setAttribute("data-placement","front-matter"),_shufflePassage=!1)}if(_tags[t].includes("backmatter")){let number=parseInt(_tags[t].split("_")[1]);isNaN(number)?warningsList.push(`Passage \`:: ${_passageTitle}\` is using the 'backmatter' Special Tag with an invalid number. Correct format is \`:: ${_passageTitle} [backmatter_42]\`, where '42' can be replaced with any integer. \n Processing the Passage as a normal passage.`):_backMatterPassages.hasOwnProperty(number)?warningsList.push(`The Special Tag 'backmatter_${number}' is used multiple times. Some _passages with this numbered Special Tag will be shuffled with the rest of the _passages.`):(_backMatterPassages[number]=_passages[i],_passages[i].setAttribute("data-placement","back-matter"),_shufflePassage=!1)}_hiddenTagNames.some((tag=>_tags[t].includes(tag)))&&(_displayPassage=!1,_shufflePassage=!1)}_errored||("start"===_passageTitle.toLowerCase()&&(_shufflePassage=!1),_displayPassage&&_shufflePassage&&(_passages[i].setAttribute("data-placement","body-matter"),_shuffledIndices.push(_passages[i])))}}let frontkeys=Object.keys(_frontMatterPassages).sort();for(let key in frontkeys)_frontIndices.push(_frontMatterPassages[frontkeys[key]]);!function(array){let randomIndex,currentIndex=array.length;for(;currentIndex>0;)randomIndex=Math.floor(Math.random()*currentIndex),currentIndex--,[array[currentIndex],array[randomIndex]]=[array[randomIndex],array[currentIndex]]}(_shuffledIndices);let backkeys=Object.keys(_backMatterPassages).sort();for(let key in backkeys)_backIndices.push(_backMatterPassages[backkeys[key]]);let _orderedpassages=[].concat.apply([],[_frontIndices,_shuffledIndices,_backIndices]);function mergeDeep(...objects){const isObject=obj=>obj&&"object"==typeof obj;return objects.reduce(((prev,obj)=>(Object.keys(obj).forEach((key=>{const pVal=prev[key],oVal=obj[key];Array.isArray(pVal)&&Array.isArray(oVal)?prev[key]=pVal.concat(...oVal):isObject(pVal)&&isObject(oVal)?prev[key]=mergeDeep(pVal,oVal):prev[key]=oVal})),prev)),{})}return Object.freeze(Object.defineProperties({},{passages:{value:function(){let passages=[];for(let i in _orderedpassages)passages.push(_orderedpassages[i].cloneNode(!0));return passages}()},errors:{value:errorsList},warnings:{value:warningsList},htmlcss:{value:htmlcss},epubcss:{value:epubcss},config:{value:structuredClone(_configuration)},title:{value:title}}))})(),Outputter=(()=>{function _createHTML(){let html=document.createElement("html"),head=document.createElement("head");html.appendChild(head);let meta_charset=document.createElement("meta");meta_charset.setAttribute("charset","UTF-8");let title=document.createElement("title");title.innerText=Parser.title;let meta_viewport=document.createElement("meta");meta_viewport.setAttribute("name","viewport"),meta_viewport.setAttribute("content","width=device-width,initial-scale=1");let primitive_style=document.createElement("style");primitive_style.setAttribute("id","primitive_style"),primitive_style.innerHTML="*{--headerfooterpadding:0.3rem;font-size:2.6vh;color:#111111}html{background-color:#F5F3E9}tw-passagedata{max-width:60vw;display:block;margin:auto}#wrapper{display:flex;flex-direction:column;height:100vh;width:100%}#output{display:flex;flex:1;flex-direction:column;margin:1rem}#error-notices,#warning-notices{display:flex;flex:0}#warning-notices{background-color:yellow}#error-notices{background-color:lightcoral}#error-notices:empty,#warning-notices:empty{display:none}#primitive-footer,#primitive-header{display:flex;flex:0;flex-direction:column;align-items:flex-start;background-color:#3f2a14;padding:0.3rem 1rem}#primitive-title{color:#eeeeee;font-size:1.5rem}#primitive-version-number{color:#eeeeee}";let custom_style=document.createElement("style");custom_style.setAttribute("id","primitive-custom-css"),custom_style.innerHTML=Parser.htmlcss;let license=document.createElement("license");license.setAttribute("style","display: none;"),license.innerText=`Created with Primitive Version ${version.long()}.`,head.append(meta_charset,title,meta_viewport,primitive_style,custom_style,license);let body=document.createElement("body");html.appendChild(body);for(let i in Processer.passages("html"))body.appendChild(Processer.passages("html")[i]);return html}function _waitForElm(selector){return new Promise((resolve=>{if(document.querySelector(selector))return resolve(document.querySelector(selector));const observer=new MutationObserver((mutations=>{document.querySelector(selector)&&(observer.disconnect(),resolve(document.querySelector(selector)))}));observer.observe(document.body,{childList:!0,subtree:!0})}))}function modifyEPUB(epubZipContent,epubTitle){let css_content,jszip=new Jszip310,cssfilename=`${epubTitle.split(".epub")[0]}.css`;jszip.loadAsync(epubZipContent).then((zip=>{zip.folder("EPUB").file(cssfilename).async("string").then((content=>{css_content=content,zip.folder("EPUB").file(cssfilename,Parser.epubcss),zip.generateAsync({type:"blob",mimeType:"application/epub+zip",compression:"DEFLATE",compressionOptions:{level:9}}).then((function(blob){saveAs(blob,epubTitle)}))}))}))}return Object.freeze(Object.defineProperties({},{put_errors:{value:function(){_waitForElm("#error-notices").then((elm=>{if(Parser.errors.length>0){console.error(Parser.errors);for(let error in Parser.errors){let child=document.createElement("div");child.innterHTML=`${Parser.errors[error]}`,elm.appendChild(child)}}}))}},put_warnings:{value:function(){_waitForElm("#warning-notices").then((elm=>{if(Parser.warnings.length>0){console.warn(Parser.warnings);for(let warning in Parser.warnings){let child=document.createElement("div");child.innerHTML=`Warning:<br> ${Parser.warnings[warning]}`,elm.appendChild(child)}}}))}},put_test_html:{value:function(){_waitForElm("#output").then((elm=>{elm.innerHTML="",elm.appendChild(_createHTML())}))}},export_html:{value:function(){let html=_createHTML(),blob=new Blob([html.outerHTML],{type:"text/html"}),url=URL.createObjectURL(blob);saveAs(url,`${Parser.title}.html`)}},export_epub:{value:function(){let passages=Processer.passages("epub"),epub=(new EpubMaker).withTemplate("idpf-wasteland").withTitle("Primitive Test");for(let i in passages){let section;section=["front-matter","back-matter"].includes(passages[i].getAttribute("data-placement"))?{content:passages[i].innerHTML,title:passages[i].getAttribute("id")}:{content:passages[i].innerHTML,title:`Passage ${passages[i].getAttribute("id")}`},epub.withSection(new EpubMaker.Section("bodymatter",passages[i].getAttribute("id"),section,!0,!1))}epub.downloadEpub(modifyEPUB)}}}))})(),Processer=(()=>{let _passages=Parser.passages,_linkerindex=["ErrorPassage"],_shuffledIndex=1;for(let i in _passages)["front-matter","back-matter"].includes(_passages[i].getAttribute("data-placement"))?_passages[i].setAttribute("id",_passages[i].getAttribute("name")):"body-matter"===_passages[i].getAttribute("data-placement")&&(_passages[i].setAttribute("id",_shuffledIndex),_linkerindex.push(_passages[i].getAttribute("name")),_shuffledIndex++);let converter=new showdown.Converter;converter.setOption("simpleLineBreaks",!0),converter.setOption("openLinksInNewWindow",!0),converter.setOption("noHeaderId",!0),converter.setOption("prefixHeaderId","custom-"),converter.setOption("requireSpaceBeforeHeadingText",!0);for(let i in _passages){let regex,_innerHTML=_passages[i].innerHTML;regex=/(?<!:)\/\/.*/g,_innerHTML=_innerHTML.replace(regex,""),regex=/##.*/g,_innerHTML=_innerHTML.replace(regex,""),regex=/\/\*[\S\s]*?\*\//g,_innerHTML=_innerHTML.replace(regex,""),regex=/&lt;!--[\S\s]*?--&gt;/g,_innerHTML=_innerHTML.replace(regex,""),_innerHTML=converter.makeHtml(_innerHTML),regex=/\[\[(.*?)\]\]/g;let match,links={},outboundLinkHREF=[];do{match=regex.exec(_innerHTML),match&&(links[match[0]]=_convertLink(match[0]))}while(match);for(let link in links)_innerHTML=_innerHTML.replace(link,links[link].outerHTML),outboundLinkHREF.push(links[link].outerHTML.substring(links[link].outerHTML.indexOf('"#')+2,links[link].outerHTML.lastIndexOf('"')).replace("[[","").replace("]]",""));_passages[i].innerHTML=_innerHTML,_passages[i].outboundLinkHREF=outboundLinkHREF}!function(passages){for(let passage of passages){passage.outboundOrigPID=[];for(let outbound of passage.outboundLinkHREF){if(_linkerindex[outbound]){passage.outboundOrigPID.push(_linkerindex[outbound]);continue}let isFound=!1;for(let otherpassage of passages)outbound===otherpassage.attributes.name.value&&(passage.outboundOrigPID.push(otherpassage.attributes.pid.value),isFound=!0);isFound||console.warn(`Outbound ${outbound} was not found as a passage name or a PID.`)}}console.log(passages)}(_passages),console.log(function(passages){let connections=[];for(let passage in passages){let psg=passages[passage];if(psg.outboundOrigPID.length<=0)continue;if("body-matter"!==psg.attributes["data-placement"].value)continue;let current=psg.attributes.name.value.replace(/\s/g,"");psg.outboundOrigPID.forEach((PID=>{let connect_str=`${current} --\x3e ${PID}`;connections.includes(connect_str)||connections.push(connect_str)}))}let collator=new Intl.Collator(undefined,{numeric:!0,sensitivity:"base"});return connections=connections.sort(collator.compare),connections.unshift("flowchart LR"),connections.join("\n")}(_passages));let _htmlpassages=[];for(let i in _passages)_htmlpassages.push(_passages[i].cloneNode(!0));let _processedhtmlpassages=[],_shuffledHTMLIndex=1;for(let i in _htmlpassages){let h2=document.createElement("h2");["front-matter","back-matter"].includes(_htmlpassages[i].getAttribute("data-placement"))?(h2.innerText=_htmlpassages[i].getAttribute("name"),_htmlpassages[i].prepend(h2)):"body-matter"===_htmlpassages[i].getAttribute("data-placement")&&(h2.innerText=`Passage ${_shuffledHTMLIndex}`,_htmlpassages[i].prepend(h2),_shuffledHTMLIndex++),_processedhtmlpassages.push(_htmlpassages[i])}let _epubpassages=[];for(let i in _passages)_epubpassages.push(_passages[i].cloneNode(!0));let _processedepubpassages=_epubpassages;function _convertLink(link){function _createLink(text,href){let a_elm;Parser.config["enable-hyperlinks"]?(a_elm=document.createElement("a"),_linkerindex.indexOf(href)>0?(href=_linkerindex.indexOf(href),a_elm.setAttribute("href",`#${href}`)):a_elm.setAttribute("href",`#${href}`)):a_elm=document.createElement("span");for(let affix in Parser.config["link-affixes"])if(text===affix)return Parser.config["link-affixes"][affix].includes("%n")?(a_elm.innerText=Parser.config["link-affixes"][affix].replace("%n",href),a_elm):(a_elm.innerText=Parser.config["link-affixes"][affix],a_elm);return a_elm.innerText=text,a_elm}return link.split("-&gt;")[1]?_createLink(link.split("-&gt;")[0].split("[[")[1],link.split("-&gt;")[1].split("]]")[0]):link.split("&lt;-")[1]?_createLink(link.split("&lt;-")[1].split("]]")[0],link.split("&lt;-")[0].split("[[")[1]):link.split("|")[1]?_createLink(link.split("|")[0].split("[[")[1],link.split("|")[1].split("]]")[0]):_createLink(link,link)}function getPassages(type){let passages=[];if("html"===type.toLowerCase())for(let i in _processedhtmlpassages)passages.push(_processedhtmlpassages[i].cloneNode(!0));else if("epub"===type.toLowerCase())for(let i in _processedepubpassages)passages.push(_processedepubpassages[i].cloneNode(!0));return passages}return Object.freeze(Object.defineProperties({},{passages:{value:getPassages},original_passages:{value:getPassages}}))})();window.Primitive={},(()=>{function _waitForElm(selector){return new Promise((resolve=>{if(document.querySelector(selector))return resolve(document.querySelector(selector));const observer=new MutationObserver((mutations=>{document.querySelector(selector)&&(observer.disconnect(),resolve(document.querySelector(selector)))}));observer.observe(document.body,{childList:!0,subtree:!0})}))}document.getElementsByTagName("tw-storydata")[0].remove(),Outputter.put_errors(),Outputter.put_warnings(),_waitForElm("#primitive-test-html").then((elm=>{elm.addEventListener("click",(()=>{Outputter.put_test_html()}))})),_waitForElm("#primitive-export-html").then((elm=>{elm.addEventListener("click",(()=>{Outputter.export_html()})),Parser.config["direct-to-html"]&&Outputter.export_html()})),_waitForElm("#primitive-export-epub").then((elm=>{elm.addEventListener("click",(()=>{Outputter.export_epub()})),Parser.config["direct-to-epub"]&&Outputter.export_epub()}))})()}(window,window.document);
+            !function(window,document,undefined){"use strict";var version=Object.freeze({title:"Primitive",major:0,minor:1,patch:0,prerelease:null,build:959,date:new Date("2024-02-18T17:32:58.849Z"),toString(){const prerelease=this.prerelease?`-${this.prerelease}`:"";return`${this.major}.${this.minor}.${this.patch}${prerelease}+${this.build}`},short(){const prerelease=this.prerelease?`-${this.prerelease}`:"";return`${this.title} (v${this.major}.${this.minor}.${this.patch}${prerelease})`},long(){return`${this.title} v${this.toString()} (${this.date.toUTCString()})`}}),Parser=(()=>{var _passages=document.getElementsByTagName("tw-passagedata"),_shuffledIndices=[],_frontIndices=[],_frontMatterPassages={},_backIndices=[],_backMatterPassages={},_hiddenTagNames=["hidden","note","notes"],warningsList=[],errorsList=[],epubcss="",htmlcss="",_configuration={"link-affixes":{"":"(turn to %n)","#":"%n"},"direct-to-epub":!1,"direct-to-html":!1,"enable-hyperlinks":!0},title=document.getElementsByTagName("title")[0].innerText;for(let i=0;i<_passages.length;i++){let _displayPassage=!0,_shufflePassage=!0,_tags=_passages[i].getAttribute("tags").split(" "),_passageTitle=_passages[i].getAttribute("name"),_errored=!1;if("storytitle"===_passageTitle.toLowerCase()&&(title=_passages[i].innerHTML,_displayPassage=!1,_shufflePassage=!1,_errored=!0),"storydata"===_passageTitle.toLowerCase()&&(_displayPassage=!1,_shufflePassage=!1,_errored=!0),"storyconfig"===_passageTitle.toLowerCase()){_displayPassage=!1,_shufflePassage=!1;let _user_config=JSON.parse(_passages[i].innerHTML);_configuration=mergeDeep(_configuration,_user_config),_errored=!0}if("cover"===_passageTitle.toLowerCase()&&(_displayPassage=!1,_shufflePassage=!1,errorsList.push(`Passage Name \`:: ${_passageTitle}\` is currently reserved for a future version of Primitive. This passage has not been processed.`),_errored=!0),"epubstyle"===_passageTitle.toLowerCase()&&(epubcss=_passages[i].innerHTML,_displayPassage=!1,_shufflePassage=!1,_errored=!0),"htmlstyle"===_passageTitle.toLowerCase()&&(htmlcss=_passages[i].innerHTML,_displayPassage=!1,_shufflePassage=!1,_errored=!0),!_errored){if(_displayPassage)for(let t=0;t<_tags.length;t++){if(_tags[t].includes("frontmatter")){let number=parseInt(_tags[t].split("_")[1]);isNaN(number)?warningsList.push(`Passage \`:: ${_passageTitle}\` is using the 'frontmatter' Special Tag with an invalid number. Correct format is \`:: ${_passageTitle} [frontmatter_42]\`, where '42' can be replaced with any integer. \n Processing the Passage as a normal passage.`):_frontMatterPassages.hasOwnProperty(number)?warningsList.push(`The Special Tag 'frontmatter_${number}' is used multiple times. Some _passages with this numbered Special Tag will be shuffled with the rest of the _passages.`):(_frontMatterPassages[number]=_passages[i],_passages[i].setAttribute("data-placement","front-matter"),_shufflePassage=!1)}if(_tags[t].includes("backmatter")){let number=parseInt(_tags[t].split("_")[1]);isNaN(number)?warningsList.push(`Passage \`:: ${_passageTitle}\` is using the 'backmatter' Special Tag with an invalid number. Correct format is \`:: ${_passageTitle} [backmatter_42]\`, where '42' can be replaced with any integer. \n Processing the Passage as a normal passage.`):_backMatterPassages.hasOwnProperty(number)?warningsList.push(`The Special Tag 'backmatter_${number}' is used multiple times. Some _passages with this numbered Special Tag will be shuffled with the rest of the _passages.`):(_backMatterPassages[number]=_passages[i],_passages[i].setAttribute("data-placement","back-matter"),_shufflePassage=!1)}_hiddenTagNames.some((tag=>_tags[t].includes(tag)))&&(_displayPassage=!1,_shufflePassage=!1)}_errored||("start"===_passageTitle.toLowerCase()&&(_shufflePassage=!1),_displayPassage&&_shufflePassage&&(_passages[i].setAttribute("data-placement","body-matter"),_shuffledIndices.push(_passages[i])))}}let frontkeys=Object.keys(_frontMatterPassages).sort();for(let key in frontkeys)_frontIndices.push(_frontMatterPassages[frontkeys[key]]);!function(array){let randomIndex,currentIndex=array.length;for(;currentIndex>0;)randomIndex=Math.floor(Math.random()*currentIndex),currentIndex--,[array[currentIndex],array[randomIndex]]=[array[randomIndex],array[currentIndex]]}(_shuffledIndices);let backkeys=Object.keys(_backMatterPassages).sort();for(let key in backkeys)_backIndices.push(_backMatterPassages[backkeys[key]]);let _orderedpassages=[].concat.apply([],[_frontIndices,_shuffledIndices,_backIndices]);function mergeDeep(...objects){const isObject=obj=>obj&&"object"==typeof obj;return objects.reduce(((prev,obj)=>(Object.keys(obj).forEach((key=>{const pVal=prev[key],oVal=obj[key];Array.isArray(pVal)&&Array.isArray(oVal)?prev[key]=pVal.concat(...oVal):isObject(pVal)&&isObject(oVal)?prev[key]=mergeDeep(pVal,oVal):prev[key]=oVal})),prev)),{})}return Object.freeze(Object.defineProperties({},{passages:{value:function(){let passages=[];for(let i in _orderedpassages)passages.push(_orderedpassages[i].cloneNode(!0));return passages}()},errors:{value:errorsList},warnings:{value:warningsList},htmlcss:{value:htmlcss},epubcss:{value:epubcss},config:{value:structuredClone(_configuration)},title:{value:title}}))})(),Outputter=(()=>{function _createHTML(){let html=document.createElement("html"),head=document.createElement("head");html.appendChild(head);let meta_charset=document.createElement("meta");meta_charset.setAttribute("charset","UTF-8");let title=document.createElement("title");title.innerText=Parser.title;let meta_viewport=document.createElement("meta");meta_viewport.setAttribute("name","viewport"),meta_viewport.setAttribute("content","width=device-width,initial-scale=1");let primitive_style=document.createElement("style");primitive_style.setAttribute("id","primitive_style"),primitive_style.innerHTML="*{--headerfooterpadding:0.3rem;font-size:2.6vh;color:#111111}html{background-color:#F5F3E9}tw-passagedata{max-width:60vw;display:block;margin:auto}#wrapper{display:flex;flex-direction:column;height:100vh;width:100%}#output{display:flex;flex:1;flex-direction:column;margin:1rem}#error-notices,#warning-notices{display:flex;flex:0}#warning-notices{background-color:yellow}#error-notices{background-color:lightcoral}#error-notices:empty,#warning-notices:empty{display:none}#primitive-footer,#primitive-header{display:flex;flex:0;flex-direction:column;align-items:flex-start;background-color:#3f2a14;padding:0.3rem 1rem}#primitive-title{color:#eeeeee;font-size:1.5rem}#primitive-version-number{color:#eeeeee}";let custom_style=document.createElement("style");custom_style.setAttribute("id","primitive-custom-css"),custom_style.innerHTML=Parser.htmlcss;let license=document.createElement("license");license.setAttribute("style","display: none;"),license.innerText=`Created with Primitive Version ${version.long()}.`,head.append(meta_charset,title,meta_viewport,primitive_style,custom_style,license);let body=document.createElement("body");html.appendChild(body);for(let i in Processer.passages("html"))body.appendChild(Processer.passages("html")[i]);return html}function _waitForElm(selector){return new Promise((resolve=>{if(document.querySelector(selector))return resolve(document.querySelector(selector));const observer=new MutationObserver((mutations=>{document.querySelector(selector)&&(observer.disconnect(),resolve(document.querySelector(selector)))}));observer.observe(document.body,{childList:!0,subtree:!0})}))}function modifyEPUB(epubZipContent,epubTitle){let css_content,jszip=new Jszip310,cssfilename=`${epubTitle.split(".epub")[0]}.css`;jszip.loadAsync(epubZipContent).then((zip=>{zip.folder("EPUB").file(cssfilename).async("string").then((content=>{css_content=content,zip.folder("EPUB").file(cssfilename,Parser.epubcss),zip.generateAsync({type:"blob",mimeType:"application/epub+zip",compression:"DEFLATE",compressionOptions:{level:9}}).then((function(blob){saveAs(blob,epubTitle)}))}))}))}return Object.freeze(Object.defineProperties({},{put_errors:{value:function(){_waitForElm("#error-notices").then((elm=>{if(Parser.errors.length>0){console.error(Parser.errors);for(let error in Parser.errors){let child=document.createElement("div");child.innterHTML=`${Parser.errors[error]}`,elm.appendChild(child)}}}))}},put_warnings:{value:function(){_waitForElm("#warning-notices").then((elm=>{if(Parser.warnings.length>0){console.warn(Parser.warnings);for(let warning in Parser.warnings){let child=document.createElement("div");child.innerHTML=`Warning:<br> ${Parser.warnings[warning]}`,elm.appendChild(child)}}}))}},put_test_html:{value:function(){_waitForElm("#output").then((elm=>{elm.innerHTML="",elm.appendChild(_createHTML())}))}},export_html:{value:function(){let html=_createHTML(),blob=new Blob([html.outerHTML],{type:"text/html"}),url=URL.createObjectURL(blob);saveAs(url,`${Parser.title}.html`)}},export_epub:{value:function(){let passages=Processer.passages("epub"),epub=(new EpubMaker).withTemplate("idpf-wasteland").withTitle("Primitive Test");for(let i in passages){let section;section=["front-matter","back-matter"].includes(passages[i].getAttribute("data-placement"))?{content:passages[i].innerHTML,title:passages[i].getAttribute("id")}:{content:passages[i].innerHTML,title:`Passage ${passages[i].getAttribute("id")}`},epub.withSection(new EpubMaker.Section("bodymatter",passages[i].getAttribute("id"),section,!0,!1))}epub.downloadEpub(modifyEPUB)}}}))})(),Processer=(()=>{let _passages=Parser.passages,_linkerindex=["ErrorPassage"],_shuffledIndex=1;for(let i in _passages)["front-matter","back-matter"].includes(_passages[i].getAttribute("data-placement"))?_passages[i].setAttribute("id",_passages[i].getAttribute("name")):"body-matter"===_passages[i].getAttribute("data-placement")&&(_passages[i].setAttribute("id",_shuffledIndex),_linkerindex.push(_passages[i].getAttribute("name")),_shuffledIndex++);let converter=new showdown.Converter;converter.setOption("simpleLineBreaks",!0),converter.setOption("openLinksInNewWindow",!0),converter.setOption("noHeaderId",!0),converter.setOption("prefixHeaderId","custom-"),converter.setOption("requireSpaceBeforeHeadingText",!0);for(let i in _passages){let regex,_innerHTML=_passages[i].innerHTML;regex=/(?<!:)\/\/.*/g,_innerHTML=_innerHTML.replace(regex,""),regex=/##.*/g,_innerHTML=_innerHTML.replace(regex,""),regex=/\/\*[\S\s]*?\*\//g,_innerHTML=_innerHTML.replace(regex,""),regex=/&lt;!--[\S\s]*?--&gt;/g,_innerHTML=_innerHTML.replace(regex,""),_innerHTML=converter.makeHtml(_innerHTML),regex=/\[\[(.*?)\]\]/g;let match,links={},outboundLinkHREF=[];do{match=regex.exec(_innerHTML),match&&(links[match[0]]=_convertLink(match[0]))}while(match);for(let link in links)_innerHTML=_innerHTML.replace(link,links[link].outerHTML),outboundLinkHREF.push(links[link].outerHTML.substring(links[link].outerHTML.indexOf('"#')+2,links[link].outerHTML.lastIndexOf('"')).replace("[[","").replace("]]",""));_passages[i].innerHTML=_innerHTML,_passages[i].outboundLinkHREF=outboundLinkHREF}!function(passages){for(let passage of passages){passage.outboundOrigPID=[];for(let outbound of passage.outboundLinkHREF){if(_linkerindex[outbound]){passage.outboundOrigPID.push(_linkerindex[outbound]);continue}let isFound=!1;for(let otherpassage of passages)outbound===otherpassage.attributes.name.value&&(passage.outboundOrigPID.push(otherpassage.attributes.pid.value),isFound=!0);isFound||console.warn(`Outbound ${outbound} was not found as a passage name or a PID.`)}}console.log(passages)}(_passages),console.log(function(passages){let connections=[];for(let passage in passages){let psg=passages[passage];if(psg.outboundOrigPID.length<=0)continue;if("body-matter"!==psg.attributes["data-placement"].value)continue;let current=psg.attributes.name.value.replace(/\s/g,"");psg.outboundOrigPID.forEach((PID=>{let connect_str=`${current} --\x3e ${PID}`;connections.includes(connect_str)||connections.push(connect_str)}))}let collator=new Intl.Collator(undefined,{numeric:!0,sensitivity:"base"});return connections=connections.sort(collator.compare),connections.unshift("flowchart LR"),connections.join("\n")}(_passages));let _htmlpassages=[];for(let i in _passages)_htmlpassages.push(_passages[i].cloneNode(!0));let _processedhtmlpassages=[],_shuffledHTMLIndex=1;for(let i in _htmlpassages){let h2=document.createElement("h2");["front-matter","back-matter"].includes(_htmlpassages[i].getAttribute("data-placement"))?(h2.innerText=_htmlpassages[i].getAttribute("name"),_htmlpassages[i].prepend(h2)):"body-matter"===_htmlpassages[i].getAttribute("data-placement")&&(h2.innerText=`Passage ${_shuffledHTMLIndex}`,_htmlpassages[i].prepend(h2),_shuffledHTMLIndex++),_processedhtmlpassages.push(_htmlpassages[i])}let _epubpassages=[];for(let i in _passages)_epubpassages.push(_passages[i].cloneNode(!0));let _processedepubpassages=_epubpassages;function _convertLink(link){function _createLink(text,href){let a_elm;Parser.config["enable-hyperlinks"]?(a_elm=document.createElement("a"),_linkerindex.indexOf(href)>0?(href=_linkerindex.indexOf(href),a_elm.setAttribute("href",`#${href}`)):a_elm.setAttribute("href",`#${href}`)):a_elm=document.createElement("span");for(let affix in Parser.config["link-affixes"])if(text===affix)return Parser.config["link-affixes"][affix].includes("%n")?(a_elm.innerText=Parser.config["link-affixes"][affix].replace("%n",href),a_elm):(a_elm.innerText=Parser.config["link-affixes"][affix],a_elm);return a_elm.innerText=text,a_elm}return link.split("-&gt;")[1]?_createLink(link.split("-&gt;")[0].split("[[")[1],link.split("-&gt;")[1].split("]]")[0]):link.split("&lt;-")[1]?_createLink(link.split("&lt;-")[1].split("]]")[0],link.split("&lt;-")[0].split("[[")[1]):link.split("|")[1]?_createLink(link.split("|")[0].split("[[")[1],link.split("|")[1].split("]]")[0]):_createLink(link,link)}function getPassages(type){let passages=[];if("html"===type.toLowerCase())for(let i in _processedhtmlpassages)passages.push(_processedhtmlpassages[i].cloneNode(!0));else if("epub"===type.toLowerCase())for(let i in _processedepubpassages)passages.push(_processedepubpassages[i].cloneNode(!0));return passages}return Object.freeze(Object.defineProperties({},{passages:{value:getPassages},original_passages:{value:getPassages}}))})();window.Primitive={},(()=>{function _waitForElm(selector){return new Promise((resolve=>{if(document.querySelector(selector))return resolve(document.querySelector(selector));const observer=new MutationObserver((mutations=>{document.querySelector(selector)&&(observer.disconnect(),resolve(document.querySelector(selector)))}));observer.observe(document.body,{childList:!0,subtree:!0})}))}document.getElementsByTagName("tw-storydata")[0].remove(),Outputter.put_errors(),Outputter.put_warnings(),_waitForElm("#primitive-test-html").then((elm=>{elm.addEventListener("click",(()=>{Outputter.put_test_html()}))})),_waitForElm("#primitive-export-html").then((elm=>{elm.addEventListener("click",(()=>{Outputter.export_html()})),Parser.config["direct-to-html"]&&Outputter.export_html()})),_waitForElm("#primitive-export-epub").then((elm=>{elm.addEventListener("click",(()=>{Outputter.export_epub()})),Parser.config["direct-to-epub"]&&Outputter.export_epub()}))})()}(window,window.document);
             console.log("JavaScript App built successfully.");
             document.documentElement.removeAttribute("data-init");
         }
@@ -2528,7 +1871,7 @@ Read the [[Author&#39;s Note]].</tw-passagedata></tw-storydata>
         <div id='output'></div>
         <div id='primitive-footer'>
             <div id='primitive-version-number'>
-                Built with Primitive v0.1.0.956
+                Built with Primitive v0.1.0.959
             </div>
         </div>
     </div>

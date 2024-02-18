@@ -139,7 +139,7 @@ Tent's making a mess again, and you can't help but admire her clothing as it get
 
 
 :: 4C
- "Let's sleep on the hay mattress," Tent suggested, taking a bite out of the horn rabbit. "It'll keep us warmer."
+"Let's sleep on the hay mattress," Tent suggested, taking a bite out of the horn rabbit. "It'll keep us warmer."
 
 Your heart rate increases as you process her words. "We?" 
 
@@ -191,6 +191,7 @@ She beckons to you with a seductive whisper. "I-I... why don't we share this war
 
 
 :: 4D-1
+<<set choice1 to true>>
 "Of course." There was no way a gentleman like you would deny a pleading lady like Tent.
 
 You lay down behind her, careful not to touch her, and put a small space between you. Her hair was in your face and her scent wafted towards you, making you blush.
@@ -239,6 +240,7 @@ Begin Chapter 5:
 
 
 :: 4D-0
+<<set choice1 to false>>
 You feel a sense of unease as you look at her. You know deep down that getting involved with a woman you hardly even know isn't the best idea.
 
 She looks downcast, but her eyes show a silent understanding of your decision as you lay down on the floor. The night will be long, hard and cold; however, it's better than compromising your values and beliefs.
@@ -267,11 +269,12 @@ Tent seemed eager to enjoy the comfort of shared warmth throughout the night.
 
 [[Share your warmth with Tent.->4D-alt]]
 Alternatively, begin Chapter 6:
-[[Exploring the Woods->6B-0]]
+[[Exploring the Woods->6B]]
 
 
 
 :: 4D-alt
+<<set choice to true>>
 "Of course." There was no way a gentleman like you would deny a pleading lady like Tent.
 
 You lay down behind her, careful not to touch her, and put a small space between you. Her hair was in your face and her scent wafted towards you, making you blush.

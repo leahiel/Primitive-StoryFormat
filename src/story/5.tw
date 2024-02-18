@@ -71,7 +71,7 @@ She blinks, turning away from you before raising her small arm and fiercely jabb
 
 You curl up, turning onto your side with as pain emanated from your abdomen. How did you wake up in such bliss just for it to be ruined like this?
 
-[[Continue->5B-1]]
+[[Continue->5B]]
 
 
 
@@ -98,11 +98,11 @@ Tent grins, showing her fangs. She then starts stretching her legs as she prepar
 
 You stretch a bit yourself before leaving the cabin.
 
-[[Continue->5B-0]]
+[[Continue->5B]]
 
 
 
-:: 5B-0
+:: 5B
 Tent glares at the sky, her face hidden beneath her hood. "I hate the sun," she growls, "if only something could just block it away."
 
 You and Tent set off for the woods. Your goal was to collect firewood for a few hours, then return and take turns bathing. As you walked, you were both on the lookout for something edible. It was late fall and it seemed unlikely that any of the trees would have any fruit left, so it was really any other animals that you were really looking out for.
@@ -125,7 +125,7 @@ You glance her way, but her attention is already back on the ground, kicking aro
 
 "If we could find the something to use, I could make us hats to hide from the sun."
 
- She gives you a doubtful glance and you silently stare back. She locks eyes with you, her voice serious and stern as she speaks. "We could use a big leaf, a stick, and a thick vine." she declares.
+She gives you a doubtful glance and you silently stare back. She locks eyes with you, her voice serious and stern as she speaks. "We could use a big leaf, a stick, and a thick vine." she declares.
 
 "And make a giant leaf hat?", you chuckle, picturing her wearing a giant leaf hat. She laughs in agreement. 
 
@@ -155,90 +155,22 @@ Tent's patience wore thin. "Ugh!" She lunged forward and grabbed your arm, causi
 
 The two of you continue gathering wood, but no food shows up.
 
-[[Later on in the day.->5C-0]]
+[[Later on in the day.->5C]]
 
 
 
-:: 5B-1
-Tent glares at the sky, her face hidden beneath her hood. "I hate the sun," she growls, "if only something could just block it away."
-
-You and Tent set off for the woods. Your goal was to collect firewood for a few hours, then return and take turns bathing. As you walked, you were both on the lookout for something edible. It was late fall and it seemed unlikely that any of the trees would have any fruit left, so it was really any other animals that you were really looking out for.
-
-You join Tent in glaring at the sun from beneath your hood. It's impossible to cover the sun, but perhaps if you two had a wide brimmed hat...
-
-"Tent."
-
-"Hmm?" She looks at you with her full attention.
-
-"When I was a boy, there was a group of men coming into the village, selling things. One of those things was a big round hat."
-
-She cocks an eyebrow. "And?"
-
-"That's the one thing I wish we had."
-
-She frowns, "A round hat? What would you do with that, look dumb wearing it?"
-
-You glance her way, but her attention is already back on the ground, kicking around the leaves and dirt.
-
-"If we could find the something to use, I could make us hats to hide from the sun."
-
- She gives you a doubtful glance and you silently stare back. She locks eyes with you, her voice serious and stern as she speaks. "We could use a big leaf, a stick, and a thick vine." she declares.
-
-"And make a giant leaf hat?", you chuckle, picturing her wearing a giant leaf hat. She laughs in agreement. 
-
-"Yeah! A giant leaf hat!" Her mirth is contagious, and you can't help but smile.
-
-Of course, you both know that you wouldn't be finding any giant leaves here, regardless of the season. Those types of trees just didn't grow here.
-
-After the two of you settle down, you say, "Well, keep an eye out. It'll help keep us from getting sun burnt."
-
-She gives a small nod in agreement as she bends over and picks up a stick of dead wood with her bandaged arm.
-
-"How's your arm doing?"
-
-"Hmm?" She looks at her arm. "It's not hurting anymore, but the skin isn't quite back together yet. So I'll have to keep my bandage on a bit longer." She sighed. "I'll have to remember to clean it later."
-
-It... doesn't hurt? You extracted wood from her muscles! It's unbelievable that she could be healed in just one day. "Are you sure it doesn't hurt?"
-
-She puts her wood under her arm and walks up to you, showing you the bandaged arm. "No, not at all. Press on it. It won't hurt any more than than touching any other part of my body."
-
-"Uhhh..." Pressing on a bandage stained with blood and dirt seems... ill-advised. Inappropriate, even.
-
-Tent's patience wore thin. "Ugh!" She lunged forward and grabbed your arm, causing the two of you to drop your wood. "Just do it!" She firmly guided your hand towards the wound but didn't flinch.
-
-"See! No problem!"
-
-...You're very curious as to how her wound looks, but you'll ask to see it later.
-
-The two of you continue gathering wood, but no food shows up.
-
-[[Later on in the day.->5C-1]]
-
-
-
-:: 5C-0
+:: 5C
 You're refreshed from your bath at the creek and have returned to the cabin. Unfortunately, your clothes are still damp, but there's nothing you can do at the moment. Tent is taking her own bath and has ordered you with attending to either the cabin or the food.
 
 Despite going a day and a half on very little food, you're not nearly as hungry as you anticipated. Oh, if there was food, you'd eat it, but you're more concerned about the cold of night.
 
 The cabin has many openings, from warped planks that no longer fit properly and gaps left by the shrinking of the wood. This allows air to flow freely throughout, making it clear why the cabin is so drafty.
 
-[[Fix the holes.->5D-0]]
+[[Fix the holes.->5D]]
 
 
 
-:: 5C-1
-You're refreshed from your bath at the creek and have returned to the cabin. Unfortunately, your clothes are still damp, but there's nothing you can do at the moment. Tent is taking her own bath and has ordered you with attending to either the cabin or the food.
-
-Despite going a day and a half on very little food, you're not nearly as hungry as you anticipated. Oh, if there was food, you'd eat it, but you're more concerned about the cold of night.
-
-The cabin has many openings, from warped planks that no longer fit properly and gaps left by the shrinking of the wood. This allows air to flow freely throughout, making it clear why the cabin is so drafty.
-
-[[Fix the holes.->5D-1]]
-
-
-
-:: 5D-0
+:: 5D
 You grab your homemade clay and attempt to patch the holes, hoping to make your nights a bit warmer.
 
 You begin the tiresome process of restoring the walls with your telekinesis, keeping your consciousness expanded just in case some food hops by.
@@ -275,54 +207,17 @@ The bear was massive, and she must have been strong to haul it here. You couldn'
 
 A thought pops into your head and a broad smile spreads across your face.
 
-[[Tease her.->5E-0]]
-[[Don't tease her.->5F-0]]
+<<if choice1>>
+    [[Tease the bear killer.->5E]]
+    [[Don't tease the bear killer.->5F]]
+<<else>>
+    [[Tease her.->5E]]
+    [[Don't tease her.->5F]]
+<</if>>
 
 
 
-:: 5D-1
-You grab your homemade clay and attempt to patch the holes, hoping to make your nights a bit warmer.
-
-You begin the tiresome process of restoring the walls with your telekinesis, keeping your consciousness expanded just in case some food hops by.
-
-An hour or so passes by, and Tent hasn't returned. You're worried since the bathing spot isn't that far away, but there's no way you could go looking for her while she's bathing.
-
-An hour later, the cabin still full of holes, you sense Tent's return from her bath. Turning to face her, she's bent over and dragging a massive furry creature towards the cabin.
-
-You hasten to her aid, and find her drenched. Her wet locks lay upon her shoulders like a shimmering veil, and the damp fabric of her dress adheres to every contour of her body, leaving nothing hidden from sight. But you soon forget her problems as you gaze upon the massive creature she is dragging behind her.
-
-It's a bear. With its head removed. Blood draining from its neck.
-
-Tent's beaming with pride, she declares, "Dinner!"
-
-Your mouth opens and closes, before opening again. "How did you kill a bear?!?"
-
-"It attacked me while I was bathing! I thought that would be more your style." She tries to tease him, but she can't hide her pride and joy at catching the creature. Her wet hair frames her face, making her smile all the brighter.
-
-She was fighting a bear... naked? You grab a leg of the bear and help her haul it to the cabin. "Yeah, but… how'd you kill it?"
-
-"I hit its head with a rock!"
-
-"How did you survive?!?"
-
-"Hmph, I'm not some weakling. If I can fight goblins, then I can fight a bear, easy."
-
-You raise your eyebrows. A bear could easily defeat seven or eight goblins, so there must be more to this tale. Could the bear have been ill or hurt?
-
-Tent is stronger than a bear... and yet, you feel a sense of relief. This creature will provide food, and its fur will be warm. Even the bones could have their uses.
-
-"I had to resort to climbing a tree and dropping rocks on its head," Tent said, her cheeks lightly flushing in embarrassment. "There was no way I could fight it straight on."
-
-The bear was massive, and she must have been strong to haul it here. You couldn't help but marvel at her strength.
-
-A thought pops into your head and a broad smile spreads across your face.
-
-[[Tease the bear killer.->5E-1]]
-[[Don't tease the bear killer.->5F-1]]
-
-
-
-:: 5E-0
+:: 5E
 "Wait, let me get this straight. You fought it while in the nude?" 
 
 She gives you a skeptical look. 
@@ -331,26 +226,12 @@ She gives you a skeptical look.
 
 Pain pierces through your knee and you collapse to the ground, smashing against the rocky terrain. Tent towers above you, shaking her head. "Hmph! I know what he was planning! He wasn't going to mate with me, he was about to devour me!" 
 
-[[Continue teasing her.->5G-0]]
-[[Don't tease her.->5F-0]]
+[[Continue teasing her.->5G]]
+[[Don't tease her.->5F]]
 
 
 
-:: 5E-1
-"Wait, let me get this straight. You fought it while in the nude?" 
-
-She gives you a skeptical look. 
-
-"Uh, yeah..." "So how do you know it wasn't just trying to make cubs with you?"
-
-Pain pierces through your knee and you collapse to the ground, smashing against the rocky terrain. Tent towers above you, shaking her head. "Hmph! I know what he was planning! He wasn't going to mate with me, he was about to devour me!" 
-
-[[Continue teasing her.->5G-1]]
-[[Don't tease her.->5F-1]]
-
-
-
-:: 5G-0
+:: 5G
 From your spot on the ground, you tell her, "It's a pity. You could have had cubs with him and been queen of the woods!"
 
 Tent's foot rubs against your sternum, causing an aggravating pain to flare throughout your body. However, simply sliding her foot against your chest causes the underside of her dress to be shown to you. You look up at her shapely legs, and notice that they're blue. Looking past them, her wet dress clings to her belly, preventing you from seeing her breasts. She holds her foot firmly in place atop your sternum, forcing you to endure the excruciating agony as you appreciate the sight before you. You try not to pass out as you remain subject to her whims.
@@ -367,32 +248,11 @@ She grinned slyly, her eyes twinkling. "You know, this bear is a female. Want it
 
 You glance between the bear's legs and nodded; it was certainly a female.
 
-[[Continue->5H-0]]
+[[Continue->5H]]
 
 
 
-:: 5G-1
-From your spot on the ground, you tell her, "It's a pity. You could have had cubs with him and been queen of the woods!"
-
-Tent's foot rubs against your sternum, causing an aggravating pain to flare throughout your body. However, simply sliding her foot against your chest causes the underside of her dress to be shown to you. You look up at her shapely legs, and notice that they're blue. Looking past them, her wet dress clings to her belly, preventing you from seeing her breasts. She holds her foot firmly in place atop your sternum, forcing you to endure the excruciating agony as you appreciate the sight before you. You try not to pass out as you remain subject to her whims.
-
-After a moment, she figures out your plan and her cheeks flush. She quickly removed her foot from you.
-
-You lay there for a few moments, waiting for the pain to subside before getting up and dragging the bear back towards the cabin. Tent soon joins you, an uncomfortable silence settling between you two. Sure, you had gone too far, but so had she! There was no need to stomp on your chest like that!
-
-"...Hey."
-
-Tent is looking at you.
-
-She grinned slyly, her eyes twinkling. "You know, this bear is a female. Want it to carry your babies?" 
-
-You glance between the bear's legs and nodded; it was certainly a female.
-
-[[Continue->5H-1]]
-
-
-
-:: 5F-0
+:: 5F
 You manage to keep your teasing comment to yourself from the scary village girl who is strong and smart enough to kill a bear.
 
 "...Hey."
@@ -403,26 +263,11 @@ She grinned slyly, her eyes twinkling. "You know, this bear is a female. Want it
 
 You glance between the bear's legs and nodded; it was certainly a female.
 
-[[Continue->5H-0]]
+[[Continue->5H]]
 
 
 
-:: 5F-1
-You manage to keep your teasing comment to yourself from the scary village girl who is strong and smart enough to kill a bear.
-
-"...Hey."
-
-Tent is looking at you.
-
-She grinned slyly, her eyes twinkling. "You know, this bear is a female. Want it to carry your babies?" 
-
-You glance between the bear's legs and nodded; it was certainly a female.
-
-[[Continue->5H-1]]
-
-
-
-:: 5H-0
+:: 5H
 You and your companion struggle to hang up the bear in order to drain its blood. You manage to place it on a slight incline, so that the blood flows down. Without a proper knife or dagger, you rely on your telekinesis to cut through the fur and flesh.
 
 The task is tricky, as neither of you knows how to skin the animal. You are simply doing your best to get it done.
@@ -431,20 +276,11 @@ It's a long, hard process, but the two of you manage to take off the majority of
 
 That night, the two of you dine on delicious meat cooked by Tent. You now have food, water and shelter for a while. Though warmth and clothing haven't been made yet, if you work together to collect firewood in the coming days, you should be fine.
 
-[[Continue->4D-pre-alt]]
-
-
-
-:: 5H-1
-You and your companion struggle to hang up the bear in order to drain its blood. You manage to place it on a slight incline, so that the blood flows down. Without a proper knife or dagger, you rely on your telekinesis to cut through the fur and flesh.
-
-The task is tricky, as neither of you knows how to skin the animal. You are simply doing your best to get it done.
-
-It's a long, hard process, but the two of you manage to take off the majority of the bear's fur and meat. Thankfully, it has plenty of fat due to its preparation for hibernation. The two of you will have to dry it out over the coming days for it to last into winter. Tent has gone ahead and built a small rack for the bearskin to dry on over the night, so tonight will be cold too. You've done your best to use your skill to get all the blood off of everything, but you did far from a perfect job.
-
-That night, the two of you dine on delicious meat cooked by Tent. You now have food, water and shelter for a while. Though warmth and clothing haven't been made yet, if you work together to collect firewood in the coming days, you should be fine.
-
+<<if choice1>>
 And with Tent laying her head on your chest again, feeling her breaths tickle your neck all night, you can hardly believe life can be this blissful after such disaster. The warmth of the moment radiates throughout your body, a calm and content feeling that only deepens as you drift off to sleep together. The peace and serenity of the night acts like a shield for the two of you from the outside world; in this moment, it's just you two wrapped up in each other's embrace.
 
 Begin Chapter 6:
 [[Exploring the Woods->6A-1]]
+<<else>>
+[[Continue->4D-pre-alt]]
+<</if>>

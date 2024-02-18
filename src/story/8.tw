@@ -1,9 +1,13 @@
-:: 8A-0
+:: 8A
 You and Tent are in a cabin. It's dark and freezing outside, but the bearskin is warm enough to use as a blanket, and the fire in the chimney crackles.
 
 You both can't take the bearskin, so if you want warmth you'll have to sleep together. With no other choice, you suggest to Tent, "Should we… snuggle together for warmth?"
 
 A soft sound escaped her lips as she took in the sight of you. Her eyes moved slowly over your body, almost as if they were memorizing every contour and curve. You returned the gaze, tracing her curves that were encased by a white long sleeved shirt and black pants that hugged her alluring figure.
+
+<<if choice1>>
+It's not too different from the previous nights. There's a bearskin blanket, a fire, and more clothing now... and yet you know it would be warmer if you two slept together.
+<</if>>
 
 In truth, it was freezing outside. You both knew that if you were to spend the night away from each other, one of you would be forced to endure a night of discomfort and cold on the hard floor. Likely you. Your intentions were pure and honorable. Definitely.
 
@@ -11,7 +15,11 @@ It's undisputed that vampires are irresistible to humans, especially given how c
 
 As is Tent.
 
+<<if choice1>>
 But it's different from the previous nights. Your fire is warm, and you have a bearskin blanket. There's no need to sleep together. There's no need for your attraction to each other to take control.
+<<else>>
+Tent's defenses break down in your presence and she slowly moves closer to you, eventually sitting on the bed with her knees pulled up to her chest. She is a shy but spirited young woman, trembling from the chill of the room, sitting right beside you.
+<</if>>
 
 [[Engage with with Tent.->8B]]
 [[Resolve yourself to sleeping alone.->8A-Ending]]
@@ -37,27 +45,6 @@ As you open your eyes in the morning, the heavy bearskin weighed down on your ch
 Thank you for enjoying my story!
 Read the [[Author's Note]].
 
-
-
-:: 8A-1
-You and Tent are in a cabin. It's dark and freezing outside, but the bearskin is warm enough to use as a blanket, and the fire in the chimney crackles.
-
-You both can't take the bearskin, so if you want warmth you'll have to sleep together. With no other choice, you suggest to Tent, "Should we… snuggle together for warmth?"
-
-A soft sound escaped her lips as she took in the sight of you. Her eyes moved slowly over your body, almost as if they were memorizing every contour and curve. You returned the gaze, tracing her curves that were encased by a white long sleeved shirt and black pants that hugged her alluring figure.
-
-It's not too different from the previous nights. There's a bearskin blanket, a fire, and more clothing now... and yet you know it would be warmer if you two slept together.
-
-In truth, it was freezing outside. You both knew that if you were to spend the night away from each other, one of you would be forced to endure a night of discomfort and cold on the hard floor. Likely you. Your intentions were pure and honorable. Definitely.
-
-It's undisputed that vampires are irresistible to humans, especially given how close you and Tent have been recently. You're both a human and a vampire, yet not fully one or the other - making you both an especially tantalizing prey and predator.
-
-As is Tent.
-
-Tent's defenses break down in your presence and she slowly moves closer to you, eventually sitting on the bed with her knees pulled up to her chest. She is a shy but spirited young woman, trembling from the chill of the room, sitting right beside you.
-
-[[Engage with with Tent.->8B]]
-[[Resolve yourself to sleeping alone.->8A-Ending]]
 
 
 
