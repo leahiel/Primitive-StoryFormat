@@ -20,6 +20,13 @@ var Parser = (() => {
 	 */
 	var _passages = document.getElementsByTagName('tw-passagedata');
 
+	/**
+	 * An array of all State Variables.
+	 * 
+	 * @type {String[]}
+	 */
+	var _variables = [];
+
 	/** 
 	 * Shuffled Story Passages 
 	 * 
@@ -197,6 +204,22 @@ var Parser = (() => {
 			_configuration = mergeDeep(_configuration, _user_config);
 
 			// _hiddenTagNames needs their additional tags. 
+			_errored = true;
+		}
+
+		// StoryVariables
+		if (["storyvariables", "storyvars"].includes(_passageTitle.toLowerCase())) {
+			_displayPassage = false;
+			_shufflePassage = false;
+
+			// TODO for each line in thing, determine if viable variable name.
+			// TODO Write error if not.
+			_variables = _passages[i].innerHTML.split(/\r?\n/);
+			for (let val in _variables) {
+				// RegEx is CC BY-SA 3.0 https://stackoverflow.com/a/23453651
+				_variables[val] = _variables[val].replace(/[^a-z0-9áéíóúñü \.,_-]/gim,"").trim();
+			}
+
 			_errored = true;
 		}
 
@@ -415,6 +438,7 @@ var Parser = (() => {
 	/* Object Exports. */
 	return Object.freeze(Object.defineProperties({}, {
 		passages: { value: getPassages() },
+		variables: {value: _variables },
 		errors: { value: errorsList },
 		warnings: { value: warningsList },
 		htmlcss: { value: htmlcss },
