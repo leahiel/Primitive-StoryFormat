@@ -49,8 +49,6 @@ var Processer = (() => {
         }
     }
 
-
-
     /* InnerHTML Generic Processing */
     let converter = new showdown.Converter();
     converter.setOption('simpleLineBreaks', true);
@@ -161,10 +159,12 @@ var Processer = (() => {
                 let name = _duplicated_passage.getAttribute('name');
                 let id = _duplicated_passage.getAttribute('id');
                 let pid = _duplicated_passage.getAttribute('pid');
-                _duplicated_passage.setAttribute('name', `${name}-${nbsv}`)
-                _duplicated_passage.setAttribute('id', `${id}-${nbsv}`)
-                _duplicated_passage.setAttribute('pid', `${pid}-${nbsv}`)
-                _duplicated_passage.setAttribute('nbsv', nbsv)
+                _duplicated_passage.setAttribute('original_name', name);
+                _duplicated_passage.setAttribute('name', `${name}-${nbsv}`);
+                _duplicated_passage.setAttribute('id', `${id}-${nbsv}`);
+                _duplicated_passage.setAttribute('pid', `${pid}-${nbsv}`);
+                _duplicated_passage.setAttribute('nbsv', nbsv);
+                _duplicated_passage.setAttribute('outboundnbsv', nbsv);
 
                 h2.innerText = `Passage ${_shuffledHTMLIndex}`;
                 _duplicated_passage.prepend(h2);
@@ -181,13 +181,58 @@ var Processer = (() => {
 
     console.log(_processedhtmlpassages);
 
+    /* Process Macros */
+    for (let psg of _processedhtmlpassages) {
+        let regex = /&lt;&lt;.*&gt;&gt;/g;
+        let _innerHTML = psg.innerHTML;
+        let match;
+
+        do {
+            match = regex.exec(_innerHTML);
+            if (match) {
+                // Process Macros
+                let macro = match.toString().replace('&lt;&lt;','').replace('&gt;&gt;','').replace('else if','elseif').split(" ");
+                
+                switch (macro[0].toLowerCase()) {
+                    case 'if':
+                        // console.log('if NYI');
+                        break;
+                    case 'else':
+                        // console.log('else NYI');
+                        break;
+                    case 'elseif':
+                        // console.log('elseif NYI');
+                        break;
+                    case 'endif':
+                        // console.log('endif NYI');
+                        break;
+                    case 'set':
+                        Macros.set(macro.slice(1).join(' '), psg);
+                        break;
+                    case 'unset':
+                        Macros.unset(macro.slice(1).join(' '), psg);
+                        break;
+                    default:
+                        console.warn(`The Macro '${macro[0]}' found in Passage '${psg.getAttribute('original_name')}' is not a valid macro.`);
+                }
+            }
+        } while (match);
+
+    }
+    console.log('macros processed')
+
+
     /* Update links to NBSV passages. */
     for (let psg of _processedhtmlpassages) {
         let links = psg.getElementsByTagName('a');
 
         for (let link of links) {
             let outboundpsg = link.getAttribute('href').replace('#',"").replace("[[", "").replace("]]", "");
-            let linkname = `${outboundpsg}-${psg.getAttribute('nbsv')}`
+            let outboundnbsv = psg.getAttribute('outboundnbsv');
+
+            // TODO check for set and unset here.
+
+            let linkname = `${outboundpsg}-${outboundnbsv}`;
             let outboundpsgid = "";
             let _errored = false; // don't process 
 
@@ -204,16 +249,11 @@ var Processer = (() => {
                 // TODO Error here if passage is not found.
             }
 
-            linkname = outboundpsgid
-
             if (!_errored) {
-                link.setAttribute('href', `#${linkname}`)
+                link.setAttribute('href', `#${outboundpsgid}`)
             }
         }
     }
-
-
-
 
 
     /* EPUB Processing */

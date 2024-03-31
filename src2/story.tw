@@ -5,9 +5,6 @@
 storyvar1
 storyvar2
 storyvar3
-storyvar4
-storyvar5
-storyvar6
 
 
 :: Macros
@@ -19,6 +16,7 @@ Testing variables.
 <<else>>
     This shows if neither.
 <<endif>>
+<<set storyvar1 false>> lol
 
 [[YAP]]
 

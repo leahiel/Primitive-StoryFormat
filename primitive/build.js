@@ -16,6 +16,7 @@ const CONFIG = {
     js: {
         files: [
             'src/version.js',
+            'src/macros.js',
             'src/parser.js',
             'src/outputter.js',
             'src/processer.js',
