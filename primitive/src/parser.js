@@ -212,10 +212,9 @@ var Parser = (() => {
 			_displayPassage = false;
 			_shufflePassage = false;
 
-			// TODO for each line in thing, determine if viable variable name.
-			// TODO Write error if not.
 			_variables = _passages[i].innerHTML.split(/\r?\n/);
 			for (let val in _variables) {
+				// FIXME Variables must not allow `.` or `,` and should allow more accented characters.
 				// RegEx is CC BY-SA 3.0 https://stackoverflow.com/a/23453651
 				_variables[val] = _variables[val].replace(/[^a-z0-9áéíóúñü \.,_-]/gim,"").trim();
 			}
@@ -374,6 +373,7 @@ var Parser = (() => {
 
 	/* Helper Functions */
 
+	// TODO Once implemented in processor, remove here.
 	/** 
 	 * Shuffles the array. 
 	 * 

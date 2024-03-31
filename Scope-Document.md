@@ -373,6 +373,7 @@ You [choices] decide to head [[north]]
 ```
 Exact generated wordage of `[chioces]` would need to be determined.
 
+12) Allow passage links to use mermaid formats like -->, -.->, ---, ==>, ~~~
 
 
 # Glossary:

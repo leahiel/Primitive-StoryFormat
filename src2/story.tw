@@ -1,48 +1,32 @@
 :: Start
-Start
+
+
+:: storyvars
+storyvar1
+storyvar2
+storyvar3
+storyvar4
+storyvar5
+storyvar6
+
+
+:: Macros
+Testing variables.
+<<if storyvar1>>
+    This shows if storyvar1.
+<<elseif !storyvar1>>
+    This shows if not storyvar1.
+<<else>>
+    This shows if neither.
+<<endif>>
+
+[[YAP]]
+
+
+:: YAP
+psg YAP here.
 
 
 
-:: YetAnotherPassage
-does
-
-this  
 
 
-
-:: Hide this passage [hidden]
-Hide this *passage* 
-
-
-
-:: Introduction [frontmatter_1]
-<p>Just making sure tags aren't applied lol</p>
-
-
-
-:: Introduction34 [frontmatter_3]
-Frontmatter2
-
-[[go to sroty->wow sroty!]]
-
-and then i said, like omg
-
-[[pbla<-yowaddup]]
-[[asdfasd|ong more passages]]
-
-
-:: wow sroty!
-wow sroty!
-
-but with some line breaks!
-
-[[go to introduction34|Introduction34]]
-
-
-:: ong more passages
-ong more passages
-
-
-
-:: I should convert a story to this story format
-I should convert a story to this story format

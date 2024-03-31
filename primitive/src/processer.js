@@ -34,7 +34,13 @@ var Processer = (() => {
         } else if (_passages[i].getAttribute('data-placement') === 'body-matter') {
             // Set the ID of the HTML Element to an increasing number if it's in the body matter.
             _passages[i].setAttribute('id', _shuffledIndex);
+            _passages[i].variables = {};
             _linkerindex.push(_passages[i].getAttribute('name'));
+
+            // Get all potential variables into the passage.
+            for (let nbsv of Parser.variables) {
+                _passages[i].variables[nbsv] = null
+            }
 
             _shuffledIndex++;
         } else {
@@ -131,25 +137,82 @@ var Processer = (() => {
     }
 
     let _processedhtmlpassages = [];
+    let _allpossiblenbsvstates = getnbsvstates(Parser.variables.length);
 
     let _shuffledHTMLIndex = 1;
     for (let i in _htmlpassages) {
         // Prepend Header Text
-        let h2 = document.createElement('h2');
+        let psg = _htmlpassages[i]
 
-        if (['front-matter', 'back-matter'].includes(_htmlpassages[i].getAttribute('data-placement'))) {
-            h2.innerText = _htmlpassages[i].getAttribute('name');
-            _htmlpassages[i].prepend(h2);
+        if (['front-matter', 'back-matter'].includes(psg.getAttribute('data-placement'))) {
+            let h2 = document.createElement('h2');
+            h2.innerText = psg.getAttribute('name');
+            psg.prepend(h2);
 
-        } else if (_htmlpassages[i].getAttribute('data-placement') === 'body-matter') {
-            h2.innerText = `Passage ${_shuffledHTMLIndex}`;
-            _htmlpassages[i].prepend(h2);
+            _processedhtmlpassages.push(psg);
 
-            _shuffledHTMLIndex++;
+        } else if (psg.getAttribute('data-placement') === 'body-matter') {
+            // Duplicate passages for each possible variable value.
+            for (let nbsv of _allpossiblenbsvstates) {
+                let _duplicated_passage = psg.cloneNode(true);
+                let h2 = document.createElement('h2');
+
+                // Ensure no duplicate values on certain attributes.
+                let name = _duplicated_passage.getAttribute('name');
+                let id = _duplicated_passage.getAttribute('id');
+                let pid = _duplicated_passage.getAttribute('pid');
+                _duplicated_passage.setAttribute('name', `${name}-${nbsv}`)
+                _duplicated_passage.setAttribute('id', `${id}-${nbsv}`)
+                _duplicated_passage.setAttribute('pid', `${pid}-${nbsv}`)
+                _duplicated_passage.setAttribute('nbsv', nbsv)
+
+                h2.innerText = `Passage ${_shuffledHTMLIndex}`;
+                _duplicated_passage.prepend(h2);
+
+                _processedhtmlpassages.push(_duplicated_passage);
+
+                _shuffledHTMLIndex++;
+            }
+
+        } else {
+            // Passage is neither body-matter or front-matter/back-matter, which shouldn't be able to happen.
         }
-
-        _processedhtmlpassages.push(_htmlpassages[i]);
     }
+
+    console.log(_processedhtmlpassages);
+
+    /* Update links to NBSV passages. */
+    for (let psg of _processedhtmlpassages) {
+        let links = psg.getElementsByTagName('a');
+
+        for (let link of links) {
+            let outboundpsg = link.getAttribute('href').replace('#',"").replace("[[", "").replace("]]", "");
+            let linkname = `${outboundpsg}-${psg.getAttribute('nbsv')}`
+            let outboundpsgid = "";
+            let _errored = false; // don't process 
+
+            for (let ppsg of _processedhtmlpassages) {
+                if (linkname == ppsg.getAttribute('name')) {
+                    if (ppsg.getAttribute("data-placement") != 'body-matter') {
+                        _errored = true;
+                    }
+
+                    outboundpsgid= ppsg.getAttribute('id')
+                    continue;
+                }
+
+                // TODO Error here if passage is not found.
+            }
+
+            linkname = outboundpsgid
+
+            if (!_errored) {
+                link.setAttribute('href', `#${linkname}`)
+            }
+        }
+    }
+
+
 
 
 
@@ -162,9 +225,66 @@ var Processer = (() => {
 
     let _processedepubpassages = _epubpassages; // No EPUB pre-processing needed... yet.
 
-
-
     /* Helper Functions */
+
+    function getnbsvstates(num) {
+        if (isNaN(num)) {
+            // TODO Write an actual error.
+            return;
+        }
+
+        let sol = [];
+        let i = 0;
+
+        while (i < num) {
+            if (sol.length == 0) {
+                sol.push('N');
+                sol.push('T');
+                sol.push('F');
+            } else {
+                let int = [...sol];
+                sol = [];
+
+                for (let str of int) {
+                    sol.push(str + 'N');
+                    sol.push(str + 'T');
+                    sol.push(str + 'F');
+                }
+            }
+
+            i++
+        }
+
+        return sol;
+    }
+
+    /** 
+     * Shuffles the array. 
+     * 
+     * @param {any[]} array 
+     * 
+     * Taken from https://stackoverflow.com/a/2450976 
+     * CC BY-SA 4.0, no changes. 
+     */
+    function shuffle(array) {
+        let currentIndex = array.length,
+            randomIndex;
+
+        // While there remain elements to shuffle. 
+        while (currentIndex > 0) {
+
+            // Pick a remaining element. 
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+
+            // And swap it with the current element. 
+            [array[currentIndex], array[randomIndex]] = [
+                array[randomIndex], array[currentIndex]
+            ];
+        }
+
+        return array;
+    }
 
     /**
      * Converts a Twine Link into an HTML Element
@@ -238,12 +358,12 @@ var Processer = (() => {
 
 
     /**
-	 * Adds the populated field outboundOrigPID to each Story Passage. 
+     * Adds the populated field outboundOrigPID to each Story Passage. 
      * outboundOrigPID contains the original PID of each outbound link within the passage.
-	 * 
-	 * @param {tw-passagedata} array 
-	 */
-	function _walkOriginalNodes(passages) {
+     * 
+     * @param {tw-passagedata} array 
+     */
+    function _walkOriginalNodes(passages) {
         // Go through every outbound link in the passage, and find the PID for it.
         for (let passage of passages) {
             passage.outboundOrigPID = [];
@@ -254,7 +374,7 @@ var Processer = (() => {
                     passage.outboundOrigPID.push(_linkerindex[outbound])
                     continue;
                 }
-                
+
                 let isFound = false;
                 // Check non-shuffled passages for PID.
                 // TODO: Make a list of non-shuffled passages to greatly reduce the amount of passages to loop through.
@@ -272,13 +392,13 @@ var Processer = (() => {
         }
 
         console.log(passages)
-	}
+    }
 
     /** 
      * Returns a string of Mermaid that can be used to graphically display the nodes.
      * 
      * @param {tw-passagedata} array 
-     */ 
+     */
     function _mermaidOriginalNodes(passages) {
         let connections = [];
 
@@ -297,11 +417,11 @@ var Processer = (() => {
             }
 
             // TODO Order this by PID and not name.
-            let current = psg.attributes.name.value.replace(/\s/g, ""); // whitesapce not allowed in mermaid
+            let current = psg.attributes.name.value.replace(/\s/g, ""); // whitespace not allowed in mermaid
 
             psg.outboundOrigPID.forEach((PID) => {
                 let connect_str = `${current} --> ${PID}`
-                
+
                 if (!connections.includes(connect_str)) {
                     connections.push(connect_str)
                 }
@@ -309,7 +429,10 @@ var Processer = (() => {
 
         }
 
-        let collator = new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'});
+        let collator = new Intl.Collator(undefined, {
+            numeric: true,
+            sensitivity: 'base'
+        });
         connections = connections.sort(collator.compare);
         connections.unshift("flowchart LR");
         return connections.join('\n');
