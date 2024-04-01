@@ -4,7 +4,7 @@
  * The Outputter manipulates the DOM on the Primitive Export Screen.
  * 
  * The Outputter also exports stories.
- * TODO: Split export functionality into Exporter.
+ * TODO: Split export functionality into Exporter. The outputter should edit passages.
  */
 
 var Outputter = (() => {

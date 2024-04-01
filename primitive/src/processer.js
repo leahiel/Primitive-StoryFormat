@@ -1,3 +1,6 @@
+// TODO: Storing an array of non-body-matter passages would help reduce the amount of loops we need to do to find those passages.
+// TODO: Export True Passages, Processed HTML, and Processed EPUB files.
+
 /***
  * The Processer edits the inner and outer HTML of every Passage, prior to it being sent 
  * to the Outputter to show to the Author.
@@ -7,11 +10,6 @@
  * possible for the Outputter to transpile them into their requested output form.
  * 
  * ===== Walking the Graph
- * TODO The parser should create a JSON that outputs the passage, with each possible
- * outbound link, for 'walking the graph' purposes. 
- * TODO Additionally, that object should state whether each possible State Variable is 
- * even possible to achieve, or required, at all.
- * 
  * So we would have every possible variation of a passage. Then we would use the passage's
  * object to determine which one should be used.
  */
@@ -21,8 +19,9 @@ var Processer = (() => {
 
     /*
         Original Passages
+        ('Original', as in, pre-duplicated.)
     */
-    let _originalpassages = []; // 'Original' as in, pre-duplicated.
+    let _originalpassages = [];
     for (let psg of Parser.passages) {
         _originalpassages.push(psg.cloneNode(true));
     }
@@ -41,7 +40,7 @@ var Processer = (() => {
         let match;
 
         do {
-            // Find links for mermaid.
+            // Find passage links for Optimization and Mermaid.
             match = regex.exec(_innerHTML);
             if (match) {
                 if (match[0].split("-&gt;")[1]) {
@@ -52,6 +51,7 @@ var Processer = (() => {
                     outboundpsgs.push(match[0].split("&lt;-")[0].split("[[")[1]);
                 } else if (match[0].split("|")[1]) {
                     // Found [[display text|link]] format.
+                    // DEPRECATED: This link format is deprecated and only kept for legacy reasons.
                     outboundpsgs.push(match[0].split("|")[1].split("]]")[0]);
                 } else {
                     // Found [[link]] format.
@@ -144,7 +144,6 @@ var Processer = (() => {
         } while (match);
 
         // Process Macros
-        //          "Of course." There was no way a gentleman like you would deny a pleading lady like Tent.
         for (let i = 0; i < matches.length; i++) {
             let macro = matches[i][0];
 
@@ -221,6 +220,7 @@ var Processer = (() => {
                     text = link.split("&lt;-")[1].split("]]")[0];
                 } else if (link.split("|")[1]) {
                     // Found [[display text|link]] format.
+                    // DEPRECATED: This link format is deprecated and only kept for legacy reasons.
                     destination =`${link.split("|")[1].split("]]")[0]}-${outboundnbsv}`;
                     text = link.split("|")[0].split("[[")[1];
                 } else {

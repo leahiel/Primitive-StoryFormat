@@ -1,8 +1,6 @@
 // Parser figures out what to do with passsages. Is it a data passage? A body passage? Front matter? Back matter? Etc.
 // If a data passage, the parser also does data things.
 
-// TODO Make sure Start is first passage.
-
 /***
  * The Parser goes through all the Passages provided by `<tw-passagedata>` and determines 
  * what to do with them.
@@ -269,7 +267,7 @@ var Parser = (() => {
 
 					let number = parseInt(_tags[t].split("_")[1]);
 
-					// TODO Test for negative numbers.
+					// TODO Test and give error for negative numbers.
 					if (!isNaN(number)) {
 						if (!_frontMatterPassages.hasOwnProperty(number)) {
 							_frontMatterPassages[number] = _passages[i];
@@ -289,7 +287,7 @@ var Parser = (() => {
 				if (_tags[t].includes("backmatter")) {
 					let number = parseInt(_tags[t].split("_")[1]);
 
-					// TODO Test for negative numbers.
+					// TODO Test and give error for negative numbers.
 					if (!isNaN(number)) {
 						if (!_backMatterPassages.hasOwnProperty(number)) {
 							_backMatterPassages[number] = _passages[i];
