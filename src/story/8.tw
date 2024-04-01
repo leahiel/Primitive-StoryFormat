@@ -7,7 +7,7 @@ A soft sound escaped her lips as she took in the sight of you. Her eyes moved sl
 
 <<if choice1>>
 It's not too different from the previous nights. There's a bearskin blanket, a fire, and more clothing now... and yet you know it would be warmer if you two slept together.
-<</if>>
+<<endif>>
 
 In truth, it was freezing outside. You both knew that if you were to spend the night away from each other, one of you would be forced to endure a night of discomfort and cold on the hard floor. Likely you. Your intentions were pure and honorable. Definitely.
 
@@ -19,7 +19,7 @@ As is Tent.
 But it's different from the previous nights. Your fire is warm, and you have a bearskin blanket. There's no need to sleep together. There's no need for your attraction to each other to take control.
 <<else>>
 Tent's defenses break down in your presence and she slowly moves closer to you, eventually sitting on the bed with her knees pulled up to her chest. She is a shy but spirited young woman, trembling from the chill of the room, sitting right beside you.
-<</if>>
+<<endif>>
 
 [[Engage with with Tent.->8B]]
 [[Resolve yourself to sleeping alone.->8A-Ending]]

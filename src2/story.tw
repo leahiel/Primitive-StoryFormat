@@ -9,7 +9,7 @@ storyvar3
 
 :: Macros
 Testing variables.
-<<if storyvar1>>
+<<if !storyvar1>>
     This shows if storyvar1.
 <<elseif !storyvar1>>
     This shows if not storyvar1.

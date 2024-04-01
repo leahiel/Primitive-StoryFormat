@@ -274,7 +274,7 @@ Alternatively, begin Chapter 6:
 
 
 :: 4D-alt
-<<set choice to true>>
+<<set choice1 to true>>
 "Of course." There was no way a gentleman like you would deny a pleading lady like Tent.
 
 You lay down behind her, careful not to touch her, and put a small space between you. Her hair was in your face and her scent wafted towards you, making you blush.
@@ -314,4 +314,4 @@ You shift to get comfortable, a subtle sigh of pleasure escaping your lips as yo
 "Good night."
 
 Begin Chapter 6:
-[[Exploring the Woods->6A-1]]
+[[Exploring the Woods->6A]]

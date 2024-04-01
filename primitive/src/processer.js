@@ -19,47 +19,50 @@
 var Processer = (() => {
     'use strict';
 
-    let _passages = Parser.passages;
-
-    /* OuterHTML Generic Processing */
-    let _linkerindex = ["ErrorPassage"];
-    let _shuffledIndex = 1;
-    for (let i in _passages) {
-
-        // Determine Element ID
-        if (['front-matter', 'back-matter'].includes(_passages[i].getAttribute('data-placement'))) {
-            // Set the ID of the HTML Element to the name of the Passage if it's in the front or back matter.
-            _passages[i].setAttribute('id', _passages[i].getAttribute('name'));
-
-        } else if (_passages[i].getAttribute('data-placement') === 'body-matter') {
-            // Set the ID of the HTML Element to an increasing number if it's in the body matter.
-            _passages[i].setAttribute('id', _shuffledIndex);
-            _passages[i].variables = {};
-            _linkerindex.push(_passages[i].getAttribute('name'));
-
-            // Get all potential variables into the passage.
-            for (let nbsv of Parser.variables) {
-                _passages[i].variables[nbsv] = null
-            }
-
-            _shuffledIndex++;
-        } else {
-            // Somehow, the HTML Element has no 'data-placement' attribute.
-            // Parser.errors.push(`Unable to determine data-placement of :: ${_passages[i].getAttribute('name')}.`);
-        }
+    /*
+        Original Passages
+    */
+    let _originalpassages = []; // 'Original' as in, pre-duplicated.
+    for (let psg of Parser.passages) {
+        _originalpassages.push(psg.cloneNode(true));
     }
 
-    /* InnerHTML Generic Processing */
-    let converter = new showdown.Converter();
-    converter.setOption('simpleLineBreaks', true);
-    converter.setOption('openLinksInNewWindow', true);
-    converter.setOption('noHeaderId', true);
-    converter.setOption('prefixHeaderId', 'custom-'); // If an ID is set somehow, it'll have 'custom-' as a prefix.
-    converter.setOption('requireSpaceBeforeHeadingText', true);
+    // Intial Original Passages processing.
+    for (let psg of _originalpassages) {
+        let _innerHTML = psg.innerHTML;
 
-    for (let i in _passages) {
-        let regex;
-        let _innerHTML = _passages[i].innerHTML;
+        /* Set originalName */
+        psg.originalName = psg.getAttribute('name');
+        psg.setAttribute = psg.setAttribute('original-name', psg.originalName);
+
+        /* Set outboundPsg */
+        let regex = /\[\[(.*?)\]\]/g;
+        let outboundpsgs = [];
+        let match;
+
+        do {
+            // Find links for mermaid.
+            match = regex.exec(_innerHTML);
+            if (match) {
+                if (match[0].split("-&gt;")[1]) {
+                    // Found [[display text->link]] format.
+                    outboundpsgs.push(match[0].split("-&gt;")[1].split("]]")[0]);
+                } else if (match[0].split("&lt;-")[1]) {
+                    // Found [[link<-display text]] format.
+                    outboundpsgs.push(match[0].split("&lt;-")[0].split("[[")[1]);
+                } else if (match[0].split("|")[1]) {
+                    // Found [[display text|link]] format.
+                    outboundpsgs.push(match[0].split("|")[1].split("]]")[0]);
+                } else {
+                    // Found [[link]] format.
+                    outboundpsgs.push(match[0].split("[[")[1].split("]]")[0]);
+                }
+            }
+        } while (match);
+
+        psg.outboundpsgs = outboundpsgs;
+
+
 
         /* Remove Comments */
         // JavaScript Single Line Comments: `// Comment Text`
@@ -79,394 +82,313 @@ var Processer = (() => {
         regex = /&lt;!--[\S\s]*?--&gt;/g;
         _innerHTML = _innerHTML.replace(regex, "");
 
-
-
         /* Validate HTML tags */
         // TODO: Validate HTML tags here. Only a very limited number of standard HTML tags are allowed as per the EPUB3.3 standard. Most of these are handled by Primitive, to allow the Author to not worry about these. Therefore, if the Author is trying to do something, like add a <script> tag, then we need to ensure that the Author knows that Primitive is not the place for that.
 
+        psg.innerHTML = _innerHTML;
+    }
+
+    // console.log(_mermaidize(_originalpassages, true));
 
 
-        /* Convert Markdown to HTML */
-        _innerHTML = converter.makeHtml(_innerHTML);
+    /* 
+        Duplicated Passages based on NBSV.
+    */
+    let _duplicated_passages = [];
+    let _nbsvstates = Parser.getnbsvstates(Parser.variables.length);
 
+    for (let psg of _originalpassages) {
+        if (['front-matter', 'back-matter'].includes(psg.getAttribute('data-placement'))) {
+            let _dupe = psg.cloneNode(true);
 
+            let name = _dupe.getAttribute('name');
+            _dupe.setAttribute('id', `${name}-${"N".repeat(Parser.variables.length)}`);
 
-        /* Parse Links */
-        regex = /\[\[(.*?)\]\]/g;
-        let links = {};
+            _duplicated_passages.push(_dupe);
+        } else {
+            for (let nbsv of _nbsvstates) {
+                let _dupe = psg.cloneNode(true);
+
+                // Ensure no duplicate values on certain attributes.
+                let name = _dupe.getAttribute('name');
+                let pid = _dupe.getAttribute('pid');
+                _dupe.setAttribute('name', `${name}-${nbsv}`);
+                _dupe.setAttribute('id', `${name}-${nbsv}`);
+                _dupe.setAttribute('pid', `${pid}-${nbsv}`);
+                _dupe.setAttribute('nbsv', nbsv);
+                _dupe.setAttribute('outboundnbsv', nbsv);
+
+                _duplicated_passages.push(_dupe);
+            }
+        }
+    }
+
+    /* 
+        Process Macros l
+    */
+    for (let psg of _duplicated_passages) {
+        let regex = /&lt;&lt;.*&gt;&gt;/g;
+        let _innerHTML = psg.innerHTML;
         let match;
-        let outboundLinkHREF = [];
+        let matches = [];
 
-        // Get and convert links.
+        // Get Macros
         do {
             match = regex.exec(_innerHTML);
             if (match) {
-                links[match[0]] = _convertLink(match[0]);
+                matches.push([
+                    match.toString().replace('&lt;&lt;', '').replace('&gt;&gt;', '').replace('else if', 'elseif').split(" "),
+                    match
+                ]);
             }
         } while (match);
 
-        for (let link in links) {
-            _innerHTML = _innerHTML.replace(link, links[link].outerHTML);
+        // Process Macros
+        //          "Of course." There was no way a gentleman like you would deny a pleading lady like Tent.
+        for (let i = 0; i < matches.length; i++) {
+            let macro = matches[i][0];
 
-            // FIXME This isn't very secure. If passage names are weird, this will fail.
-            outboundLinkHREF.push(links[link].outerHTML.substring(
-                links[link].outerHTML.indexOf("\"#") + 2,
-                links[link].outerHTML.lastIndexOf("\"")
-            ).replace("[[", "").replace("]]", ""));
+            switch (macro[0].toLowerCase()) {
+                case 'if':
+                    // console.log('if NYI');
+                    break;
+                case 'else':
+                    // console.log('else NYI');
+                    break;
+                case 'elseif':
+                    // console.log('elseif NYI');
+                    break;
+                case 'endif':
+                    // console.log('endif NYI');
+                    break;
+                case 'set':
+                    // TODO Do all possible SET and UNSET Macros in Original Passages.
+                    Macros.set(macro.slice(1).join(' '), psg);
+                    break;
+                case 'unset':
+                    // TODO Do all possible SET and UNSET Macros in Original Passages.
+                    Macros.unset(macro.slice(1).join(' '), psg);
+                    break;
+                default:
+                    console.warn(`The Macro '${macro[0]}' found in Passage '${psg.getAttribute('original_name')}' is not a valid macro.`);
+            }
         }
-
-        /* Update passage */
-        _passages[i].innerHTML = _innerHTML;
-        _passages[i].outboundLinkHREF = outboundLinkHREF;
     }
 
-    /* Generate passage-nodes */
-    _walkOriginalNodes(_passages)
-    console.log(_mermaidOriginalNodes(_passages))
+
+
+    /*
+        Initialize Converter
+    */
+    let converter = new showdown.Converter();
+    converter.setOption('simpleLineBreaks', true);
+    converter.setOption('openLinksInNewWindow', true);
+    converter.setOption('noHeaderId', true);
+    converter.setOption('prefixHeaderId', 'custom-'); // If an ID is set somehow, it'll have 'custom-' as a prefix.
+    converter.setOption('requireSpaceBeforeHeadingText', true);
+
+
+    /* 
+        Update links.
+    */
+    for (let psg of _duplicated_passages) {
+        let _innerHTML = psg.innerHTML;
+        /* Convert Markdown to HTML */
+        // We can't update links until we do this.
+        _innerHTML = converter.makeHtml(_innerHTML);
+
+        let outboundpsgs = [];
+        let links = {};
+        let regex = /\[\[(.*?)\]\]/g;
+        let match;
+        let outboundnbsv = psg.getAttribute('outboundnbsv');
+
+        do {
+            // Find links for mermaid.
+            match = regex.exec(_innerHTML);
+            if (match) {
+                let link = match[0];
+                let destination = '';
+                let text = '';
+
+                if (link.split("-&gt;")[1]) {
+                    // Found [[display text->link]] format.
+                    destination = `${link.split("-&gt;")[1].split("]]")[0]}-${outboundnbsv}`;
+                    text = link.split("-&gt;")[0].split("[[")[1]
+                } else if (link.split("&lt;-")[1]) {
+                    // Found [[link<-display text]] format.
+                    destination = `${link.split("&lt;-")[0].split("[[")[1]}-${outboundnbsv}`;
+                    text = link.split("&lt;-")[1].split("]]")[0];
+                } else if (link.split("|")[1]) {
+                    // Found [[display text|link]] format.
+                    destination =`${link.split("|")[1].split("]]")[0]}-${outboundnbsv}`;
+                    text = link.split("|")[0].split("[[")[1];
+                } else {
+                    // Found [[link]] format.
+                    destination =`${link.split("[[")[1].split("]]")[0]}-${outboundnbsv}`;
+                    text = link;
+                }
+
+                // Only body-matter has variables, so...
+                // If Origin is NOT body-matter, add -N*numnbsv to ID.
+                if (['front-matter', 'back-matter'].includes(psg.getAttribute('data-placement'))) {
+                    let nulldest = `-${"N".repeat(Parser.variables.length)}`
+                    destination = destination.split("-")[0] + nulldest
+                }
+                // If Destination is NOT body-matter, add -N*numnbsv to ID.
+                for (let opsg of _originalpassages) {
+                    if (destination.split("-")[0] === opsg.originalName) {
+                        if (['front-matter', 'back-matter'].includes(opsg.getAttribute('data-placement'))) {
+                            let nulldest = `-${"N".repeat(Parser.variables.length)}`
+                            destination = destination.split("-")[0] + nulldest
+                        }
+
+                        break;
+                    }
+                }
+
+                // Look up data-placement of destination. If body-matter add -NN. if not, remove it?
+
+                outboundpsgs.push(destination);
+                links[link] = _createLink(text, destination);
+            }
+        } while (match);
+
+        psg.outboundpsgs = outboundpsgs;
+
+
+        for (let link in links) {
+            _innerHTML = _innerHTML.replace(link, links[link].outerHTML);
+        
+            // FIXME This isn't very secure. If passage names are weird, this will fail.
+            links[link].outerHTML.substring(
+                links[link].outerHTML.indexOf("\"#") + 2,
+                links[link].outerHTML.lastIndexOf("\"")
+            ).replace("[[", "").replace("]]",'');
+        }
+
+        psg.innerHTML = _innerHTML;
+    }
+
+    // let all_mermaid = _mermaidize(_duplicated_passages, false)
+    // console.log(getPassagesFromMermaid(all_mermaid))
+    
+    let startpsg;
+    for (let psg of _duplicated_passages) {
+        if (psg.getAttribute('name') === `${Parser.startpassage}-${"N".repeat(Parser.variables.length)}`) {
+            startpsg = psg;
+            break
+        }
+    }
+    let true_mermaid = MermaidizeFromPassage(startpsg);
+    let _truepassagenames = getPassagesFromMermaid(true_mermaid);
+    let _truepassages = [];
+
+    for (let psg of _duplicated_passages) {
+        // Only process the places we can actually reach.
+        if (_truepassagenames.includes(psg.getAttribute('name'))) {
+            let truepsg = psg.cloneNode(true);
+            truepsg.outboundpsgs = psg.outboundpsgs;
+
+            _truepassages.push(truepsg);
+        }
+
+        if (['front-matter', 'back-matter'].includes(psg.getAttribute('data-placement'))) {
+            let truepsg = psg.cloneNode(true);
+            truepsg.outboundpsgs = psg.outboundpsgs;
+
+            _truepassages.push(truepsg);
+        }
+    }
+
+    console.log(_mermaidize(_originalpassages, true));
+    console.log(_mermaidize(_truepassages, false));
 
 
 
     /* HTML Processing */
-
-    /** A deep clone of Parser.passages. */
     let _htmlpassages = [];
-    for (let i in _passages) {
-        _htmlpassages.push(_passages[i].cloneNode(true));
+    for (let psg of _truepassages) {
+        _htmlpassages.push(psg.cloneNode(true));
     }
 
-    let _processedhtmlpassages = [];
-    let _allpossiblenbsvstates = getnbsvstates(Parser.variables.length);
-
-    let _shuffledHTMLIndex = 1;
-    for (let i in _htmlpassages) {
-        // Prepend Header Text
-        let psg = _htmlpassages[i]
-
-        if (['front-matter', 'back-matter'].includes(psg.getAttribute('data-placement'))) {
-            let h2 = document.createElement('h2');
-            h2.innerText = psg.getAttribute('name');
-            psg.prepend(h2);
-
-            _processedhtmlpassages.push(psg);
-
-        } else if (psg.getAttribute('data-placement') === 'body-matter') {
-            // Duplicate passages for each possible variable value.
-            for (let nbsv of _allpossiblenbsvstates) {
-                let _duplicated_passage = psg.cloneNode(true);
-                let h2 = document.createElement('h2');
-
-                // Ensure no duplicate values on certain attributes.
-                let name = _duplicated_passage.getAttribute('name');
-                let id = _duplicated_passage.getAttribute('id');
-                let pid = _duplicated_passage.getAttribute('pid');
-                _duplicated_passage.setAttribute('original_name', name);
-                _duplicated_passage.setAttribute('name', `${name}-${nbsv}`);
-                _duplicated_passage.setAttribute('id', `${id}-${nbsv}`);
-                _duplicated_passage.setAttribute('pid', `${pid}-${nbsv}`);
-                _duplicated_passage.setAttribute('nbsv', nbsv);
-                _duplicated_passage.setAttribute('outboundnbsv', nbsv);
-
-                h2.innerText = `Passage ${_shuffledHTMLIndex}`;
-                _duplicated_passage.prepend(h2);
-
-                _processedhtmlpassages.push(_duplicated_passage);
-
-                _shuffledHTMLIndex++;
-            }
-
-        } else {
-            // Passage is neither body-matter or front-matter/back-matter, which shouldn't be able to happen.
-        }
-    }
-
-    console.log(_processedhtmlpassages);
-
-    /* Process Macros */
-    for (let psg of _processedhtmlpassages) {
-        let regex = /&lt;&lt;.*&gt;&gt;/g;
-        let _innerHTML = psg.innerHTML;
-        let match;
-
-        do {
-            match = regex.exec(_innerHTML);
-            if (match) {
-                // Process Macros
-                let macro = match.toString().replace('&lt;&lt;','').replace('&gt;&gt;','').replace('else if','elseif').split(" ");
-                
-                switch (macro[0].toLowerCase()) {
-                    case 'if':
-                        // console.log('if NYI');
-                        break;
-                    case 'else':
-                        // console.log('else NYI');
-                        break;
-                    case 'elseif':
-                        // console.log('elseif NYI');
-                        break;
-                    case 'endif':
-                        // console.log('endif NYI');
-                        break;
-                    case 'set':
-                        Macros.set(macro.slice(1).join(' '), psg);
-                        break;
-                    case 'unset':
-                        Macros.unset(macro.slice(1).join(' '), psg);
-                        break;
-                    default:
-                        console.warn(`The Macro '${macro[0]}' found in Passage '${psg.getAttribute('original_name')}' is not a valid macro.`);
-                }
-            }
-        } while (match);
-
-    }
-    console.log('macros processed')
-
-
-    /* Update links to NBSV passages. */
-    for (let psg of _processedhtmlpassages) {
-        let links = psg.getElementsByTagName('a');
-
-        for (let link of links) {
-            let outboundpsg = link.getAttribute('href').replace('#',"").replace("[[", "").replace("]]", "");
-            let outboundnbsv = psg.getAttribute('outboundnbsv');
-
-            // TODO check for set and unset here.
-
-            let linkname = `${outboundpsg}-${outboundnbsv}`;
-            let outboundpsgid = "";
-            let _errored = false; // don't process 
-
-            for (let ppsg of _processedhtmlpassages) {
-                if (linkname == ppsg.getAttribute('name')) {
-                    if (ppsg.getAttribute("data-placement") != 'body-matter') {
-                        _errored = true;
-                    }
-
-                    outboundpsgid= ppsg.getAttribute('id')
-                    continue;
-                }
-
-                // TODO Error here if passage is not found.
-            }
-
-            if (!_errored) {
-                link.setAttribute('href', `#${outboundpsgid}`)
-            }
-        }
-    }
+    let _processedhtmlpassages = _htmlpassages; // no HTML pre-processing needed... yet.
 
 
     /* EPUB Processing */
-    /** A deep clone of Parser.passages. */
     let _epubpassages = [];
-    for (let i in _passages) {
-        _epubpassages.push(_passages[i].cloneNode(true));
+    for (let psg of _truepassages) {
+        _epubpassages.push(psg.cloneNode(true));
     }
 
     let _processedepubpassages = _epubpassages; // No EPUB pre-processing needed... yet.
 
     /* Helper Functions */
 
-    function getnbsvstates(num) {
-        if (isNaN(num)) {
-            // TODO Write an actual error.
-            return;
-        }
-
-        let sol = [];
-        let i = 0;
-
-        while (i < num) {
-            if (sol.length == 0) {
-                sol.push('N');
-                sol.push('T');
-                sol.push('F');
-            } else {
-                let int = [...sol];
-                sol = [];
-
-                for (let str of int) {
-                    sol.push(str + 'N');
-                    sol.push(str + 'T');
-                    sol.push(str + 'F');
-                }
-            }
-
-            i++
-        }
-
-        return sol;
-    }
-
-    /** 
-     * Shuffles the array. 
-     * 
-     * @param {any[]} array 
-     * 
-     * Taken from https://stackoverflow.com/a/2450976 
-     * CC BY-SA 4.0, no changes. 
-     */
-    function shuffle(array) {
-        let currentIndex = array.length,
-            randomIndex;
-
-        // While there remain elements to shuffle. 
-        while (currentIndex > 0) {
-
-            // Pick a remaining element. 
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex--;
-
-            // And swap it with the current element. 
-            [array[currentIndex], array[randomIndex]] = [
-                array[randomIndex], array[currentIndex]
-            ];
-        }
-
-        return array;
-    }
 
     /**
-     * Converts a Twine Link into an HTML Element
+     * Create and return an <a href="#href">text</a> HTML Element.
      * 
-     * @param {String} link
-     * @return {HTML Element}
+     * @param {String} text Display Text
+     * @param {String} href Passage Title
+     * @return {HTMLELement}
      */
-    function _convertLink(link) {
-        /**
-         * Create and return an <a href="#href">text</a> HTML Element.
-         * 
-         * @param {String} text Display Text
-         * @param {String} href Passage Title
-         * @return {HTMLELement}
-         */
-        function _createLink(text, href) {
-            let a_elm;
-            if (Parser.config['enable-hyperlinks']) {
-                a_elm = document.createElement('a');
-
-                // The `href` is a Passage Title, so we need to get the converted passage ID from the Passage Title.
-                if (_linkerindex.indexOf(href) > 0) {
-                    // NOTE: _linkerindex[0] is the error passage that exists to 
-                    // shift the array down by one, so we don't care about it.
-                    href = _linkerindex.indexOf(href)
-                    a_elm.setAttribute('href', `#${href}`);
-                } else {
-                    a_elm.setAttribute('href', `#${href}`);
-                }
-            } else {
-                a_elm = document.createElement('span');
-            }
-
-            // Check for link-affixes.
-            for (let affix in Parser.config["link-affixes"]) {
-                if (text === affix) {
-                    // Replace %n if found.
-                    if (Parser.config["link-affixes"][affix].includes('%n')) {
-                        a_elm.innerText = Parser.config["link-affixes"][affix].replace('%n', href);
-                        return a_elm;
-                    } else {
-                        a_elm.innerText = Parser.config["link-affixes"][affix];
-                        return a_elm;
-                    }
-                }
-            }
-
-            // link-affix not found.
-            a_elm.innerText = text;
-            return a_elm;
-        }
-
-        if (link.split("-&gt;")[1]) {
-            // Found [[display text->link]] format.
-            return _createLink(link.split("-&gt;")[0].split("[[")[1], link.split("-&gt;")[1].split("]]")[0]);
-
-        } else if (link.split("&lt;-")[1]) {
-            // Found [[link<-display text]] format.
-            return _createLink(link.split("&lt;-")[1].split("]]")[0], link.split("&lt;-")[0].split("[[")[1]);
-
-        } else if (link.split("|")[1]) {
-            // Found [[display text|link]] format.
-            return _createLink(link.split("|")[0].split("[[")[1], link.split("|")[1].split("]]")[0]);
-
+    function _createLink(text, href) {
+        let a_elm;
+        if (Parser.config['enable-hyperlinks']) {
+            a_elm = document.createElement('a');
+            a_elm.setAttribute('href', `#${href}`);
+            
         } else {
-            // Found [[link]] format.
-            return _createLink(link, link);
+            a_elm = document.createElement('span');
         }
-    }
 
-
-
-    /**
-     * Adds the populated field outboundOrigPID to each Story Passage. 
-     * outboundOrigPID contains the original PID of each outbound link within the passage.
-     * 
-     * @param {tw-passagedata} array 
-     */
-    function _walkOriginalNodes(passages) {
-        // Go through every outbound link in the passage, and find the PID for it.
-        for (let passage of passages) {
-            passage.outboundOrigPID = [];
-
-            for (let outbound of passage.outboundLinkHREF) {
-                // Check shuffled passages for PID.
-                if (_linkerindex[outbound]) {
-                    passage.outboundOrigPID.push(_linkerindex[outbound])
-                    continue;
-                }
-
-                let isFound = false;
-                // Check non-shuffled passages for PID.
-                // TODO: Make a list of non-shuffled passages to greatly reduce the amount of passages to loop through.
-                for (let otherpassage of passages) {
-                    if (outbound === otherpassage.attributes.name.value) {
-                        passage.outboundOrigPID.push(otherpassage.attributes.pid.value);
-                        isFound = true;
-                    }
-                }
-
-                if (!isFound) {
-                    console.warn(`Outbound ${outbound} was not found as a passage name or a PID.`);
+        // Check for link-affixes.
+        for (let affix in Parser.config["link-affixes"]) {
+            if (text === affix) {
+                // Replace %n if found.
+                if (Parser.config["link-affixes"][affix].includes('%n')) {
+                    href = href.split(`-${"N".repeat(Parser.variables.length)}`)[0]
+                    a_elm.innerText = Parser.config["link-affixes"][affix].replace('%n', href);
+                    return a_elm;
+                } else {
+                    a_elm.innerText = Parser.config["link-affixes"][affix];
+                    return a_elm;
                 }
             }
         }
 
-        console.log(passages)
+        // link-affix not found.
+        a_elm.innerText = text;
+        return a_elm;
     }
 
-    /** 
-     * Returns a string of Mermaid that can be used to graphically display the nodes.
-     * 
-     * @param {tw-passagedata} array 
+
+    /**
+     * For a given set of passages, create a Mermaid Flow Chart.
      */
-    function _mermaidOriginalNodes(passages) {
+    function _mermaidize(passages, useOriginalName) {
         let connections = [];
 
-        for (let passage in passages) {
-            let psg = passages[passage]
-
-            // Ensure there are links to look at.
-            // TODO Add isolated links to a subgraph of isolated passages.
-            if (psg.outboundOrigPID.length <= 0) {
+        for (let psg of passages) {
+            if (['front-matter', 'back-matter'].includes(psg.getAttribute('data-placement'))) {
                 continue;
             }
 
-            // TODO Figure out how to handle front and back matter.
-            if (psg.attributes['data-placement'].value !== 'body-matter') {
-                continue;
-            }
+            for (let i = 0; i < psg.outboundpsgs.length; i++) {
+                let outbound = psg.outboundpsgs[i].replace(/\s/g, '')
 
-            // TODO Order this by PID and not name.
-            let current = psg.attributes.name.value.replace(/\s/g, ""); // whitespace not allowed in mermaid
-
-            psg.outboundOrigPID.forEach((PID) => {
-                let connect_str = `${current} --> ${PID}`
+                let connect_str = '';
+                if (useOriginalName) {
+                    connect_str = `${psg.originalName.replace(/\s/g, '')} --> ${outbound}`
+                } else {
+                    connect_str = `${psg.getAttribute('id').replace(/\s/g, '')} --> ${outbound}`
+                }
 
                 if (!connections.includes(connect_str)) {
                     connections.push(connect_str)
                 }
-            });
-
+            }
         }
 
         let collator = new Intl.Collator(undefined, {
@@ -477,7 +399,93 @@ var Processer = (() => {
         connections.unshift("flowchart LR");
         return connections.join('\n');
     }
+    
+    // Returns a Mermaid Flow Chart based on an initial passage.
+    function MermaidizeFromPassage(psg) {
+        let connections = [];
+        let scanned = [psg.getAttribute('name')];
+        let to_be_scanned = [];
 
+        if (['front-matter', 'back-matter'].includes(psg.getAttribute('data-placement'))) {
+            console.error(`Your 'Start' passage, ${psg.getAttribute('original-name')} must be a body-matter passage.`);
+            return false;
+        }
+
+        // Initialize loop.
+        for (let outbound of psg.outboundpsgs) {
+            let connect_str = `${psg.getAttribute('id').replace(/\s/g, '')} --> ${outbound}`
+
+            if (!connections.includes(connect_str)) {
+                connections.push(connect_str)
+            }
+
+            if (!scanned.includes(outbound)) {
+                to_be_scanned.push(outbound)
+            }
+        }
+
+        while (to_be_scanned.length > 0) {
+            let next = to_be_scanned.shift();
+            scanned.push(next);
+
+            let nextpsg;
+            for (let dpsg of _duplicated_passages) {
+                if (dpsg.getAttribute('name') === next) {
+                    nextpsg = dpsg;
+                    break;
+                }
+            }
+
+            if (nextpsg === undefined) {
+                // BUG Usually this means it's a front-matter or back-matter, like `Author's Note-NN`
+                continue;
+            }
+
+            if (['front-matter', 'back-matter'].includes(nextpsg.getAttribute('data-placement'))) {
+                continue;
+            }
+
+            if (psg.outboundpsgs.length <= 0) {
+                continue;
+            }
+
+            for (let outbound of nextpsg.outboundpsgs) {
+                let connect_str = `${nextpsg.getAttribute('id').replace(/\s/g, '')} --> ${outbound}`
+    
+                if (!connections.includes(connect_str)) {
+                    connections.push(connect_str)
+                }
+
+                if (scanned.includes(outbound)) {
+                    continue;
+                }
+                
+                if (to_be_scanned.includes(outbound)) {
+                    continue;
+                }
+
+                to_be_scanned.push(outbound)
+            }
+        }
+        
+
+        let collator = new Intl.Collator(undefined, {
+            numeric: true,
+            sensitivity: 'base'
+        });
+        connections = connections.sort(collator.compare);
+        connections.unshift("flowchart LR");
+        return connections.join('\n');
+    }
+
+    // Returns an array of all unique passage names from the Mermaid code.
+    function getPassagesFromMermaid(text) {
+        let passages = text.split(' --> ');
+        passages = passages.join('\n');
+        passages = passages.split('\n');
+        passages.shift(); // remove 'flowchart LR'
+        return [...new Set(passages)];
+    }
 
 
     /**

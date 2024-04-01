@@ -1,3 +1,8 @@
+// Parser figures out what to do with passsages. Is it a data passage? A body passage? Front matter? Back matter? Etc.
+// If a data passage, the parser also does data things.
+
+// TODO Make sure Start is first passage.
+
 /***
  * The Parser goes through all the Passages provided by `<tw-passagedata>` and determines 
  * what to do with them.
@@ -6,26 +11,15 @@
  * If the Passage is a CSS passage, this it puts the CSS in the correct location.
  * Then, the Parser organizes all remaining Passages by front matter, body matter, and 
  * back matter.
- * 
- * TODO Add a way to shuffle body matter in the processer or outputter stage.
  */
 
 var Parser = (() => {
 	'use strict';
 
-	/** 
-	 * An object containing every passage. 
-	 * 
-	 * @type {Object.<Element>} 
-	 */
 	var _passages = document.getElementsByTagName('tw-passagedata');
-
-	/**
-	 * An array of all State Variables.
-	 * 
-	 * @type {String[]}
-	 */
 	var _variables = [];
+
+	var startpassage;
 
 	/** 
 	 * Shuffled Story Passages 
@@ -71,7 +65,7 @@ var Parser = (() => {
 	var _backMatterPassages = {};
 
 	/** 
-	 * Default Special Passage Tags that indication that the Passage should not be shown.
+	 * Default Special Passage Tags that indicate that the Passage should not be shown.
 	 * 
 	 * @type {string[]} 
 	 */
@@ -134,7 +128,6 @@ var Parser = (() => {
 
 
 	/* Loop through every Passage and determine if they should be shown or shuffled, and where they belong (Front/Middle/Back). */
-
 	for (let i = 0; i < _passages.length; i++) {
 		/** 
 		 * Should we display the passage? 
@@ -264,6 +257,12 @@ var Parser = (() => {
 				// 	continue;
 				// }
 
+				// "Start"
+				// TODO I want to use the Start special passage name or the Start ability within settings, not this.
+				if (_tags[t].includes("start")) {
+					startpassage = _passages[i].getAttribute('name');
+				}
+
 				// Front Matter 
 				// TODO tags[t].toLowerCase() 
 				if (_tags[t].includes("frontmatter")) {
@@ -320,6 +319,8 @@ var Parser = (() => {
 		// Handle Start Special Passage
 		if (_passageTitle.toLowerCase() === "start") {
 			_shufflePassage = false;
+
+			startpassage = _passageTitle;
 		}
 
 		if (_displayPassage && _shufflePassage) {
@@ -340,7 +341,7 @@ var Parser = (() => {
 	}
 
 	// Shuffled Passages
-	shuffle(_shuffledIndices);
+	// Do nothing.
 
 	// Back Matter
 	let backkeys = Object.keys(_backMatterPassages).sort()
@@ -369,39 +370,7 @@ var Parser = (() => {
 		return structuredClone(_configuration);
 	}
 
-
-
 	/* Helper Functions */
-
-	// TODO Once implemented in processor, remove here.
-	/** 
-	 * Shuffles the array. 
-	 * 
-	 * @param {any[]} array 
-	 * 
-	 * Taken from https://stackoverflow.com/a/2450976 
-	 * CC BY-SA 4.0, no changes. 
-	 */
-	function shuffle(array) {
-		let currentIndex = array.length,
-			randomIndex;
-
-		// While there remain elements to shuffle. 
-		while (currentIndex > 0) {
-
-			// Pick a remaining element. 
-			randomIndex = Math.floor(Math.random() * currentIndex);
-			currentIndex--;
-
-			// And swap it with the current element. 
-			[array[currentIndex], array[randomIndex]] = [
-				array[randomIndex], array[currentIndex]
-			];
-		}
-
-		return array;
-	}
-
 	/**
 	 * Performs a deep merge of objects and returns new object. Does not modify
 	 * objects (immutable) and merges arrays via concatenation.
@@ -435,6 +404,37 @@ var Parser = (() => {
 		}, {});
 	}
 
+	function getnbsvstates(num) {
+        if (isNaN(num)) {
+            // TODO Write an actual error.
+            return;
+        }
+
+        let sol = [];
+        let i = 0;
+
+        while (i < num) {
+            if (sol.length == 0) {
+                sol.push('N');
+                sol.push('T');
+                sol.push('F');
+            } else {
+                let int = [...sol];
+                sol = [];
+
+                for (let str of int) {
+                    sol.push(str + 'N');
+                    sol.push(str + 'T');
+                    sol.push(str + 'F');
+                }
+            }
+
+            i++
+        }
+
+        return sol;
+    }
+
 	/* Object Exports. */
 	return Object.freeze(Object.defineProperties({}, {
 		passages: { value: getPassages() },
@@ -444,6 +444,8 @@ var Parser = (() => {
 		htmlcss: { value: htmlcss },
 		epubcss: { value: epubcss },
 		config: { value: getConfiguration() }, 
-		title: { value: title }
+		title: { value: title },
+		getnbsvstates: {value: getnbsvstates },
+		startpassage: { value: startpassage }
 	}));
 })();

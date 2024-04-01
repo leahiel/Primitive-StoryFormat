@@ -211,7 +211,7 @@ After thanking her one last time, you walk off the balcony and land on the groun
 
 <<if choice1>>
     You spent another wonderful night acting as a mattress for Tent, sharing your heartbeat with her.
-<</if>>
+<<endif>>
 
 Begin Chapter 7:
 [[Mysteries->7A]]

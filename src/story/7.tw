@@ -106,7 +106,7 @@ You stumble over your words. "It looks good... You look nice, uh, and neat."
 [[Continue->7F]]
 <<else>>
 [[Continue->7I]]
-<</if>>
+<<endif>>
 
 
 
@@ -151,7 +151,7 @@ Tent lets out a "Hmph!" and ignores you.
 [[Continue->7I]]
 <<else>>
 [[The Cabin at Night->7I]]
-<</if>>
+<<endif>>
 
 
 
@@ -166,7 +166,7 @@ Tent hums softly in response. She gazes at you for a moment, then looks away. "N
 [[Continue->7I]]
 <<else>>
 [[The Cabin at Night->8A]]
-<</if>>
+<<endif>>
 
 
 
@@ -199,7 +199,7 @@ Oh, delightful. You drank some of that.
 "...Maybe we're not real vampires," Tent continued, her cheeks reddening further as she realized her new shirt didn't have a hood like her dress did. "Maybe we're just half-vampires, and so we can eat meat just fine.”
 <<else>>
 "Huh?" Tent's eyes met yours. Her cheeks flushed before she looked away. "Their blood is disgusting. I don't want to drink that," she said. You remembered feeling the same way about all the blood you've seen recently, though Tent's own blood was strangely captivating. "Maybe we're not real vampires," Tent continued, her cheeks reddening further as she realized her new shirt didn't have a hood like her dress did. "Maybe we're just half-vampires, and so we can eat meat just fine.”
-<</if>>
+<<endif>>
 
 "So we have some strengths and some weaknesses of vampires?"
 

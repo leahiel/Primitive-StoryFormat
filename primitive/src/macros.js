@@ -8,7 +8,12 @@ var Macros = (() => {
     // Sets the NBSV to True, False, or Null.
     function set(exp, psg) {
         let nbsv = exp.split(' ')[0];
-        let val = exp.split(' ')[1];
+        let val = exp.split(' ').pop();
+
+        if (!Parser.variables.includes(nbsv)) {
+            console.error(`NBSV ${nbsv} is not set. Location: ${psg.getAttribute('original-name')}`)
+            return false;
+        }
         
         switch (val.toLowerCase()) {
             case 'true':
@@ -20,7 +25,7 @@ var Macros = (() => {
             case 'null':
                 val = 'N';
                 break;
-            default:a
+            default:
                 // TODO Write error.
         }
 
@@ -35,6 +40,11 @@ var Macros = (() => {
     function unset(exp, psg) {
         let nbsv = exp.split(' ')[0];
         let val = 'N'
+
+        if (!Parser.variables.includes(nbsv)) {
+            console.error(`NBSV ${nbsv} is not set. Location: ${psg.getAttribute('original-name')}`)
+            return false;
+        }
 
         let outboundnbsv = psg.getAttribute('outboundnbsv');
         let idx = Parser.variables.indexOf(nbsv);

@@ -1,3 +1,5 @@
+// The outputter deals with displaying the passages to the screen. It also shuffles them. Because it shuffles them, it also adds the h2 tag identifying the passage to the passage. 
+
 /***
  * The Outputter manipulates the DOM on the Primitive Export Screen.
  * 
@@ -7,6 +9,43 @@
 
 var Outputter = (() => {
     'use strict';
+
+    // // Prepend Header Text
+    // if (['front-matter', 'back-matter'].includes(psg.getAttribute('data-placement'))) {
+    //     let h2 = document.createElement('h2');
+    //     h2.innerText = psg.getAttribute('name');
+    //     psg.prepend(h2);
+
+    //     _processedhtmlpassages.push(psg);
+
+    // } else if (psg.getAttribute('data-placement') === 'body-matter') {
+    //     // Duplicate passages for each possible variable value.
+    //     for (let nbsv of _allpossiblenbsvstates) {
+    //         let _duplicated_passage = psg.cloneNode(true);
+    //         let h2 = document.createElement('h2');
+
+    //         // Ensure no duplicate values on certain attributes.
+    //         let name = _duplicated_passage.getAttribute('name');
+    //         let id = _duplicated_passage.getAttribute('id');
+    //         let pid = _duplicated_passage.getAttribute('pid');
+    //         _duplicated_passage.setAttribute('original_name', name);
+    //         _duplicated_passage.setAttribute('name', `${name}-${nbsv}`);
+    //         _duplicated_passage.setAttribute('id', `${id}-${nbsv}`);
+    //         _duplicated_passage.setAttribute('pid', `${pid}-${nbsv}`);
+    //         _duplicated_passage.setAttribute('nbsv', nbsv);
+    //         _duplicated_passage.setAttribute('outboundnbsv', nbsv);
+
+    //         h2.innerText = `Passage ${_shuffledHTMLIndex}`;
+    //         _duplicated_passage.prepend(h2);
+
+    //         _processedhtmlpassages.push(_duplicated_passage);
+
+    //         _shuffledHTMLIndex++;
+    //     }
+
+    // } else {
+    //     // Passage is neither body-matter or front-matter/back-matter, which shouldn't be able to happen.
+    // }
 
     /**
      * Outputs the HTML export into the HTML document.

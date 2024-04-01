@@ -213,7 +213,7 @@ A thought pops into your head and a broad smile spreads across your face.
 <<else>>
     [[Tease her.->5E]]
     [[Don't tease her.->5F]]
-<</if>>
+<<endif>>
 
 
 
@@ -283,4 +283,4 @@ Begin Chapter 6:
 [[Exploring the Woods->6A]]
 <<else>>
 [[Continue->4D-pre-alt]]
-<</if>>
+<<endif>>
