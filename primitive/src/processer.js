@@ -137,22 +137,22 @@ var Processer = (() => {
             let soltext = ""; // Solution text.
 
             while (textarr.length > 0) {
-              let restofpassage = textarr.slice((textarr.length) * -1);
-              let text = Macros.determine(restofpassage[0]);
-          
-              if (text.isOk) {
-                // Is a recognized macro.
+                let restofpassage = textarr.slice((textarr.length) * -1);
+                let text = Macros.determine(restofpassage[0]);
 
-                let macroResult = Macros.run(text, restofpassage, psg);
-                textarr = macroResult.psgarr;
-                restofpassage = textarr;
-                soltext += control_flow(restofpassage, psg);
-                break;
-              } else {
-                // Is normal text or an unrecognized macro.
-                
-                soltext += textarr.shift();
-              }
+                if (text.isOk) {
+                    // Is a recognized macro.
+
+                    let macroResult = Macros.run(text, restofpassage, psg);
+                    textarr = macroResult.psgarr;
+                    restofpassage = textarr;
+                    soltext += control_flow(restofpassage, psg);
+                    break;
+                } else {
+                    // Is normal text or an unrecognized macro.
+
+                    soltext += textarr.shift();
+                }
             }
 
             return soltext;
@@ -181,7 +181,7 @@ var Processer = (() => {
         let _innerHTML = psg.innerHTML;
         /* Convert Markdown to HTML (We can't update links until we do this.) */
         // Prevent code blocks. https://showdownjs.com/docs/markdown-syntax/#multiple-lines
-        _innerHTML = _innerHTML.replace('    ', '');  // 4 Spaces
+        _innerHTML = _innerHTML.replace('    ', ''); // 4 Spaces
         _innerHTML = _innerHTML.replace('       ', ''); // 2 Tabs
 
         // Convert
@@ -199,7 +199,7 @@ var Processer = (() => {
             _innerHTML = _innerHTML.replace('&amp;', '&');
             _innerHTML = _innerHTML.replace('&lt;', '<');
             _innerHTML = _innerHTML.replace('&gt;', '>');
-            
+
             match = regex.exec(_innerHTML);
             if (match) {
                 let link = match[0];
@@ -217,11 +217,11 @@ var Processer = (() => {
                 } else if (link.split("|")[1]) {
                     // Found [[display text|link]] format.
                     // DEPRECATED: This link format is deprecated and only kept for legacy reasons.
-                    destination =`${link.split("|")[1].split("]]")[0]}-${outboundnbsv}`;
+                    destination = `${link.split("|")[1].split("]]")[0]}-${outboundnbsv}`;
                     text = link.split("|")[0].split("[[")[1];
                 } else {
                     // Found [[link]] format.
-                    destination =`${link.split("[[")[1].split("]]")[0]}-${outboundnbsv}`;
+                    destination = `${link.split("[[")[1].split("]]")[0]}-${outboundnbsv}`;
                     text = link;
                 }
 
@@ -255,12 +255,12 @@ var Processer = (() => {
 
         for (let link in links) {
             _innerHTML = _innerHTML.replace(link, links[link].outerHTML);
-        
+
             // FIXME This isn't very secure. If passage names are weird, this will fail.
             links[link].outerHTML.substring(
                 links[link].outerHTML.indexOf("\"#") + 2,
                 links[link].outerHTML.lastIndexOf("\"")
-            ).replace("[[", "").replace("]]",'');
+            ).replace("[[", "").replace("]]", '');
         }
 
         psg.innerHTML = _innerHTML;
@@ -268,7 +268,7 @@ var Processer = (() => {
 
     // let all_mermaid = _mermaidize(_duplicated_passages, false)
     // console.log(getPassagesFromMermaid(all_mermaid))
-    
+
     /*
         Crawl through duplicated passages to find reachable passsages.
     */
@@ -337,7 +337,7 @@ var Processer = (() => {
         if (Parser.config['enable-hyperlinks']) {
             a_elm = document.createElement('a');
             a_elm.setAttribute('href', `#${href}`);
-            
+
         } else {
             a_elm = document.createElement('span');
         }
@@ -398,7 +398,7 @@ var Processer = (() => {
         connections.unshift("flowchart LR");
         return connections.join('\n');
     }
-    
+
     // Returns a Mermaid Flow Chart based on an initial passage.
     function MermaidizeFromPassage(psg) {
         let connections = [];
@@ -450,7 +450,7 @@ var Processer = (() => {
 
             for (let outbound of nextpsg.outboundpsgs) {
                 let connect_str = `${nextpsg.getAttribute('id').replace(/\s/g, '')} --> ${outbound}`
-    
+
                 if (!connections.includes(connect_str)) {
                     connections.push(connect_str)
                 }
@@ -458,7 +458,7 @@ var Processer = (() => {
                 if (scanned.includes(outbound)) {
                     continue;
                 }
-                
+
                 if (to_be_scanned.includes(outbound)) {
                     continue;
                 }
@@ -466,7 +466,7 @@ var Processer = (() => {
                 to_be_scanned.push(outbound)
             }
         }
-        
+
 
         let collator = new Intl.Collator(undefined, {
             numeric: true,

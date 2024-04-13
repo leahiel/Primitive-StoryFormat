@@ -62,7 +62,9 @@ var Outputter = (() => {
 
     function export_html() {
         let html = _createHTML();
-        let blob = new Blob([html.outerHTML], {type: 'text/html'});
+        let blob = new Blob([html.outerHTML], {
+            type: 'text/html'
+        });
         let url = URL.createObjectURL(blob);
 
         saveAs(url, `${Parser.title}.html`);

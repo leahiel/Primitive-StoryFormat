@@ -109,7 +109,7 @@ var Parser = (() => {
 			'#': '%n',
 		},
 		'direct-to-epub': false,
-		'direct-to-html': false, 
+		'direct-to-html': false,
 		'enable-hyperlinks': true,
 	}
 	// TODO Add hidden tag names here.
@@ -204,7 +204,7 @@ var Parser = (() => {
 			for (let val in _variables) {
 				// FIXME Variables must not allow `.` or `,` and should allow more accented characters.
 				// RegEx is CC BY-SA 3.0 https://stackoverflow.com/a/23453651
-				_variables[val] = _variables[val].replace(/[^a-z0-9áéíóúñü \.,_-]/gim,"").trim();
+				_variables[val] = _variables[val].replace(/[^a-z0-9áéíóúñü \.,_-]/gim, "").trim();
 			}
 
 			_errored = true;
@@ -378,69 +378,87 @@ var Parser = (() => {
 	 */
 	function mergeDeep(...objects) {
 		const isObject = obj => obj && typeof obj === 'object';
-		
+
 		return objects.reduce((prev, obj) => {
-		Object.keys(obj).forEach(key => {
-			const pVal = prev[key];
-			const oVal = obj[key];
-			
-			if (Array.isArray(pVal) && Array.isArray(oVal)) {
-			prev[key] = pVal.concat(...oVal);
-			}
-			else if (isObject(pVal) && isObject(oVal)) {
-			prev[key] = mergeDeep(pVal, oVal);
-			}
-			else {
-			prev[key] = oVal;
-			}
-		});
-		
-		return prev;
+			Object.keys(obj).forEach(key => {
+				const pVal = prev[key];
+				const oVal = obj[key];
+
+				if (Array.isArray(pVal) && Array.isArray(oVal)) {
+					prev[key] = pVal.concat(...oVal);
+				} else if (isObject(pVal) && isObject(oVal)) {
+					prev[key] = mergeDeep(pVal, oVal);
+				} else {
+					prev[key] = oVal;
+				}
+			});
+
+			return prev;
 		}, {});
 	}
 
 	function getnbsvstates(num) {
-        if (isNaN(num)) {
-            // TODO Write an actual error.
-            return;
-        }
+		if (isNaN(num)) {
+			// TODO Write an actual error.
+			return;
+		}
 
-        let sol = [];
-        let i = 0;
+		let sol = [];
+		let i = 0;
 
-        while (i < num) {
-            if (sol.length == 0) {
-                sol.push('N');
-                sol.push('T');
-                sol.push('F');
-            } else {
-                let int = [...sol];
-                sol = [];
+		while (i < num) {
+			if (sol.length == 0) {
+				sol.push('N');
+				sol.push('T');
+				sol.push('F');
+			} else {
+				let int = [...sol];
+				sol = [];
 
-                for (let str of int) {
-                    sol.push(str + 'N');
-                    sol.push(str + 'T');
-                    sol.push(str + 'F');
-                }
-            }
+				for (let str of int) {
+					sol.push(str + 'N');
+					sol.push(str + 'T');
+					sol.push(str + 'F');
+				}
+			}
 
-            i++
-        }
+			i++
+		}
 
-        return sol;
-    }
+		return sol;
+	}
 
 	/* Object Exports. */
 	return Object.freeze(Object.defineProperties({}, {
-		passages: { value: getPassages() },
-		variables: {value: _variables },
-		errors: { value: errorsList },
-		warnings: { value: warningsList },
-		htmlcss: { value: htmlcss },
-		epubcss: { value: epubcss },
-		config: { value: getConfiguration() }, 
-		title: { value: title },
-		getnbsvstates: {value: getnbsvstates },
-		startpassage: { value: startpassage }
+		passages: {
+			value: getPassages()
+		},
+		variables: {
+			value: _variables
+		},
+		errors: {
+			value: errorsList
+		},
+		warnings: {
+			value: warningsList
+		},
+		htmlcss: {
+			value: htmlcss
+		},
+		epubcss: {
+			value: epubcss
+		},
+		config: {
+			value: getConfiguration()
+		},
+		title: {
+			value: title
+		},
+		getnbsvstates: {
+			value: getnbsvstates
+		},
+		startpassage: {
+			value: startpassage
+		}
 	}));
 })();

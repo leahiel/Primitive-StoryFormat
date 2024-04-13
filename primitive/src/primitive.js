@@ -15,13 +15,13 @@ window.Primitive = {};
 
 	/* Add functionality to Header Buttons */
 	_waitForElm('#primitive-test-html').then((elm) => {
-		elm.addEventListener("click", ()=>{
+		elm.addEventListener("click", () => {
 			Outputter.put_test_html();
 		});
 	});
 
 	_waitForElm('#primitive-export-html').then((elm) => {
-		elm.addEventListener("click", ()=>{
+		elm.addEventListener("click", () => {
 			Outputter.export_html();
 		});
 
@@ -31,7 +31,7 @@ window.Primitive = {};
 	});
 
 	_waitForElm('#primitive-export-epub').then((elm) => {
-		elm.addEventListener("click", ()=>{
+		elm.addEventListener("click", () => {
 			Outputter.export_epub();
 		});
 
@@ -102,26 +102,26 @@ window.Primitive = {};
 	 * 
 	 */
 	function _waitForElm(selector) {
-        return new Promise(resolve => {
-            const el = document.querySelector(selector);
+		return new Promise(resolve => {
+			const el = document.querySelector(selector);
 
-            if (el) {
-                return resolve(el);
-            }
+			if (el) {
+				return resolve(el);
+			}
 
-            const observer = new MutationObserver(mutations => {
-                const el = document.querySelector(selector);
+			const observer = new MutationObserver(mutations => {
+				const el = document.querySelector(selector);
 
-                if (el) {
-                    observer.disconnect();
-                    resolve(el);
-                }
-            });
+				if (el) {
+					observer.disconnect();
+					resolve(el);
+				}
+			});
 
-            observer.observe(document.body, {
-                childList : true,
-                subtree   : true
-            });
-        });
-    }
+			observer.observe(document.body, {
+				childList: true,
+				subtree: true
+			});
+		});
+	}
 })();
