@@ -1,6 +1,3 @@
-// Parser figures out what to do with passsages. Is it a data passage? A body passage? Front matter? Back matter? Etc.
-// If a data passage, the parser also does data things.
-
 /***
  * The Parser goes through all the Passages provided by `<tw-passagedata>` and determines 
  * what to do with them.

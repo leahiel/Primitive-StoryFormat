@@ -1,5 +1,4 @@
 // TODO: Storing an array of non-body-matter passages would help reduce the amount of loops we need to do to find those passages.
-// TODO: Export True Passages, Processed HTML, and Processed EPUB files.
 
 /***
  * The Processer edits the inner and outer HTML of every Passage, prior to it being sent 
@@ -26,7 +25,7 @@ var Processer = (() => {
         _originalpassages.push(psg.cloneNode(true));
     }
 
-    // Intial Original Passages processing.
+    // Original Passages Processing
     for (let psg of _originalpassages) {
         let _innerHTML = psg.innerHTML;
 
@@ -61,8 +60,6 @@ var Processer = (() => {
         } while (match);
 
         psg.outboundpsgs = outboundpsgs;
-
-
 
         /* Remove Comments */
         // JavaScript Single Line Comments: `// Comment Text`
@@ -124,53 +121,41 @@ var Processer = (() => {
     }
 
     /* 
-        Process Macros l
+        Process Macros 
     */
     for (let psg of _duplicated_passages) {
-        let regex = /&lt;&lt;.*&gt;&gt;/g;
-        let _innerHTML = psg.innerHTML;
-        let match;
-        let matches = [];
+        //psg.innerHTML.replace('&lt;', '<')
+        //psg.innerHTML.replace('&gt;', '>')
 
-        // Get Macros
-        do {
-            match = regex.exec(_innerHTML);
-            if (match) {
-                matches.push([
-                    match.toString().replace('&lt;&lt;', '').replace('&gt;&gt;', '').replace('else if', 'elseif').split(" "),
-                    match
-                ]);
+        //let regex = /(<<.*?>>)/gm;
+        let regex = /(&lt;&lt;.*?&gt;&gt;)/gm;
+        let textarr = psg.innerHTML.split(regex);
+
+        psg.innerHTML = control_flow(textarr, psg);
+
+        function control_flow(textarr, psg) {
+            let soltext = ""; // Solution text.
+
+            while (textarr.length > 0) {
+              let restofpassage = textarr.slice((textarr.length) * -1);
+              let text = Macros.determine(restofpassage[0]);
+          
+              if (text.isOk) {
+                // Is a recognized macro.
+
+                let macroResult = Macros.run(text, restofpassage, psg);
+                textarr = macroResult.psgarr;
+                restofpassage = textarr;
+                soltext += control_flow(restofpassage, psg);
+                break;
+              } else {
+                // Is normal text or an unrecognized macro.
+                
+                soltext += textarr.shift();
+              }
             }
-        } while (match);
 
-        // Process Macros
-        for (let i = 0; i < matches.length; i++) {
-            let macro = matches[i][0];
-
-            switch (macro[0].toLowerCase()) {
-                case 'if':
-                    // console.log('if NYI');
-                    break;
-                case 'else':
-                    // console.log('else NYI');
-                    break;
-                case 'elseif':
-                    // console.log('elseif NYI');
-                    break;
-                case 'endif':
-                    // console.log('endif NYI');
-                    break;
-                case 'set':
-                    // TODO Do all possible SET and UNSET Macros in Original Passages.
-                    Macros.set(macro.slice(1).join(' '), psg);
-                    break;
-                case 'unset':
-                    // TODO Do all possible SET and UNSET Macros in Original Passages.
-                    Macros.unset(macro.slice(1).join(' '), psg);
-                    break;
-                default:
-                    console.warn(`The Macro '${macro[0]}' found in Passage '${psg.getAttribute('original_name')}' is not a valid macro.`);
-            }
+            return soltext;
         }
     }
 
@@ -185,6 +170,8 @@ var Processer = (() => {
     converter.setOption('noHeaderId', true);
     converter.setOption('prefixHeaderId', 'custom-'); // If an ID is set somehow, it'll have 'custom-' as a prefix.
     converter.setOption('requireSpaceBeforeHeadingText', true);
+    converter.setOption('smartIndentationFix', true);
+
 
 
     /* 
@@ -192,8 +179,12 @@ var Processer = (() => {
     */
     for (let psg of _duplicated_passages) {
         let _innerHTML = psg.innerHTML;
-        /* Convert Markdown to HTML */
-        // We can't update links until we do this.
+        /* Convert Markdown to HTML (We can't update links until we do this.) */
+        // Prevent code blocks. https://showdownjs.com/docs/markdown-syntax/#multiple-lines
+        _innerHTML = _innerHTML.replace('    ', '');  // 4 Spaces
+        _innerHTML = _innerHTML.replace('       ', ''); // 2 Tabs
+
+        // Convert
         _innerHTML = converter.makeHtml(_innerHTML);
 
         let outboundpsgs = [];
@@ -204,20 +195,25 @@ var Processer = (() => {
 
         do {
             // Find links for mermaid.
+            // BUG: No idea why the `&` is turning into `&amp;` after `Macro.if()`, but it is, so... uh... we check for that.
+            _innerHTML = _innerHTML.replace('&amp;', '&');
+            _innerHTML = _innerHTML.replace('&lt;', '<');
+            _innerHTML = _innerHTML.replace('&gt;', '>');
+            
             match = regex.exec(_innerHTML);
             if (match) {
                 let link = match[0];
                 let destination = '';
                 let text = '';
 
-                if (link.split("-&gt;")[1]) {
+                if (link.split("->")[1]) {
                     // Found [[display text->link]] format.
-                    destination = `${link.split("-&gt;")[1].split("]]")[0]}-${outboundnbsv}`;
-                    text = link.split("-&gt;")[0].split("[[")[1]
-                } else if (link.split("&lt;-")[1]) {
+                    destination = `${link.split("->")[1].split("]]")[0]}-${outboundnbsv}`;
+                    text = link.split("->")[0].split("[[")[1]
+                } else if (link.split("<-")[1]) {
                     // Found [[link<-display text]] format.
-                    destination = `${link.split("&lt;-")[0].split("[[")[1]}-${outboundnbsv}`;
-                    text = link.split("&lt;-")[1].split("]]")[0];
+                    destination = `${link.split("<-")[0].split("[[")[1]}-${outboundnbsv}`;
+                    text = link.split("<-")[1].split("]]")[0];
                 } else if (link.split("|")[1]) {
                     // Found [[display text|link]] format.
                     // DEPRECATED: This link format is deprecated and only kept for legacy reasons.
@@ -273,6 +269,9 @@ var Processer = (() => {
     // let all_mermaid = _mermaidize(_duplicated_passages, false)
     // console.log(getPassagesFromMermaid(all_mermaid))
     
+    /*
+        Crawl through duplicated passages to find reachable passsages.
+    */
     let startpsg;
     for (let psg of _duplicated_passages) {
         if (psg.getAttribute('name') === `${Parser.startpassage}-${"N".repeat(Parser.variables.length)}`) {
@@ -502,6 +501,10 @@ var Processer = (() => {
             for (let i in _processedepubpassages) {
                 passages.push(_processedepubpassages[i].cloneNode(true));
             }
+        } else if (type.toLowerCase() === "true") {
+            for (let i in _truepassages) {
+                passages.push(_truepassages[i].cloneNode(true));
+            }
         }
 
         return passages;
@@ -510,9 +513,6 @@ var Processer = (() => {
     /* Object Exports. */
     return Object.freeze(Object.defineProperties({}, {
         passages: {
-            value: getPassages
-        },
-        original_passages: {
             value: getPassages
         },
     }));

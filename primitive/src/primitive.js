@@ -80,4 +80,48 @@ window.Primitive = {};
 			});
 		});
 	}
+
+
+	/**
+	 * Waits for an element to exist before doing thing.
+	 *
+	 * ```
+	 * const elm = await waitForElm('.some-class');
+	 * // or
+	 * waitForElm('.some-class').then((elm) => {
+	 *  console.log('Element is ready');
+	 *  console.log(elm.textContent);
+	 * });
+	 * ```
+	 * 
+	 * @param {CSS_Selector} selector 
+	 * 
+	 * Original taken from https://stackoverflow.com/a/61511955
+	 * CC BY-SA 4.0. Modified by TheMadExile at:
+	 * https://discord.com/channels/389867840406159362/389868418855075840/1225689537376944188
+	 * 
+	 */
+	function _waitForElm(selector) {
+        return new Promise(resolve => {
+            const el = document.querySelector(selector);
+
+            if (el) {
+                return resolve(el);
+            }
+
+            const observer = new MutationObserver(mutations => {
+                const el = document.querySelector(selector);
+
+                if (el) {
+                    observer.disconnect();
+                    resolve(el);
+                }
+            });
+
+            observer.observe(document.body, {
+                childList : true,
+                subtree   : true
+            });
+        });
+    }
 })();
