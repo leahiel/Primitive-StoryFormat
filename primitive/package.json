@@ -1,6 +1,6 @@
 {
-    "name": "Primitive",
-    "version": "0.1.0",
+    "name": "primitive",
+    "version": "0.2.0",
     "license": "BSD-2-Clause",
     "devDependencies": {
       "clean-css": "^5.2.2",

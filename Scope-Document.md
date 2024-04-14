@@ -1,7 +1,5 @@
-### Scope Document TODO
-* Write more about the technical aspects required, such as the parser, tag management system and whatnot. Also about looping passages in Version 2.0.
-* Find a term for the screen with the export options.
-* Fill out an Technical Notes for Version 0.3
+### Project TODO:
+Test Control flow with `<<set>>` macros within the blocks.
 
 
 # Primitive Scope Document

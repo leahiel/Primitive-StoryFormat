@@ -7,7 +7,7 @@
 	Thank you to TME for using such an unrestrictive license.
 
 	This version of the file is also governed by a BSD 2-clause "Simplified" License, which may be found in the LICENSE 
-	file. Copyright (c) 2023, S. Herring <sfkherrin@yahoo.com>. All rights reserved.
+	file. Copyright © 2023, S. Herring <sfkherrin@yahoo.com>. All rights reserved.
 
 ***********************************************************************************************************************/
 'use strict';

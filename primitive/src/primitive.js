@@ -1,3 +1,12 @@
+/***********************************************************************************************************************
+
+	primitive.js
+
+	Copyright © 2023-2024, S. Herring <sfkherrin@yahoo.com>. All rights reserved.
+	Use of this source code is governed by a BSD 2-clause "Simplified" License, which may be found in the LICENSE file.
+
+***********************************************************************************************************************/
+
 var config = {};
 window.Primitive = {};
 

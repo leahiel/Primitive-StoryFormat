@@ -1,0 +1,124 @@
+:: epubstyle
+
+
+
+:: htmlstyle
+
+
+
+:: Introduction [frontmatter_1]
+Yo waddup.
+[[Test1]]
+
+
+
+:: Test1 [start]
+Testing text1 - base true: 
+<<if truevar>>
+    You see this sentence because true.
+<<else>>
+    You don't see this sentence.
+<<endif>>
+More words after!
+
+[[Test2]]
+
+
+
+:: Test2
+Testing text2 - base false else: 
+<<if falsevar>>
+    You don't see this sentence because false.
+<<else>>
+    You see this sentence instead.
+<<endif>>
+More words after!
+
+[[Test3]]
+
+
+
+:: Test3
+Testing text3 - no elses:
+<<if truevar>>
+    Base true.
+<<endif>> 
+More words after!
+
+[[Test4]]
+
+
+
+:: Test4
+Testing text4 - nested if-else: 
+<<if truevar>>
+    Base True.
+    <<if falsevar>>
+        Nested True.
+    <<else>>
+        Nested else cause false.
+    <<endif>>
+    Nested more words after.
+<<endif>> 
+Base more words after!
+
+[[Test5]]
+
+
+
+:: Test5
+Testing text5 - else if:
+<<if truevar>>
+    Base True.
+<<elseif anothervar>>
+    Else if true.
+<<else>>
+    Nothing was true.
+<<endif>>
+Postendif text.
+
+[[Test6]]
+
+
+
+:: Test6
+Testing text6 - else if, base false, elseif true: 
+<<if falsevar>> 
+    Base False. 
+<<elseif anothervar>> 
+    Else if true.
+<<else>> 
+    Nothing was true. 
+<<endif>> 
+Postendif text.
+
+[[Test7]]
+
+
+
+:: Test7
+Testing text7 - two endifs in a row:
+<<if falsevar>> 
+    Base false.
+    <<if truevar>>
+        Base was false so you should never see this.
+    <<endif>>
+<<endif>> 
+This should be the only sentence you see.
+
+[[Test8]]
+
+
+
+:: Test8
+Testing text8 - if else if:
+<<if falsevar>>
+    Base true.
+<<else>>
+    Base else value.
+    <<if truevar>> 
+        Nested Else True.
+    <<endif>> 
+    More nested endif text.
+<<endif>> 
+Last text.

@@ -1,3 +1,18 @@
+/***********************************************************************************************************************
+
+	version.js
+
+	This file was excised from Thomas Michael Edwards' build.js file, available under the BSD 2-clause 
+	"Simplified" License, Copyright © 2020–2021. You may find the original file excised from at:
+	https://github.com/tmedwards/sugarcube-2/blob/27903a854b7bedbb9fa60efa33e47c99bab7a359/build.js
+
+	Thank you to TME for using such an unrestrictive license.
+
+	This version of the file is also governed by a BSD 2-clause "Simplified" License, which may be found in the LICENSE 
+	file. Copyright © 2023-2024, S. Herring <sfkherrin@yahoo.com>. All rights reserved.
+
+***********************************************************************************************************************/
+
 var version = Object.freeze({
 	title: 'Primitive',
 	major: '{{BUILD_VERSION_MAJOR}}',

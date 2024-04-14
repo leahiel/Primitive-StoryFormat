@@ -1,12 +1,10 @@
 # Generated Files
 primitive/node_modules/
 primitive/package-lock.json
-primitive/.build
 
-# Mermaid Files
-mermaid/
+# Real Story Files (For Testing)
+STORYSOURCE/
 
 # Miscellaneous
-build.bat
 -*
 out.html

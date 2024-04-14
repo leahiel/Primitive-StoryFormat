@@ -1,4 +1,11 @@
-// The outputter deals with displaying the passages to the screen. It also shuffles them. Because it shuffles them, it also adds the h2 tag identifying the passage to the passage. 
+/***********************************************************************************************************************
+
+    outputter.js
+
+	Copyright © 2023-2024, S. Herring <sfkherrin@yahoo.com>. All rights reserved.
+	Use of this source code is governed by a BSD 2-clause "Simplified" License, which may be found in the LICENSE file.
+
+***********************************************************************************************************************/
 
 /***
  * The Outputter manipulates the DOM on the Primitive Export Screen.

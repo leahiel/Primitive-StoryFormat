@@ -1,3 +1,12 @@
+/***********************************************************************************************************************
+
+    processer.js
+
+	Copyright © 2023-2024, S. Herring <sfkherrin@yahoo.com>. All rights reserved.
+	Use of this source code is governed by a BSD 2-clause "Simplified" License, which may be found in the LICENSE file.
+
+***********************************************************************************************************************/
+
 // TODO: Storing an array of non-body-matter passages would help reduce the amount of loops we need to do to find those passages.
 
 /***
@@ -145,6 +154,11 @@ var Processer = (() => {
 
                     let macroResult = Macros.run(text, restofpassage, psg);
                     textarr = macroResult.psgarr;
+                    if (!macroResult.isOk) {
+                        // Macro wasn't good, so just get rid of that line.
+                        textarr.shift();
+                    }
+
                     restofpassage = textarr;
                     soltext += control_flow(restofpassage, psg);
                     break;
@@ -181,8 +195,8 @@ var Processer = (() => {
         let _innerHTML = psg.innerHTML;
         /* Convert Markdown to HTML (We can't update links until we do this.) */
         // Prevent code blocks. https://showdownjs.com/docs/markdown-syntax/#multiple-lines
-        _innerHTML = _innerHTML.replace('    ', ''); // 4 Spaces
-        _innerHTML = _innerHTML.replace('       ', ''); // 2 Tabs
+        _innerHTML = _innerHTML.replaceAll('    ', ''); // 4 Spaces
+        _innerHTML = _innerHTML.replaceAll('       ', ''); // 2 Tabs
 
         // Convert
         _innerHTML = converter.makeHtml(_innerHTML);
@@ -279,6 +293,7 @@ var Processer = (() => {
             break
         }
     }
+
     let true_mermaid = MermaidizeFromPassage(startpsg);
     let _truepassagenames = getPassagesFromMermaid(true_mermaid);
     let _truepassages = [];

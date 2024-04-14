@@ -1,3 +1,12 @@
+/***********************************************************************************************************************
+
+    macros.js
+
+	Copyright © 2024, S. Herring <sfkherrin@yahoo.com>. All rights reserved.
+	Use of this source code is governed by a BSD 2-clause "Simplified" License, which may be found in the LICENSE file.
+
+***********************************************************************************************************************/
+
 /***
  * Macros
  */
@@ -192,12 +201,17 @@ var Macros = (() => {
 
                             if (determine(next).macro === 'endif' && else_neededEnds <= 0) {
                                 foundEnd = true;
+                                // psgarr.shift();
+                                break;
+
                             } else if (determine(next).macro === 'endif') {
                                 else_neededEnds--;
                                 continue;
+
                             } else if (determine(next).macro === 'if') {
                                 else_neededEnds++;
                                 continue;
+                                
                             } else {
                                 solarr.push(next);
                             }

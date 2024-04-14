@@ -7,7 +7,7 @@
 	Thank you to TME for using such an unrestrictive license.
 
 	This version of the file is also governed by a BSD 2-clause "Simplified" License, which may be found in the LICENSE 
-	file. Copyright (c) 2023, S. Herring <sfkherrin@yahoo.com>. All rights reserved.
+	file. Copyright © 2023-2024, S. Herring <sfkherrin@yahoo.com>. All rights reserved.
 
 ***********************************************************************************************************************/
 'use strict';
@@ -55,16 +55,20 @@ const CONFIG = {
             dest: 'format.js',
             json: 'src/templates/config.json'
         },
-        // copy : [
-        // 	{
-        // 		src  : 'icon.svg',
-        // 		dest : 'build/twine2/primitive/icon.svg'
-        // 	},
-        // 	{
-        // 		src  : 'LICENSE',
-        // 		dest : 'build/twine2/primitive/LICENSE'
-        // 	}
-        // ]
+        copy: [
+            {
+                src: 'format.js',
+                dest: '../dist/format.js'
+            },
+            {
+                src: '../icon.svg',
+                dest: '../dist/icon.svg'
+            },
+            {
+                src: '../LICENSE',
+                dest: '../dist/LICENSE'
+            }
+        ]
     }
 }
 
@@ -106,26 +110,29 @@ const _opt = require('node-getopt').create([
     }
 
     // Get the version info and build metadata.
-	const version = (() => {
-		const semver = require('semver');
-		const { name, version } = require('./package.json'); // relative path must be prefixed ('./')
-		const prerelease = semver.prerelease(version);
+    const version = (() => {
+        const semver = require('semver');
+        const {
+            name,
+            version
+        } = require('./package.json'); // relative path must be prefixed ('./')
+        const prerelease = semver.prerelease(version);
 
-		return {
-			title      : name,
-			major      : semver.major(version),
-			minor      : semver.minor(version),
-			patch      : semver.patch(version),
-			prerelease : prerelease && prerelease.length > 0 ? prerelease.join('.') : null,
-			build      : Number(readFileContents('.build')) + 1,
-			date       : new Date().toISOString(),
+        return {
+            title: name,
+            major: semver.major(version),
+            minor: semver.minor(version),
+            patch: semver.patch(version),
+            prerelease: prerelease && prerelease.length > 0 ? prerelease.join('.') : null,
+            build: Number(readFileContents('.build')) + 1,
+            date: new Date().toISOString(),
 
-			toString() {
-				const prerelease = this.prerelease ? `-${this.prerelease}` : '';
-				return `${this.major}.${this.minor}.${this.patch}${prerelease}`;
-			}
-		};
-	})();
+            toString() {
+                const prerelease = this.prerelease ? `-${this.prerelease}` : '';
+                return `${this.major}.${this.minor}.${this.patch}${prerelease}`;
+            }
+        };
+    })();
 
     // Build for Twine 2.x.
     console.log('\nBuilding Twine 2.x version:');
@@ -160,9 +167,8 @@ const _opt = require('node-getopt').create([
     });
 
     // // Process the files that simply need copied into the build.
-    // TODO: Uncomment when ready to bundle for production.
-    // projectCopy(CONFIG.twine2.copy);
-    
+    projectCopy(CONFIG.twine2.copy);
+
 
     // Update the build ID.
     writeFileContents('.build', String(version.build));
