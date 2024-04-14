@@ -10,43 +10,6 @@
 var Outputter = (() => {
     'use strict';
 
-    // // Prepend Header Text
-    // if (['front-matter', 'back-matter'].includes(psg.getAttribute('data-placement'))) {
-    //     let h2 = document.createElement('h2');
-    //     h2.innerText = psg.getAttribute('name');
-    //     psg.prepend(h2);
-
-    //     _processedhtmlpassages.push(psg);
-
-    // } else if (psg.getAttribute('data-placement') === 'body-matter') {
-    //     // Duplicate passages for each possible variable value.
-    //     for (let nbsv of _allpossiblenbsvstates) {
-    //         let _duplicated_passage = psg.cloneNode(true);
-    //         let h2 = document.createElement('h2');
-
-    //         // Ensure no duplicate values on certain attributes.
-    //         let name = _duplicated_passage.getAttribute('name');
-    //         let id = _duplicated_passage.getAttribute('id');
-    //         let pid = _duplicated_passage.getAttribute('pid');
-    //         _duplicated_passage.setAttribute('original_name', name);
-    //         _duplicated_passage.setAttribute('name', `${name}-${nbsv}`);
-    //         _duplicated_passage.setAttribute('id', `${id}-${nbsv}`);
-    //         _duplicated_passage.setAttribute('pid', `${pid}-${nbsv}`);
-    //         _duplicated_passage.setAttribute('nbsv', nbsv);
-    //         _duplicated_passage.setAttribute('outboundnbsv', nbsv);
-
-    //         h2.innerText = `Passage ${_shuffledHTMLIndex}`;
-    //         _duplicated_passage.prepend(h2);
-
-    //         _processedhtmlpassages.push(_duplicated_passage);
-
-    //         _shuffledHTMLIndex++;
-    //     }
-
-    // } else {
-    //     // Passage is neither body-matter or front-matter/back-matter, which shouldn't be able to happen.
-    // }
-
     /**
      * Outputs the HTML export into the HTML document.
      */
@@ -194,8 +157,58 @@ var Outputter = (() => {
         html.appendChild(body);
 
         // Put Passages into body 
-        for (let i in Processer.passages('html')) {
-            body.appendChild(Processer.passages('html')[i]);
+        let frontPassages = [];
+        let shuffledPassages = [];
+        let backPassages = [];
+        for (let psg of Processer.passages('html')) {
+            // front-matter or back-matter
+            // TODO: Obey numbered tags.
+            if (['front-matter', 'back-matter'].includes(psg.getAttribute('data-placement'))) {
+                let h2 = document.createElement('h2');
+                h2.innerText = psg.getAttribute('name');
+                psg.prepend(h2);
+
+                if (psg.getAttribute('data-placement') === 'front-matter') {
+                    frontPassages.push(psg)
+                }
+
+                if (psg.getAttribute('data-placement') === 'back-matter') {
+                    backPassages.push(psg)
+                }
+
+                continue;
+            }
+
+            // body-matter
+            shuffledPassages.push(psg);
+            continue;
+        }
+
+        // Shuffle Body Passages
+        _shuffle(shuffledPassages); // TODO: Obey numbered tags.
+
+        // Process Body Passages
+        let _psgnumber = 1;
+        for (let psg of shuffledPassages) {
+            let h2 = document.createElement('h2');
+            h2.innerText = `Passage ${_psgnumber}`;
+            psg.prepend(h2);
+
+            _psgnumber++;
+        }
+
+
+        // Append passages.
+        for (let psg of frontPassages) {
+            body.appendChild(psg);
+        }
+
+        for (let psg of shuffledPassages) {
+            body.appendChild(psg);
+        }
+
+        for (let psg of backPassages) {
+            body.appendChild(psg);
         }
 
         return html;
@@ -273,6 +286,34 @@ var Outputter = (() => {
             });
         });
     }
+
+    /** 
+	 * Shuffles the array. 
+	 * 
+	 * @param {any[]} array 
+	 * 
+	 * Taken from https://stackoverflow.com/a/2450976 
+	 * CC BY-SA 4.0, no changes. 
+	 */
+	function _shuffle(array) {
+		let currentIndex = array.length,
+			randomIndex;
+
+		// While there remain elements to shuffle. 
+		while (currentIndex > 0) {
+
+			// Pick a remaining element. 
+			randomIndex = Math.floor(Math.random() * currentIndex);
+			currentIndex--;
+
+			// And swap it with the current element. 
+			[array[currentIndex], array[randomIndex]] = [
+				array[randomIndex], array[currentIndex]
+			];
+		}
+
+		return array;
+	}
 
 
 
