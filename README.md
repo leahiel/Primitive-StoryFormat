@@ -29,13 +29,27 @@ All variable start as `null`. Be sure to `<<set>>` your variables to your deseri
 **WIP:** Need to reintegrate.
 
 You can link from one passage to another with the following syntax:
-* a) `[[Passage Links]]                 => Passage Links (turn to 6)`
-* b) `[[display text->Passage Link]]    => display text (turn to 6)`
-* c) `[[Passage Link<-display text]]    => display text (turn to 6)`
-* d) `[[->Passage Link]]                => (turn to 6)`
-* e) `[[Passage Link<-]]                => (turn to 6)`
-* e) `[[#->Passage Link]]               => 6`
-* g) `[[Passage Link<-#]]               => 6`
+* a) `[[Passage Links]]` => `Passage Links (turn to 6)`
+* b) `[[display text->Passage Link]]` => `display text (turn to 6)`
+* c) `[[Passage Link<-display text]]` => `display text (turn to 6)`
+* d) `[[->Passage Link]]` => `(turn to 6)`
+* e) `[[Passage Link<-]]` => `(turn to 6)`
+* e) `[[#->Passage Link]]` => `6`
+* g) `[[Passage Link<-#]]` => `6`
+
+### Custom Passage Links
+**WIP:** Currently putting title instead of passage number.
+
+You can make your own passage title by assigning a `link-affixes` in your `:: StoryConfig`:
+```
+:: StoryConfig
+{
+    "link-affixes" : {
+        "turnto": "Turn to %n"
+    }
+}
+```
+The `key`, in this case, `turnto` sets the code that you write into your passages. Primitive will turn the code into a custom passage link, replacing it with `Turn to Passage 23`.
 
 ## Macros
 ### <\<Set>>
@@ -99,7 +113,7 @@ Based on the variables that have been set, Primitive will automatically send the
 
 # Installation
 ## Local Install for [Tweego](https://www.motoslave.net/tweego/)
-See (Tweego's Documentation)[https://www.motoslave.net/tweego/docs/] for more information.
+See [Tweego's Documentation](https://www.motoslave.net/tweego/docs/) for more information.
 
 ## Local Install for [Twine 2.x](https://github.com/klembot/twinejs/releases)
 1. Download the current version of Primitive from the [Releases](https://github.com/leahiel/Primitive-StoryFormat/releases). 
@@ -112,7 +126,7 @@ See (Tweego's Documentation)[https://www.motoslave.net/tweego/docs/] for more in
 
 
 # Acknowledgements
-* To [Hituro](https://github.com/hituro) for guidance, suggestions, a mbition, and more in the creation of Primitive.
+* To [Hituro](https://github.com/hituro) for guidance, suggestions, ambition, and more in the creation of Primitive.
 * To Sophie Houlden's [WritingFantasy](https://sophiehoulden.com/twine/writingfantasy_guide.html) StoryFormat for inspiring this StoryFormat and the boundaries of this StoryFormat.
 * To [TME](https://github.com/tmedwards) for specific help in regards to creating any StoryFormat, and as well as in the creation of Primitive.
 * To [Greyelf](https://github.com/greyelf) for guidance in the creation of Primitive.

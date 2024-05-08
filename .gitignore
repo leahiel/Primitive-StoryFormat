@@ -1,10 +1,10 @@
 # Generated Files
 primitive/node_modules/
 primitive/package-lock.json
+out.html
 
 # Real Story Files (For Testing)
 STORYSOURCE/
 
-# Miscellaneous
+# Notes
 -*
-out.html

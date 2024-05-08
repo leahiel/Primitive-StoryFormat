@@ -18,7 +18,6 @@ var Macros = (() => {
 
     // Determines if the input is a macro or not.
     function determine(text) {
-        // Determine if Macro:
         // if (text.match(/(?:<<)|(?:>>)/gm) === null) {
         if (text.match(/(?:&lt;&lt;)|(?:&gt;&gt;)/gm) === null) {
             // Nope!

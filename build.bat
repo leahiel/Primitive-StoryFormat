@@ -10,5 +10,5 @@ ECHO:
 ECHO Building Test Story
 ECHO ================================================
 cd ..
-CALL tweego teststorysrc -o %outputfile%
+CALL tweego STORYSOURCE/hituro/The_Garden_of_Earthly_Regrets -o %outputfile%
 ECHO Test Story Complete

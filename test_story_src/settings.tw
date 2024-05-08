@@ -5,9 +5,9 @@ Testing Primitive StoryFormat
 
 :: StoryData [hidden]
 {
+    "ifid": "ED46AFFE-96C0-4E1D-AE5D-B5B3244C93BB",
     "format": "Primitive",
     "format-version": "0.2.0",
-    "ifid": "ED46AFFE-96C0-4E1D-AE5D-B5B3244C93BB",
     "start": "Test1"
 }
 

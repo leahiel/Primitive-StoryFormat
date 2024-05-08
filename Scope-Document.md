@@ -26,62 +26,9 @@ A Twine-to-EPUB IF StoryFormat.
   * [Glossary](#glossary)
   * [Notes from Gamebook Playthroughs](#notes-from-gamebook-playthroughs)
   * [Helpful Links](#helpful-links)
-  * [Issues](#issues)
 </details>
 
 # Version Plans:
-## Version 0.1 
-Version 0.1 is a very base version of Primitive. It should merely take commonly accepted Twee and Twee-adjacent notation of a Twine 2 HTML document, and act as a functional Twine-to-EPUB-and-HTML StoryFormat. The StoryFormat should take the Twine 2 HTML document, and spit out a generated HTML document that shows the following buttons:
-* Export to EPUB: Should export a file downloadable by the browser of the story in EPUB3 format.
-* Export to HTML: Should export a file downloadable by the browser of the story in HTML format, just like most StoryFormats.
-* Test EPUB in HTML: Should load the HTML portion of the EUPB inside the browser for testing.
-* Test HTML in HTML: Should load the HTML portion inside the browser for testing.
-
-Because StoryFormats only act on the Twine 2 HTML document when loaded in the browser, it is required to load the story with the StoryFormat in the browser before we can act on the Twine 2 HTML document. Thus, in order to use a StoryFormat to output to EPUB, we must first load the story in the StoryFormat, before we can use the StoryFormat to generate an EPUB. It is impossible with current compilers to use a StoryFormat directly to compile an EPUB document. There is no plan to add or create compiler functionality to make this happen.
-
-Because Primitive's primary export focus is EPUB, only features that work in EPUB3 format should be able to be utilized. For example, this would exclude the use of JavaScript, including the `<script>` HTML element, as EPUB3 does not support that functionality.
-
-As required of a StoryFormat for EPUB, passages should be output in a randomized order, and links to passages should be hyperlinked to the correct passage, optionally with a "turn to passage N" message.
-
-**NOTE**: Version 0.1 will be incredibly similar to WritingFantasy, a StoryFormat made by Souphie Houlden. <https://sophiehoulden.com/twine/writingfantasy_guide.html> Primitive aims to surpass WritingFantasy in functionality starting in version 0.2.
-
-
-
-### 0.1 Features:
-**NOTE:** SemVer will not be adhered to until the release of 0.1 due to the planned rapid development of Version 0.1. Likewise, versions prior to 0.1 will be considered highly unstable, and will not be archived for later retrieval.
-
-1) Export to:
-* 1a) HTML
-
-**TECHNICAL:** This is the standard for Twine stories anyways. However, additions like using images may require we output a ZIP file with the HTML embedded inside instead.
-
-* 1b) EPUB
-
-**TECHNICAL:** There are several extensions and JavaScript libraries that convert webpages to EPUB. Considering that we can detail the exact HTML of the generated document that the EPUB will be generated from, making an EPUB from it should be an easy, though non-trivial task. 
-
-2) All "standard" link syntaxes should be supported. Additionally, Passage Links should have some text following them in the styles provided by WritingFantasy.
-
-**NOTE:** Due to the popularity of the Twine 2.x application, the baseline standard for all links should be syntax that the application accepts while parsing: https://github.com/klembot/twinejs/blob/develop/src/util/parse-links.ts
-
-* 2a) "Standard"     `[[Passage Links]]                 => Passage Links (turn to 6)`
-* 2b) "Standard"     `[[display text->Passage Link]]    => display text (turn to 6)`
-* 2c) "Standard"     `[[Passage Link<-display text]]    => display text (turn to 6)`
-* 2d) Twine1-Legacy  `[[display text|Passage Link]]     => display text (turn to 6)`
-* 2e) WF-Legacy      `[[->Passage Link]]                => (turn to 6)`
-* 2e) WF-Legacy      `[[Passage Link<-]]                => (turn to 6)`
-* 2g) WF-Legacy      `[[#->Passage Link]]               => 6`
-* 2h) WF-Legacy      `[[Passage Link<-#]]               => 6`
-
-**NOTE:** The `[[turnto->Passage Links]]` Passage Link syntax provided by WritingFantasy will not be supported, as the custom text will be editable in the configuration file.
-
-* 2i) Passages should be able to be linked to. i.e. http://localhost:8080/#31
-
-**RESEARCH:** In fact, this may be a reasonable EPUB requirement for the Table of Contents. If it is not, then 2i will be moved to Version 0.3.
-
-3) All passages must be randomly shuffled.
-
-**TECHNICAL:** This will require Passage Names to be randomly generated, and for links to refer to the generated Passage Name. So while the author may write `[[display text->Passage Link]]`, the final output of the story should look as if it was written like, `[[display text->18]]`.
-
 ~~4) A Table of Contents, generated for each passage, should be available in both EPUB and HTML style.~~
 
 ~~**RESEARCH:** Should "Chapters", as a whole, be added? Having a link for each Passage in the Table of Contents may be extreme. Consider "Our Cabin Was Cold", which has 92 "Generated" Passages, but only 8 Chapters.~~
@@ -97,49 +44,12 @@ As required of a StoryFormat for EPUB, passages should be output in a randomized
 
 **NOTE:** Required in case authors want to attempt print versions of their stories based on Primitive.
 
-~~6) [WF Legacy] Passages should be able to have a non-randomly generated Passage Number by using a Passage Tag.~~
-* ~~6a) This includes a `First` passage tag.~~
-* ~~6b) This includes a `Last` passage tag.~~
-**UNIMPLEMENTED:** In retrospect, would cause compatibility issues with Version 0.2 of Primitive. The Author can just specify those passages with backmatter or frontmatter Special Passage Tags. However, since Version 0.2 will split passages into many, this itself will also have issues.
-
-7) [WF Legacy] Passages tagged with "Frontmatter" and "Backmatter" should be placed before and after the Story Passages.
-* 7a) The order of both matter passages should be able to be specified with a suffix of `_number` after their tag name. i.e. A passage tagged with `[frontmatter_3]` will be the third frontmatter passage in the novel.
-
-8) [WF Legacy] Other text markup syntax available to authors for use.
-* 8a) ~~strikethrough~~
-* 8b) ^^superscript^^
-* 8c) *emphasis*
-* 8d) **strong emphasis**
-* 8e) __underline__
-* 8f) Markup syntax should be able to be escaped with a `\`.
-
-**NOTE:** Not all of WF's text markup are included.
-
-9) Story Comments should be available that the StoryFormat does not parse.
-* 9a) HTML and JavaScript style block comments should exist.
-* 9b) JavaScript style and double pound `##` single line comments should exist.
-
-**NOTE:** The various forms of comments are for compatibility with different software that authors commonly use.
-
-10 - DONE) [WF Legacy] Passages tagged as `hidden` or `note` or `notes` should be not considered by the parser.
-~~* 10a) Passages tagged with `no-toc` should not be added to the Table of Contents~~
-
 11) Separate CSS files should be accepted for each exported version that Primitive Offers.
 * 11a) A CSS file or Special Passage for HTML exports.
 * 11b) A CSS file or Special Passage for EPUB exports. 
 NOTE) We don't want people to submit stylesheets as those can be difficult to disable manually. 
 TECHNICAL) We should find a way to add an attribute to every element depending on whether it's CSS or HTML. Then we can parse though the Special Passages' CSS and add that attribute to every selector there, to ensure that EPUB and HTML don't mix.
 -- Actually, that's silly. We should just add that attribute to the top level node, and then we can add `top-level-node[type='html/epub']` to the beginning of every selector.
-
-
-12) Allow Authors to have a set of custom link styles.
-```
-styles = {
-  %tt: "turn to %n",
-  %s: "(Go to Passage %n.)",
-  %b: "back to passage %n.",
-}
-```
 
 13) I need a way to set the visible title of a Passage for front and back matters.
 NOTE) Shuffled passages would just have their generated number.
@@ -502,7 +412,3 @@ https://kdp.amazon.com/en_US/help/topic/G202131170
 
 #### Link to the Twine 2.x Application on Parsing Links:
 https://github.com/klembot/twinejs/blob/develop/src/util/parse-links.ts
-
-
-# Issues:
-1) Twine Compilers require a Start passage, but it makes no sense for Primitive. How should we handle the Start passage?

@@ -125,6 +125,8 @@ var Processer = (() => {
                 _dupe.setAttribute('outboundnbsv', nbsv);
 
                 _duplicated_passages.push(_dupe);
+
+                console.log('Created dupe.');
             }
         }
     }
@@ -286,6 +288,7 @@ var Processer = (() => {
     /*
         Crawl through duplicated passages to find reachable passsages.
     */
+    // TODO keep track of startpsg so we don't have to find it.
     let startpsg;
     for (let psg of _duplicated_passages) {
         if (psg.getAttribute('name') === `${Parser.startpassage}-${"N".repeat(Parser.variables.length)}`) {
